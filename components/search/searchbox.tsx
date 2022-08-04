@@ -13,7 +13,7 @@ export default function CustomSearchBox({ setLoading }: Props) {
 
   useEffect(() => {
     setLoading(isSearchStalled);
-  }, [isSearchStalled]);
+  }, [isSearchStalled, setLoading]);
 
   return (
     <>
