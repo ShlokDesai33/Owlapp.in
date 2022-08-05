@@ -19,7 +19,7 @@ export default async function handler(
   if (token) {
     try {
       // verify token signature
-      const { payload, protectedHeader } = await jwtVerify(token, JWT_SECRET, {
+      const { payload } = await jwtVerify(token, JWT_SECRET, {
         issuer: 'owlapp.in', // iss
         audience: 'user', // aud
       });

@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { jwtVerify, SignJWT } from 'jose'
+import { SignJWT } from 'jose'
 // library for generating symmetric key for jwt
 import { createSecretKey } from 'crypto'
-import Cookies from 'cookies';
+import Cookies from 'cookies'
 
 const JWT_SECRET = createSecretKey(process.env.JWT_SECRET as string, 'utf-8');
 
@@ -16,7 +16,10 @@ export default async function handler(
   // get the auth cookie if it exists
 
   // create a user authentication jwt token
-  const JWT_TOKEN = await new SignJWT({ 'name': 'Shlok Desai', 'image': '' })
+  const JWT_TOKEN = await new SignJWT({ 
+    'name': 'Shlok Desai', 
+    'image': 'https://lh3.googleusercontent.com/a-/AFdZucqmYFJLGQ48JjmJtZlKdEu7MK7Uy0D1IkLaAXQK=s96-c' 
+  })
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setSubject('user-unique-id')
     .setIssuedAt()
