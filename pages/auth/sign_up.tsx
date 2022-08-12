@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import Cookies from 'cookies'
 
-const SignIn: NextPage = () => {
+const SignUp: NextPage = () => {
   return (
     <>
       <Head>
@@ -11,7 +11,7 @@ const SignIn: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Sign In</h1>
+      <h1>Sign Up</h1>
     </>
   );
 }
@@ -32,4 +32,4 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return { props: {} }
 }
 
-export default SignIn;
+export default SignUp;

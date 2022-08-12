@@ -13,7 +13,7 @@ export default function NavBar(): JSX.Element {
         <NavButton
           title="Home"
           icon={<HouseSimple size={30} />}
-          url="/"
+          url="/dashboard"
         />
         <NavButton
           title="Social"

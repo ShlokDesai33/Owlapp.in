@@ -67,7 +67,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   {/* user profile div */}
                   <Link href="/profile" passHref>
                     <button>
-                      <div className="flex items-center">
+                      <div className="flex items-center gap-x-3">
                         <Image
                           src={user.image}
                           width={60}
@@ -75,14 +75,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                           alt="Profile Picture"
                           className="rounded-full"
                         />
-                        <div className="flex items-center ml-3 divide-x-2 gap-x-6">
-                          <div>
-                            <h5 className="text-left">{user.fullname}</h5>
-                            <p className="text-primary text-left">@{user.id}</p>
-                          </div>
-                          <div className="pl-4">
-                            <Bell size={32} color="#9c9c9c" weight="light" />
-                          </div>
+                        <div>
+                          <h5 className="text-left">{user.fullname}</h5>
+                          <p className="text-primary text-left">@{user.id}</p>
                         </div>
                       </div>
                     </button>

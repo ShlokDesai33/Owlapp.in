@@ -17,7 +17,7 @@ export default function CustomSearchBox({ searchState, setSearchState }: Props) 
     if (!isSearchStalled && searchState !== 'hidden') {
       setSearchState('visible');
     }
-  }, [isSearchStalled, setSearchState]);
+  }, [isSearchStalled, setSearchState, searchState]);
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function CustomSearchBox({ searchState, setSearchState }: Props) 
         <button><MagnifyingGlass size={30} color="#BE6CFF" /></button>
         <input
           ref={inputRef}
-          className="outline-none bg-transparent font-normal text-lg placeholder:text-lg placeholder:text-gray-text w-full ml-4 pl-4"
+          className="outline-none bg-transparent font-normal text-xl placeholder:text-xl placeholder:text-gray-text w-full ml-4 pl-4"
           placeholder="Search Owl..."
         />
       </form>
