@@ -21,7 +21,7 @@ export default async function handler(
       // verify token signature
       const { payload } = await jwtVerify(token, JWT_SECRET, {
         issuer: 'owlapp.in', // iss
-        // aud could be 'user' or 'verified-user'
+        audience: 'admin', // aud
       });
       // user is authenticated
       return res.status(200).json(payload);

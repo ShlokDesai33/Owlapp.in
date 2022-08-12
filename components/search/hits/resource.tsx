@@ -1,4 +1,4 @@
-export default function ResourceHit() {
+export default function ResourceHit({ hit }: { hit: any }) {
   return (
     <></>
   )

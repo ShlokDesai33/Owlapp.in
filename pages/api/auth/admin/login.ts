@@ -26,7 +26,7 @@ export default async function handler(
     .setExpirationTime('10 days')
     .setIssuer('owlapp.in')
     // can be user / admin
-    .setAudience('verified-user')
+    .setAudience('admin')
     .sign(JWT_SECRET);
 
   // set the jwt token in the cookie

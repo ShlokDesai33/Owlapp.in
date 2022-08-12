@@ -26,10 +26,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         destination: '/dashboard',
         statusCode: 302
       }
-    }
+    };
   }
 
   return { props: {} }
 }
 
-export default SignUp;
+export default SignUp

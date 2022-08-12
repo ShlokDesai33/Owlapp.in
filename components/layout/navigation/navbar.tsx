@@ -18,12 +18,12 @@ export default function NavBar(): JSX.Element {
         <NavButton
           title="Social"
           icon={<Chats size={30} weight="light" />}
-          url="/social"
+          url="/dashboard/social"
         />
         <NavButton
           title="Resources"
           icon={<Books size={30} weight="light" />}
-          url="/resources"
+          url="/dashboard/resources"
         />
         <NavButton
           title="Create Forum"
@@ -37,7 +37,7 @@ export default function NavBar(): JSX.Element {
         <NavButton
           title="Settings"
           icon={<GearSix size={30} />}
-          url="/settings"
+          url="/dashboard/settings"
         />
       </div>
 		</div>

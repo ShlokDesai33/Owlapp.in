@@ -1,6 +1,6 @@
-import Head from "next/head";
-import Layout from "../components/layout";
-import { NextPageWithLayout } from "../typescript/nextpage";
+import Head from 'next/head'
+import Layout from '../../components/layout'
+import type { NextPageWithLayout } from '../../typescript/nextpage'
 
 const Dashboard: NextPageWithLayout = () => {
   return (
@@ -17,4 +17,4 @@ Dashboard.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
 }
 
-export default Dashboard;
+export default Dashboard

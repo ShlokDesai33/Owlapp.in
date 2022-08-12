@@ -12,6 +12,12 @@ const fetcher = (url: string) => (
   })
 );
 
+/**
+ * Simple Authentication Hook inspired by next-auth
+ * NOTE: this hook is not used in admin pages
+ * 
+ * @returns {Object} status and user
+ */
 export default function useSession() {
   // make GET request with httpOnly cookie if it exists
   const { data, error } = useSWR<Payload, Error>('/api/auth/session', fetcher, {
@@ -34,8 +40,10 @@ export default function useSession() {
       user: {
         fullname: data.name,
         image: data.image,
-        id: data.sub
-      },
+        id: data.sub,
+        isVerified: data.aud === 'verified-user',
+        isAdmin: data.aud === 'admin'
+      }
     };
   }
   else {

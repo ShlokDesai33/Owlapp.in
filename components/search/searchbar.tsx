@@ -6,7 +6,7 @@ import Link from 'next/link'
 export default function SearchBar() {
   const router = useRouter();
 
-  if (router.pathname === '/search') {
+  if (router.pathname === '/dashboard/search') {
     return (
       <>
         <Link href="/dashboard" passHref>
@@ -25,7 +25,7 @@ export default function SearchBar() {
   }
 
   return (
-    <Link href="/search" passHref>
+    <Link href="/dashboard/search" passHref>
       <button className="flex items-center gap-x-2 py-3 px-6 rounded-full border-2 border-primary">
         <MagnifyingGlass size={30} color="#BDBDBD" />
         <h5>Search Owl</h5>
