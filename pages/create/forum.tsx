@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import Layout from '../../components/layout/layout'
+import Layout from '../../components/layout'
 import type { NextPageWithLayout } from '../../typescript/nextpage'
 import { useRouter } from 'next/router';
 import Head from 'next/head';

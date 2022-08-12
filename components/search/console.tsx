@@ -1,18 +1,9 @@
-import Head from "next/head";
-import { Hits, Index } from "react-instantsearch-hooks-web";
-import Spinner from "../states/spinner";
-import ForumHit from "./hits/forum";
-import UserHit from "./hits/user";
+import Head from 'next/head';
+import { Hits, Index } from 'react-instantsearch-hooks-web';
+import ForumHit from './hits/forum';
+import UserHit from './hits/user';
 
-export default function SearchConsole({ searchState }: { searchState: string }) {
-  // loading state set by search box
-  if (searchState === 'loading') {
-    return (
-      <div className="flex w-full h-full items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
+export default function SearchConsole() {
   return (
     <>
       <Head>

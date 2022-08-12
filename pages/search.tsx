@@ -1,12 +1,9 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
-import { InstantSearch } from 'react-instantsearch-hooks-web'
-import searchClient from '../components/search/client'
+import Layout from '../components/layout'
+import SearchConsole from '../components/search/console'
+import { NextPageWithLayout } from '../typescript/nextpage'
 
-const Search: NextPage = () => {
-  const [isLoading, setLoading] = useState(false);
-
+const Search: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -15,11 +12,14 @@ const Search: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* @ts-ignore */}
-      <InstantSearch searchClient={searchClient} indexName="users" stalledSearchDelay={0}>
-      </InstantSearch>
+      <SearchConsole />
     </>
   )
+}
+
+// return the Search page wrapped in the Layout component
+Search.getLayout = function getLayout(page: React.ReactElement) {
+  return <Layout>{page}</Layout>;
 }
 
 export default Search

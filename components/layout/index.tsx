@@ -5,17 +5,12 @@ import { InstantSearch } from 'react-instantsearch-hooks-web'
 import searchClient from '../search/client'
 import Image from 'next/image'
 import Link from 'next/link'
-import CustomSearchBox from '../search/searchbox'
-import { useState } from 'react'
 import logoSvg from '../../public/logo.svg'
 import NavBar from './navigation/navbar'
-import { Bell } from 'phosphor-react'
-import SearchConsole from '../search/console'
+import SearchBar from '../search/searchbar'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { status, user } = useSession();
-  // hidden / loading
-  const [searchState, setSearchState] = useState<string>('hidden');
 
   if (status === 'loading') {
     // loading state
@@ -26,7 +21,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     );
   }
   else if (status === 'authenticated' && user) {
-    const page = searchState === 'hidden' ? children : <SearchConsole searchState={searchState}/>;
     return (
       <>
         <Head>
@@ -53,16 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
                 {/* top bar rhs */}
                 <div className="flex grow items-center justify-between px-12">
-                  <Link href="/create/forum" passHref>
-                    <button className="border-2 border-primary py-3 px-8 rounded-full text-lg w-fit">
-                      Create Forum
-                    </button>
-                  </Link>
-
-                  {/* search bar div */}
-                  <div className="flex items-center bg-white w-1/3 rounded-full px-6 py-4 shadow-post-shadow">
-                    <CustomSearchBox searchState={searchState} setSearchState={setSearchState} />
-                  </div>
+                  <SearchBar />
 
                   {/* user profile div */}
                   <Link href="/profile" passHref>
@@ -89,7 +74,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <NavBar />
 
                 <div className="grow">
-                  {page}
+                  {children}
                 </div>
               </div>
             </div>

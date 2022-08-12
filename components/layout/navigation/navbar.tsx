@@ -1,4 +1,4 @@
-import { Books, Chats, GearSix, HouseSimple } from 'phosphor-react';
+import { Books, Chats, GearSix, HouseSimple, PlusCircle } from 'phosphor-react';
 import NavButton from './button';
 
 /**
@@ -9,7 +9,7 @@ export default function NavBar(): JSX.Element {
   return (
     <div className="flex flex-col shrink-0 w-80 border-r-2 bg-gray-bg">
       {/* main nav buttons */}
-      <div className="flex flex-col gap-y-8 py-12 px-11 border-b-2">
+      <div className="flex flex-col gap-y-10 py-12 px-11 border-b-2">
         <NavButton
           title="Home"
           icon={<HouseSimple size={30} />}
@@ -25,10 +25,15 @@ export default function NavBar(): JSX.Element {
           icon={<Books size={30} weight="light" />}
           url="/resources"
         />
+        <NavButton
+          title="Create Forum"
+          icon={<PlusCircle size={30} />}
+          url="/create/forum"
+        />
       </div>
 
       {/* other nav buttons */}
-      <div className="flex flex-col gap-y-8 pt-12 px-11">
+      <div className="flex flex-col gap-y-10 pt-12 px-11">
         <NavButton
           title="Settings"
           icon={<GearSix size={30} />}
