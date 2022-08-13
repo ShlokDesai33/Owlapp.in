@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ['lh3.googleusercontent.com', 's3.ap-south-1.amazonaws.com'],
   },
+  proxy: true
 }
 
 module.exports = nextConfig
