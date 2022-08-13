@@ -18,7 +18,7 @@ export default function UserHit({ hit }: { hit: any }) {
             />
             <div className="w-min ml-3 mr-4">
               <h5 className="truncate w-56">{hit.fullname}</h5>
-              <p className="text-gray-text truncate">@2KaSYk5ZbY5HMs5GO0iO</p>
+              <p className="text-gray-text truncate">@{hit.objectID}</p>
             </div>
             { hit.status === 'verified' &&
               (
