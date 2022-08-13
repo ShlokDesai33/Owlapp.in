@@ -10,6 +10,7 @@ interface UserHit extends AlgoliaHit  {
   id: string
   followers: number
   rank: number
+  status: string
 }
 
 interface ForumHit extends AlgoliaHit {

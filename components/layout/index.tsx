@@ -42,7 +42,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         <main>
           {/* @ts-ignore */}
-          <InstantSearch searchClient={searchClient} indexName="users" stalledSearchDelay={0}>
+          <InstantSearch searchClient={searchClient} indexName="resources" stalledSearchDelay={0}>
             <div className="flex flex-col w-screen h-screen">
               {/* top bar div */}
               <div className="flex w-full border-b-2 bg-gray-bg">

@@ -1,6 +1,6 @@
-import { MagnifyingGlass, X } from 'phosphor-react';
-import { useRef } from 'react';
-import { useSearchBox } from 'react-instantsearch-hooks-web';
+import { MagnifyingGlass, X } from 'phosphor-react'
+import { useRef } from 'react'
+import { useSearchBox } from 'react-instantsearch-hooks-web'
 
 export default function CustomSearchBox() {
   // connect custom search box to algolia

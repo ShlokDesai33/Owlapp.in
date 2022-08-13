@@ -1,4 +1,4 @@
-import CustomSearchBox from './searchbox'
+import CustomSearchBox from './components/searchbox'
 import { useRouter } from 'next/router'
 import { MagnifyingGlass, X } from 'phosphor-react'
 import Link from 'next/link'

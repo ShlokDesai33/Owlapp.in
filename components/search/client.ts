@@ -1,4 +1,4 @@
-import algoliasearch from "algoliasearch/lite";
+import algoliasearch from 'algoliasearch/lite';
 
 const algoliaClient = algoliasearch(
   '0Q9AHOYTD6',
