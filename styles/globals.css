@@ -51,7 +51,7 @@
   /* A simple input field class. */
   .input-field {
     @apply outline-none bg-transparent placeholder:text-xl placeholder:text-gray-text;
-    @apply mt-6 border-2 py-4 px-4 w-full rounded-xl border-gray-btn text-xl focus:border-secondary;
+    @apply mt-6 border-2 py-4 px-4 w-full rounded-xl border-gray-btn text-xl focus:border-gray-text;
   }
 }
 

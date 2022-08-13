@@ -12,7 +12,7 @@ export default async function handler(
 ) {
 
   // create a cookie instance to configure cookies
-  const cookies = new Cookies(req, res);
+  const cookies = new Cookies(req, res, { secure: true });
   // get the auth cookie if it exists
 
   // create a user authentication jwt token
@@ -32,8 +32,7 @@ export default async function handler(
   // set the jwt token in the cookie
   cookies.set('auth-token', JWT_TOKEN, {
     httpOnly: true,
-    // TODO: fix
-    // secure: process.env.NODE_ENV === 'production',
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     // 10 days
     maxAge: 864000000,

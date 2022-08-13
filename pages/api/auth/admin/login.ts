@@ -12,7 +12,7 @@ export default async function handler(
 ) {
 
   // create a cookie instance to configure cookies
-  const cookies = new Cookies(req, res);
+  const cookies = new Cookies(req, res, { secure: true });
   // get the auth cookie if it exists
 
   // create a user authentication jwt token

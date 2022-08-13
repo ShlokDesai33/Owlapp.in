@@ -16,7 +16,6 @@ export default function SearchBar() {
           </button>
         </Link>
   
-        {/* search bar div */}
         <div className="flex items-center bg-white w-2/5 rounded-full px-6 py-4 shadow-post-shadow">
           <CustomSearchBox />
         </div>
