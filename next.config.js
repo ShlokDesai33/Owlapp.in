@@ -1,9 +1,55 @@
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval';
+  child-src 'self';
+  style-src 'self' 'unsafe-inline' fonts.googleapis.com;
+  font-src *.com localhost:3000;
+  img-src 'self' data: lh3.googleusercontent.com s3.ap-south-1.amazonaws.com owlapp.in www.w3.org;
+  connect-src 'self' *.net *.com;
+`
+
+const securityHeaders = [
+  {
+    key: 'X-DNS-Prefetch-Control',
+    value: 'on'
+  },
+  {
+    key: 'Strict-Transport-Security',
+    value: 'max-age=63072000; includeSubDomains; preload'
+  },
+  {
+    key: 'X-XSS-Protection',
+    value: '1; mode=block'
+  },
+  {
+    key: 'Permissions-Policy',
+    value: 'geolocation=()'
+  },
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff'
+  },
+  {
+    key: 'Content-Security-Policy',
+    value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim()
+  }
+]
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
     domains: ['lh3.googleusercontent.com', 's3.ap-south-1.amazonaws.com'],
+  },
+  async headers() {
+    return [
+      {
+        // Apply these headers to all routes in your application.
+        source: '/:path*',
+        headers: securityHeaders,
+      },
+    ]
   },
 }
 

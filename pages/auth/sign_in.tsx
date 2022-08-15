@@ -17,7 +17,7 @@ const SignIn: NextPage = () => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const cookies = new Cookies(ctx.req, ctx.res, { secure: true });
+  const cookies = new Cookies(ctx.req, ctx.res);
   const token = cookies.get('auth-token');
   
   if (token) {
