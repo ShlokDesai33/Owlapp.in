@@ -33,6 +33,7 @@ export default async function handler(
   cookies.set('auth-token', JWT_TOKEN, {
     httpOnly: true,
     // secure: process.env.NODE_ENV === 'production',
+    secure: false,
     sameSite: 'lax',
     // 10 days
     maxAge: 864000000,
