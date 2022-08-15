@@ -3,8 +3,8 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-inline' 'unsafe-eval';
   child-src 'self';
   style-src 'self' 'unsafe-inline' fonts.googleapis.com;
-  font-src *.com localhost:3000;
-  img-src 'self' data: lh3.googleusercontent.com s3.ap-south-1.amazonaws.com owlapp.in www.w3.org;
+  font-src 'self' fonts.gstatic.com;
+  img-src 'self' data: lh3.googleusercontent.com s3.ap-south-1.amazonaws.com www.w3.org;
   connect-src 'self' *.net *.com;
 `
 
