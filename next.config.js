@@ -1,7 +1,6 @@
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-inline' 'unsafe-eval';
-  child-src 'self';
   style-src 'self' 'unsafe-inline' fonts.googleapis.com;
   font-src 'self' fonts.gstatic.com;
   img-src 'self' data: lh3.googleusercontent.com s3.ap-south-1.amazonaws.com www.w3.org;
