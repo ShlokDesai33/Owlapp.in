@@ -30,7 +30,7 @@ export default async function handler(
 
   // set the jwt token in the cookie
   cookies.set('auth-token', JWT_TOKEN, {
-    httpOnly: true,
+    httpOnly: false,
     // TODO: fix this
     // secure: process.env.NODE_ENV === 'production',
     secure: false,
