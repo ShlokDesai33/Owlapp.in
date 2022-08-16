@@ -38,7 +38,6 @@ export default async function handler(
     sameSite: 'lax',
     // 10 days
     maxAge: 864000000,
-    
   });
 
   res.status(200).json({ mssg: 'Successfully authenticated' });
