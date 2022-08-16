@@ -18,7 +18,7 @@ export default async function handler(
   // create a user authentication jwt token
   const JWT_TOKEN = await new SignJWT({
     'name': 'Shlok Desai',
-    'image': 'https://lh3.googleusercontent.com/a-/AFdZucqmYFJLGQ48JjmJtZlKdEu7MK7Uy0D1IkLaAXQK=s96-c',
+    'img': 'https://lh3.googleusercontent.com/a-/AFdZucqmYFJLGQ48JjmJtZlKdEu7MK7Uy0D1IkLaAXQK=s96-c',
   })
     .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
     .setSubject('user-unique-id')

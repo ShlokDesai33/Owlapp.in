@@ -3,7 +3,7 @@
  */
 type Payload = {
   name: string
-  image: string
+  img: string
   sub: string
   iat: number
   exp: number

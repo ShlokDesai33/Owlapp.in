@@ -35,14 +35,20 @@ export default function useSession() {
     };
   }
   else if (data) {
+    // aud can be 'admin' | 'user' | 'verified-user' | 'banned-user' 
+    // check if aud === 'verified-user' or 'banned-user'
+    const ind = data.aud.indexOf('-');
+    if (ind !== -1) {
+      data.aud = data.aud.substring(0, ind);
+    }
+
     return {
       status: 'authenticated',
       user: {
         fullname: data.name,
-        image: data.image,
+        image: data.img,
         id: data.sub,
-        isVerified: data.aud === 'verified-user',
-        isAdmin: data.aud === 'admin'
+        status: data.aud
       }
     };
   }

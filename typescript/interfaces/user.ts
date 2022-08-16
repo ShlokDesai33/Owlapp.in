@@ -1,6 +1,6 @@
 interface User {
   // firestore document id
-  _id: string
+  id: string
   // amazon s3 url
   image: string
   fullname: string

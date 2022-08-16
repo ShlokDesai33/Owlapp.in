@@ -78,7 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                           <p className="text-gray-text text-left truncate">@{user.id}</p>
                         </div>
 
-                        { user.isVerified &&
+                        { user.status === 'verified' &&
                           (
                             <Image
                               src={blueCheck}
@@ -88,7 +88,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                             />
                           )
                         }
-                        { user.isAdmin &&
+                        { user.status === 'admin' &&
                           (
                             <Image
                               src={adminCheck}
