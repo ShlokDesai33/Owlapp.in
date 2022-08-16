@@ -32,13 +32,11 @@ export default async function handler(
   // set the jwt token in the cookie
   cookies.set('auth-token', JWT_TOKEN, {
     httpOnly: true,
-    // TODO: fix this
     // secure: process.env.NODE_ENV === 'production',
-    secure: false,
     sameSite: 'lax',
     // 10 days
     maxAge: 864000000,
   });
 
-  res.status(200).json({ mssg: 'Successfully authenticated' });
+  res.status(200).end();
 }

@@ -28,8 +28,6 @@ export default async function handler(
     .setAudience('verified-user')
     .sign(JWT_SECRET);
 
-  res.setHeader('x-forwarded-proto', 'https');
-
   // set the jwt token in the cookie
   cookies.set('auth-token', JWT_TOKEN, {
     httpOnly: true,
