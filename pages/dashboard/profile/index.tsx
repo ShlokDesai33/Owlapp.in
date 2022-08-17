@@ -6,7 +6,7 @@ const UserProfile: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Home | Owl</title>
+        <title>Your Profile | Owl</title>
       </Head>
     </>
   )

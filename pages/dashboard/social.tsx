@@ -6,7 +6,7 @@ const Social: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Home | Owl</title>
+        <title>Social | Owl</title>
       </Head>
     </>
   )

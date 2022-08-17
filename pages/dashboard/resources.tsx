@@ -6,7 +6,7 @@ const Resources: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Home | Owl</title>
+        <title>Resources | Owl</title>
       </Head>
     </>
   )

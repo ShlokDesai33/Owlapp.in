@@ -20,9 +20,20 @@ const Home: NextPage = () => {
 
   if (loading) {
     return (
-      <div className="flex w-screen h-screen items-center justify-center">
-        <Spinner />
-      </div>
+      <>
+        <Head>
+          <title>Owl</title>
+          <meta name="description" content="Owl's landing page"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+          <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
+          <meta name="author" content="Owl"></meta>
+          <link rel="icon" href="/favicon.ico"/>
+        </Head>
+
+        <div className="flex w-screen h-screen items-center justify-center">
+          <Spinner />
+        </div>
+      </>
     );
   }
 

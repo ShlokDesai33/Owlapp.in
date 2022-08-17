@@ -78,25 +78,23 @@ const CreateForum: NextPageWithLayout = () => {
     }
   }
 
-  if (state === 'requesting' || !user) { 
+  if (state === 'requesting' || !user) {
     return (
       <>
         <Head>
           <title>Create Forum | Owl</title>
-          <meta name="description" content="Create a forum on Owl"/>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-          <meta name="keywords" content="Owl, Forum, Create, Topic, Rank"></meta>
-          <meta name="author" content="Owl"></meta>
-          <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <div className="flex w-full h-full items-center justify-center gap-x-4">
           <Spinner />
-          <h5>Creating forum</h5>
+          { user &&
+            <h5>Creating forum</h5>
+          }
         </div>
       </>
     )
   } else if (state === 'error') {
+    // TODO
     return <>Error</>
   }
 
@@ -104,11 +102,6 @@ const CreateForum: NextPageWithLayout = () => {
     <>
       <Head>
         <title>Create Forum | Owl</title>
-        <meta name="description" content="Create a forum on Owl"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-        <meta name="keywords" content="Owl, Forum, Create, Topic, Rank"></meta>
-        <meta name="author" content="Owl"></meta>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="pt-12 px-12">

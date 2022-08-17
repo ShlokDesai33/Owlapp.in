@@ -6,7 +6,7 @@ const ViewForum: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Home | Owl</title>
+        <title>Forum | Owl</title>
       </Head>
 
       hello

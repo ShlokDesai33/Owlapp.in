@@ -1,6 +1,6 @@
 {
-  "name": "algolia-hooks",
-  "version": "0.1.0",
+  "name": "owlapp.in",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
