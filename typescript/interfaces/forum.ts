@@ -1,5 +1,5 @@
-import type Post from './post';
-import { Timestamp } from 'firebase/firestore';
+import type Post from './post'
+import { Timestamp } from 'firebase/firestore'
 
 /**
  * Child Interface - defines the properties of a forum
@@ -7,9 +7,9 @@ import { Timestamp } from 'firebase/firestore';
  */
  interface Forum extends Post {
   // character count: 100 (including whitespace)
-  topic: string;
+  topic: string
   // minimum rank to participate in the forum
-  minRank: number;
+  minRank: number
 }
 
 // --------------------------------------------------
@@ -22,21 +22,21 @@ import { Timestamp } from 'firebase/firestore';
  */
 interface Comment {
   // firestore document id
-  id: string;
+  id: string
   creator: {
     // firestore document id
-    id: string;
+    id: string
     // google auth image url / amazon s3 url
-    image: string;
+    image: string
     // obtained from google auth
-    fullname: string;
-  };
+    fullname: string
+  }
   // firebase class modeling a timestamp
-  timestamp: Timestamp;
+  timestamp: Timestamp
   // character count: 150 (including whitespace)
-  title: string;
+  title: string
   // character count: 300 (including whitespace)
-  body: string;
+  body: string
 }
 
-export type { Forum, Comment };
+export type { Forum, Comment }

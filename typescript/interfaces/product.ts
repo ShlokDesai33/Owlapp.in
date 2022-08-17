@@ -1,4 +1,4 @@
-import Post from './post';
+import Post from './post'
 
 /**
  * A 'product' is overarching term for a resource or equipment
@@ -10,35 +10,36 @@ import Post from './post';
  */
 interface ProductBasic extends Post {
   // character count: 100 (including whitespace)
-  name: string;
+  name: string
   // amazon s3 url
-  image: string;
+  image: string
   // price per unit (inputed by admin or calculated by the system)
   // this could be any unit of measure such a sample / hour / day
-  ppu: number;
+  ppu: number
   // character count: 300 (including whitespace)
-  description: string;
+  description: string
   // organization information
   org: {
     // firestore document id
-    id: string;
+    id: string
     // character count: 100 (including whitespace)
-    name: string;
+    name: string
     // amazon s3 url
-    image: string;
+    image: string
   }
   // extend creator field to include number and email
   creator: {
     // firestore document id
-    id: string;
+    id: string
     // obtained from google auth
-    fullname: string;
+    fullname: string
     // google auth image url / amazon s3 url
-    image: string;
+    image: string
     // phone number
-    number: string;
+    number: string
     // obtained from google auth
-    email: string;
+    email: string
+    status: string
   }
 }
 
@@ -54,18 +55,18 @@ interface Product extends ProductBasic {
   // empty array if no price range, then the price is the pps
   prices: [{
     // determines the ppu under a certain condition
-    case: string;
+    case: string
     // price per unit
-    price: number;
-  }];
+    price: number
+  }]
   // Available / Out of Service / Under Maintenance
-  status: string;
+  status: string
   // what the product is used for
-  applications: string[];
+  applications: string[]
   // what the product cannot be used for
-  limitations: string[];
+  limitations: string[]
   // how to use the product
-  instructions: string[];
+  instructions: string[]
 }
 
-export type { ProductBasic, Product };
+export type { ProductBasic, Product }

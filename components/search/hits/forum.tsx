@@ -1,16 +1,16 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { formatRelative } from 'date-fns'
-import blueCheck from '../../../public/blue-check.svg'
-import adminCheck from '../../../public/admin-check.svg'
+import blueCheck from '../../../public/images/blue-check.svg'
+import adminCheck from '../../../public/images/admin-check.svg'
 
 export default function ForumHit({ hit }: { hit: any }) {
   return (
-    <Link href={`/view/${hit.objectID}/debate`} passHref>
+    <Link href={`/dashboard/${hit.objectID}/forum`} passHref>
       <div className="w-post-element py-6 px-8 mb-10 rounded-xl shadow-post-shadow border-2 border-white hover:border-primary hover:shadow-none">
         <div className="flex items-center justify-between">
           <button className="w-fit">
-            <Link href={`/view/${hit.creator.id}/profile`} passHref>
+            <Link href={`/${hit.creator.id}/profile`} passHref>
               <div className="flex items-center">
                 <Image
                   src={hit.creator.image}

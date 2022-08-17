@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore'
 
 /**
  * A post is any content that is posted by a user. It can be a
@@ -13,14 +13,16 @@ interface Post {
   // creator information
   creator: {
     // firestore document id
-    id: string;
+    id: string
     // obtained from google auth
-    fullname: string;
+    fullname: string
     // google auth image url / amazon s3 url
-    image: string;
+    image: string
+    // admin | verified-user | user | banned-user
+    status: string
   }
   // firebase class modeling a timestamp
-  createdAt: Timestamp;
+  createdAt: Timestamp
 }
 
 export default Post

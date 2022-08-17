@@ -1,17 +1,18 @@
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import db from '../../../firebase';
+import db from '../../../firebase'
+import { Forum } from '../../../typescript/interfaces/forum'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const body = req.body;
-  // add doc to 'debates' collection
+  const body = req.body as Forum;
+  // add doc to 'forums' collection
   try {
     // add doc and get the doc id
     const docRef = await addDoc(collection(db, 'forums'), {
-      topic: body.title,
+      topic: body.topic,
       minRank: body.minRank,
       creator: {
         fullname: body.creator.fullname,

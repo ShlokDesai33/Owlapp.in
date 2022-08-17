@@ -11,7 +11,13 @@ import ResourceHit from '../../components/search/hits/resource'
 import { EmptyQueryBoundary, NoResultsBoundary } from '../../components/search/components/results'
 
 const Search: NextPageWithLayout = () => {
-  const [filters, setFilters] = useState({ users: true, forums: true, resources: true });
+  const [filters, setFilters] = useState(
+    { 
+      users: true,
+      forums: true,
+      resources: true
+    }
+  );
 
   return (
     <>

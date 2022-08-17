@@ -1,18 +1,18 @@
-import { Timestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore"
 
 interface Booking {
   // firstore document id
-  id: string;
+  id: string
   // booking date and time
-  time: Timestamp;
+  time: Timestamp
   // booking status
-  status: string;
+  status: string
   // resource id
-  resourceId: string;
+  resourceId: string
   // user id
-  userId: string;
+  userId: string
   // when the booking was made
-  timestamp: Timestamp;
+  timestamp: Timestamp
 }
 
-export default Booking;
+export default Booking

@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Layout from '../../../../components/layout'
-import type { NextPageWithLayout } from '../../../../typescript/nextpage'
+import Layout from '../../../components/layout'
+import type { NextPageWithLayout } from '../../../typescript/nextpage'
 
 const ViewForum: NextPageWithLayout = () => {
   return (
@@ -8,6 +8,8 @@ const ViewForum: NextPageWithLayout = () => {
       <Head>
         <title>Home | Owl</title>
       </Head>
+
+      hello
     </>
   )
 }

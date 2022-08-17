@@ -5,12 +5,12 @@ import { InstantSearch } from 'react-instantsearch-hooks-web'
 import searchClient from '../search/client'
 import Image from 'next/image'
 import Link from 'next/link'
-import logoSvg from '../../public/logo.svg'
+import logoSvg from '../../public/images/logo.svg'
 import NavBar from './navigation/navbar'
 import SearchBar from '../search/searchbar'
 import { useRouter } from 'next/router'
-import blueCheck from '../../public/blue-check.svg'
-import adminCheck from '../../public/admin-check.svg'
+import blueCheck from '../../public/images/blue-check.svg'
+import adminCheck from '../../public/images/admin-check.svg'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { status, user } = useSession();
@@ -118,7 +118,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     );
   }
   else {
-    router.push('/auth/sign_in');
+    router.push('/auth/signin');
     return (
       <>
         <Head>

@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import blueCheck from '../../../public/blue-check.svg'
-import adminCheck from '../../../public/admin-check.svg'
+import blueCheck from '../../../public/images/blue-check.svg'
+import adminCheck from '../../../public/images/admin-check.svg'
 
 export default function UserHit({ hit }: { hit: any }) {
   return (
-    <Link href={`/view/${hit.objectID}/profile`} passHref>
+    <Link href={`/${hit.objectID}/profile`} passHref>
       <div className="w-post-element py-7 px-8 mb-10 mx-10 rounded-xl shadow-post-shadow border-2 border-white hover:border-primary hover:shadow-none">
         <div className="flex items-center justify-between">
           <div className="flex items-center">

@@ -1,12 +1,12 @@
 import { useRef } from 'react'
 import Layout from '../../../components/layout'
 import type { NextPageWithLayout } from '../../../typescript/nextpage'
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import Spinner from '../../../components/states/spinner';
-import { useState } from 'react';
-import { Info } from 'phosphor-react';
-import useSession from '../../../hooks/useSession';
+import { useRouter } from 'next/router'
+import Head from 'next/head'
+import Spinner from '../../../components/states/spinner'
+import { useState } from 'react'
+import { Info } from 'phosphor-react'
+import useSession from '../../../hooks/useSession'
 
 /**
  * Allows the user to create a new forum
@@ -17,7 +17,7 @@ const CreateForum: NextPageWithLayout = () => {
   // 3 states - requesting, error, default
   const [state, setState] = useState('default');
   // declare refs and get user data
-  const titleRef = useRef<HTMLInputElement>(null);
+  const topicRef = useRef<HTMLInputElement>(null);
   const rankRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -29,12 +29,12 @@ const CreateForum: NextPageWithLayout = () => {
   async function sendPost(e: React.FormEvent) {
     e.preventDefault();
     // theoretically, this condition will always be false
-    if (!titleRef.current?.value || !rankRef.current) {
-      alert('Please fill in the title field.');
+    if (!topicRef.current?.value || !rankRef.current) {
+      alert('Please fill in the forum topic/title field.');
       return;
     };
 
-    const title = titleRef.current.value;
+    const topic = topicRef.current.value;
     let minRank: string | number = rankRef.current.value || '0';
 
     // check if rank is a number
@@ -50,11 +50,11 @@ const CreateForum: NextPageWithLayout = () => {
     // set requesting to firestore true
     setState('requesting');
 
-    const res = await fetch("/api/create/forum", {
+    const res = await fetch("/api/forum/post", {
       method: 'POST',
       body: JSON.stringify(
         {
-          title,
+          topic,
           minRank,
           creator: {
             // user is not null during request
@@ -70,7 +70,7 @@ const CreateForum: NextPageWithLayout = () => {
 
     if (res.status === 201) {
       // redirect to forum page
-      router.push(`/view/${res.headers.get('id')}/forum`);
+      router.push(`/dashboard/${res.headers.get('id')}/forum`);
     }
     else {
       // set error state
@@ -128,17 +128,17 @@ const CreateForum: NextPageWithLayout = () => {
               To do so, you can link a forum to a resource to notify its manager.
             </h5>
             <h5 className="text-gray-text mt-8">
-              To create a forum, simply enter a title and a minimum rank requirement (optional).
+              To create a forum, simply enter a topic and a minimum rank requirement (optional).
             </h5>
           </div>
 
           <div className="w-3/5">
             <form noValidate role="form">
-              <h5>Enter your forum title/topic:</h5>
+              <h5>Enter your forum&apos;s topic/title:</h5>
               <input
-                ref={titleRef}
+                ref={topicRef}
                 type="text"
-                placeholder="Enter forum title..."
+                placeholder="Enter forum topic/title..."
                 className="input-field mb-8"
                 autoFocus={true}
               />
