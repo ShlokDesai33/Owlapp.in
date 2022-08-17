@@ -24,7 +24,7 @@ module.exports = {
         "xxl": "1.375rem",
       },
       backgroundImage: {
-        'landing': "url('/landing.svg')",
+        'landing': "url('/images/landing.svg')",
       }
     },
   },
