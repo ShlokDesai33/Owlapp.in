@@ -1,12 +1,15 @@
 import { useRef } from 'react'
-import Layout from '../../../components/layout'
+import Layout from '../../../components/layout/auth'
 import type { NextPageWithLayout } from '../../../typescript/nextpage'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import Spinner from '../../../components/states/spinner'
+import Spinner from '../../../components/lib/spinner'
 import { useState } from 'react'
 import { Info } from 'phosphor-react'
 import useSession from '../../../hooks/useSession'
+import { Hits, Index } from 'react-instantsearch-hooks-web'
+import ForumHit from '../../../components/search/hits/forum'
+import CustomSearchBox from '../../../components/search/components/searchbox'
 
 /**
  * Allows the user to create a new forum
@@ -114,7 +117,7 @@ const CreateForum: NextPageWithLayout = () => {
 
             <h5 className="text-gray-text mt-8">
               Forums in Owl exist to foster science communication and collaboration. 
-              They are a place to <span className="text-primary">discuss and forum</span>{' '}
+              They are a place to <span className="text-primary">discuss and debate</span>{' '}
               on a topic of your choice.
               They also serve as a means to <span className="text-primary">ask questions</span>{' '}
               on a specific resource and <span className="text-primary">get help</span>.
@@ -143,6 +146,15 @@ const CreateForum: NextPageWithLayout = () => {
                 className="input-field"
               />
             </form>
+
+
+            <div className="flex items-center border-2 border-gray-btn rounded-xl px-6 py-4 mt-12">
+              <CustomSearchBox />
+            </div>
+
+            <Index indexName="forums">
+              <Hits hitComponent={ForumHit} />
+            </Index>
 
             <div className="flex justify-center w-full mt-12">
               <button className="px-5 py-2 bg-primary text-white rounded-xl font-bold" onClick={e => {

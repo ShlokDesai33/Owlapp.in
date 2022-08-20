@@ -28,7 +28,7 @@ export default function NavBar(): JSX.Element {
         <NavButton
           title="Create Forum"
           icon={<PlusCircle size={30} />}
-          url="/dashboard/create/forum"
+          url="/dashboard/post/forum"
         />
       </div>
 

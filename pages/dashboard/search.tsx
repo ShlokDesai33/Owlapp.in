@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../../components/layout'
+import Layout from '../../components/layout/search'
 import { Hits, Index } from 'react-instantsearch-hooks-web'
 import type { NextPageWithLayout } from '../../typescript/nextpage'
 import ForumHit from '../../components/search/hits/forum'
@@ -12,7 +12,7 @@ import { EmptyQueryBoundary, NoResultsBoundary } from '../../components/search/c
 
 const Search: NextPageWithLayout = () => {
   const [filters, setFilters] = useState(
-    { 
+    {
       users: true,
       forums: true,
       resources: true

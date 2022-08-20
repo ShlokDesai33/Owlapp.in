@@ -1,15 +1,35 @@
 import Head from 'next/head'
+import { Chats } from 'phosphor-react'
 import Layout from '../../../components/layout'
-import type { NextPageWithLayout } from '../../../typescript/nextpage'
+import { Forum } from '../../../typescript/interfaces/forum'
 
-const ViewForum: NextPageWithLayout = () => {
+const ViewForum = ({ forum }: { forum: Forum }) => {
   return (
     <>
       <Head>
         <title>Forum | Owl</title>
       </Head>
 
-      hello
+      <div className="flex flex-col grow p-12">
+        <div className="flex items-center justify-between border-b-2 pb-8">
+          <div className="flex items-center gap-x-3">
+            <Chats size={40} weight="light" color="#BE6CFF" />
+            <h4>The rumoured Apple car vs the Tesla Roadster.</h4>
+          </div>
+          <button className="flex items-center gap-x-1 border-2 border-primary text-primary py-2 px-5 rounded-full text-lg w-fit">
+            <h6 className="font-medium ">Add Comment</h6>
+          </button>
+        </div>
+        {/* forum details (lhs) */}
+        <div className="flex grow mt-8">
+          <div className="grow bg-white">
+            hello
+          </div>
+          <div className="h-full border-l-2 bg-white mb-12">
+            hello
+          </div>
+        </div>
+      </div>
     </>
   )
 }

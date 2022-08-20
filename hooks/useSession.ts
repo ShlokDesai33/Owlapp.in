@@ -1,6 +1,16 @@
 import useSWR from 'swr'
 import Payload from '../typescript/auth/jwt'
 
+type Output = {
+  status: 'authenticated' | 'unauthenticated' | 'loading';
+  user: {
+    fullname: string
+    image: string
+    id: string
+    status: string
+  } | null;
+}
+
 const fetcher = (url: string) => (
   fetch(url).then(res => {
     // 309: Redirect to login page
@@ -16,9 +26,9 @@ const fetcher = (url: string) => (
  * Simple Authentication Hook inspired by next-auth
  * NOTE: this hook is not used in admin pages
  * 
- * @returns {Object} status and user
+ * @returns {Output}
  */
-export default function useSession() {
+export default function useSession(): Output {
   // make GET request with httpOnly cookie if it exists
   const { data, error } = useSWR<Payload, Error>('/api/auth/session', fetcher, {
     revalidateIfStale: false,
