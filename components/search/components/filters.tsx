@@ -1,4 +1,4 @@
-import { Books, UserCircle, Chats } from 'phosphor-react';
+import { Books, UserCircle, Chats } from 'phosphor-react'
 
 type Props = {
   filters: {
@@ -7,7 +7,7 @@ type Props = {
     resources: boolean
   }
   setFilters: (filters: { users: boolean; forums: boolean; resources: boolean }) => void
-};
+}
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ');

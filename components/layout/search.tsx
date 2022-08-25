@@ -1,22 +1,28 @@
 import useSession from '../../hooks/useSession'
 import Head from 'next/head'
 import Spinner from '../lib/spinner'
-import { InstantSearch } from 'react-instantsearch-hooks-web'
-import searchClient from '../search/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import logoSvg from '../../public/images/logo.svg'
 import NavBar from './navigation/navbar'
+import { useRouter } from 'next/router'
 import blueCheck from '../../public/images/blue-check.svg'
 import adminCheck from '../../public/images/admin-check.svg'
-import CustomSearchBox from '../search/components/searchbox'
 import { X } from 'phosphor-react'
-import UserBoundary from './components/user_boundary'
+import CustomSearchBox from '../search/components/searchbox'
+import { InstantSearch } from 'react-instantsearch-hooks-web'
+import searchClient from '../search/client'
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function LayoutWithAuth({ children }: { children: React.ReactNode }) {
   const { status, user } = useSession();
+  const router = useRouter();
 
-  if (status === 'loading') {
+  if (status !== 'authenticated' || !user) {
+    // status could be 'loading' or 'not authenticated'
+    if (status === 'unauthenticated') {
+      // redirect to login page
+      router.push('/auth/signin');
+    }
     // loading state
     return (
       <>
@@ -62,7 +68,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
               {/* top bar rhs */}
               <div className="flex grow items-center justify-between px-12">
-                <Link href="/dashboard" passHref prefetch>
+                <Link href="/dashboard" passHref>
                   <button className="flex items-center gap-x-1 border-2 border-primary py-3 px-6 rounded-full text-lg w-fit">
                     <X size={30} color="#BDBDBD"/>
                     <h5>Cancel</h5>
@@ -70,60 +76,56 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </Link>
           
                 <div className="flex items-center bg-white w-2/5 rounded-full px-6 py-4 shadow-post-shadow">
-                  <CustomSearchBox />
+                  <CustomSearchBox placeholder="Search Owl..." />
                 </div>
 
                 {/* user profile div */}
-                <UserBoundary authenticated={status === 'authenticated'}>
-                  <Link href="/dashboard/profile" passHref>
-                    <button>
-                      <div className="flex items-center gap-x-3">
-                        <Image
-                          src={user?.image || ''}
-                          width={60}
-                          height={60}
-                          alt="Profile Picture"
-                          className="rounded-full"
-                        />
+                <Link href="/dashboard/profile" passHref>
+                  <button>
+                    <div className="flex items-center gap-x-3">
+                      <Image
+                        src={user.image}
+                        width={60}
+                        height={60}
+                        alt="Profile Picture"
+                        className="rounded-full"
+                      />
 
-                        <div className="w-36">
-                          <h5 className="text-left truncate">{user?.fullname}</h5>
-                          <p className="text-gray-text text-left truncate">@{user?.id}</p>
-                        </div>
-
-                        { user?.status === 'verified' &&
-                          (
-                            <Image
-                              src={blueCheck}
-                              width={32}
-                              height={32}
-                              alt="Verified Check"
-                            />
-                          )
-                        }
-                        { user?.status === 'admin' &&
-                          (
-                            <Image
-                              src={adminCheck}
-                              width={32}
-                              height={32}
-                              alt="Verified Check"
-                            />
-                          )
-                        }
+                      <div className="w-36">
+                        <h5 className="text-left truncate">{user.fullname}</h5>
+                        <p className="text-gray-text text-left truncate">@{user.id}</p>
                       </div>
-                    </button>
-                  </Link>
-                </UserBoundary>
+
+                      { user.status === 'verified' &&
+                        (
+                          <Image
+                            src={blueCheck}
+                            width={32}
+                            height={32}
+                            alt="Verified Check"
+                          />
+                        )
+                      }
+                      { user.status === 'admin' &&
+                        (
+                          <Image
+                            src={adminCheck}
+                            width={32}
+                            height={32}
+                            alt="Verified Check"
+                          />
+                        )
+                      }
+                    </div>
+                  </button>
+                </Link>
               </div>
             </div>
             {/* nav bar and main div */}
             <div className="flex h-full">
               <NavBar />
 
-              <div className="grow">
-                {children}
-              </div>
+              {children}
             </div>
           </div>
         </InstantSearch>

@@ -8,8 +8,8 @@ const algoliaClient = algoliasearch(
 // prevent empty searches
 const searchClient = {
   ...algoliaClient,
-  search(requests: any) {
-    if (requests.every(({ params }: any) => !params.query)) {
+  search(requests: any[]) {
+    if (requests.every(({ params }) => !params.query)) {
       return Promise.resolve({
         results: requests.map(() => ({
           hits: [],

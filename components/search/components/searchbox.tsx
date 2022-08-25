@@ -2,7 +2,7 @@ import { MagnifyingGlass, X } from 'phosphor-react'
 import { useRef } from 'react'
 import { useSearchBox } from 'react-instantsearch-hooks-web'
 
-export default function CustomSearchBox() {
+export default function CustomSearchBox({ placeholder }: { placeholder: string }) {
   // connect custom search box to algolia
   const { refine } = useSearchBox();
   // ref to search box
@@ -20,7 +20,7 @@ export default function CustomSearchBox() {
         <input
           ref={inputRef}
           className="outline-none bg-transparent font-normal text-xl placeholder:text-xl placeholder:text-gray-text w-full ml-4 pl-4"
-          placeholder="Search Owl..."
+          placeholder={placeholder}
           autoFocus={true}
         />
       </form>

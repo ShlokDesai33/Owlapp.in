@@ -64,7 +64,7 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
 
             {/* top bar rhs */}
             <div className="flex grow items-center justify-between px-12">
-              <Link href="/dashboard/search" passHref prefetch>
+              <Link href="/dashboard/search" passHref>
                 <button className="flex items-center gap-x-2 py-3 px-6 rounded-full border-2 border-primary">
                   <MagnifyingGlass size={30} color="#BDBDBD" />
                   <h5>Search Owl</h5>

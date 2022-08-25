@@ -27,20 +27,6 @@ interface ProductBasic extends Post {
     // amazon s3 url
     image: string
   }
-  // extend creator field to include number and email
-  creator: {
-    // firestore document id
-    id: string
-    // obtained from google auth
-    fullname: string
-    // google auth image url / amazon s3 url
-    image: string
-    // phone number
-    number: string
-    // obtained from google auth
-    email: string
-    status: string
-  }
 }
 
 /**
@@ -67,6 +53,20 @@ interface Product extends ProductBasic {
   limitations: string[]
   // how to use the product
   instructions: string[]
+  // extend creator field to include number and email
+  creator: {
+    // firestore document id
+    id: string
+    // obtained from google auth
+    fullname: string
+    // google auth image url / amazon s3 url
+    image: string
+    // phone number
+    number: string
+    // obtained from google auth
+    email: string
+    status: string
+  }
 }
 
 export type { ProductBasic, Product }

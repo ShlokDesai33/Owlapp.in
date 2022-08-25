@@ -1,11 +1,12 @@
-import { Keyboard, MagnifyingGlassMinus } from "phosphor-react";
-import { useInstantSearch } from "react-instantsearch-hooks-web";
+import { Keyboard, MagnifyingGlassMinus } from 'phosphor-react'
+import { useInstantSearch } from 'react-instantsearch-hooks-web'
+import Spinner from '../../lib/spinner';
 
 export function NoResultsBoundary({ children }: { children: any }) {
   const { results } = useInstantSearch();
 
   // throws runtime exception if not handled
-  if (!results) return children;
+  if (!results || results.__isArtificial) return <Spinner />;
 
   // The `__isArtificial` flag makes sure to not display the No Results message
   // when no hits have been returned yet.
@@ -32,7 +33,7 @@ export function EmptyQueryBoundary({ children }: { children: any }) {
           <h5>Type something in the search-box above and hit &apos;Enter&apos;</h5>
         </div>
       </>
-    )
+    );
   }
 
   return children;

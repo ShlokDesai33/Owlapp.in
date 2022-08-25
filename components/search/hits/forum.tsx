@@ -6,7 +6,7 @@ import adminCheck from '../../../public/images/admin-check.svg'
 
 export default function ForumHit({ hit }: { hit: any }) {
   return (
-    <Link href={`/dashboard/${hit.objectID}/forum`} passHref>
+    <Link href={`/${hit.objectID}/forum`} passHref>
       <div className="w-post-element py-6 px-8 mb-10 rounded-xl shadow-post-shadow border-2 border-white hover:border-primary hover:shadow-none">
         <div className="flex items-center justify-between">
           <button className="w-fit">

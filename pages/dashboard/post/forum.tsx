@@ -7,15 +7,15 @@ import Spinner from '../../../components/lib/spinner'
 import { useState } from 'react'
 import { Info } from 'phosphor-react'
 import useSession from '../../../hooks/useSession'
-import { Hits, Index } from 'react-instantsearch-hooks-web'
-import ForumHit from '../../../components/search/hits/forum'
-import CustomSearchBox from '../../../components/search/components/searchbox'
+import SearchResources from '../../../components/forum/create/search'
+import { InstantSearch } from 'react-instantsearch-hooks-web'
+import searchClient from '../../../components/search/client'
 
 /**
  * Allows the user to create a new forum
  * @returns {NextPageWithLayout} next page with layout
  */
-const CreateForum: NextPageWithLayout = () => {
+const PostForum: NextPageWithLayout = () => {
   const { user } = useSession();
   // 3 states - requesting, error, default
   const [state, setState] = useState('default');
@@ -39,6 +39,16 @@ const CreateForum: NextPageWithLayout = () => {
 
     const topic = topicRef.current.value;
     let minRank: string | number = rankRef.current.value || '0';
+
+    if (topic.length > 100) {
+      alert('Title/topic must be less than 100 characters.');
+      return;
+    }
+
+    if (minRank.length > 3) {
+      alert('Rank must be less than 1000.');
+      return;
+    }
 
     // check if rank is a number
     try {
@@ -73,7 +83,7 @@ const CreateForum: NextPageWithLayout = () => {
 
     if (res.status === 201) {
       // redirect to forum page
-      router.push(`/dashboard/${res.headers.get('id')}/forum`);
+      router.push(`/${res.headers.get('id')}/forum`);
     }
     else {
       // set error state
@@ -137,24 +147,22 @@ const CreateForum: NextPageWithLayout = () => {
                 placeholder="Enter forum topic/title..."
                 className="input-field mb-8"
                 autoFocus={true}
+                maxLength={100}
               />
               <h5>Minimum rank to participate:</h5>
               <input
                 ref={rankRef}
                 type="text"
                 placeholder="0 (default)"
-                className="input-field"
+                className="input-field mb-8"
+                maxLength={3}
               />
             </form>
 
-
-            <div className="flex items-center border-2 border-gray-btn rounded-xl px-6 py-4 mt-12">
-              <CustomSearchBox />
-            </div>
-
-            <Index indexName="forums">
-              <Hits hitComponent={ForumHit} />
-            </Index>
+            {/* @ts-ignore */}
+            <InstantSearch searchClient={searchClient} indexName="forums">
+              <SearchResources />
+            </InstantSearch>
 
             <div className="flex justify-center w-full mt-12">
               <button className="px-5 py-2 bg-primary text-white rounded-xl font-bold" onClick={e => {
@@ -170,9 +178,9 @@ const CreateForum: NextPageWithLayout = () => {
   )
 }
 
-// return the CreateForum page wrapped in the Layout component
-CreateForum.getLayout = function getLayout(page: React.ReactElement) {
+// return the PostForum page wrapped in the Layout component
+PostForum.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
 }
 
-export default CreateForum;
+export default PostForum
