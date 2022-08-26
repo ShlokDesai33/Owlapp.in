@@ -150,7 +150,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     };
   }
   else {
-    const res = await fetch('http://localhost:3000/api/auth/signup', {
+    const url = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://owlapp.in';
+    const res = await fetch(`${url}/api/auth/signin`, {
       method: 'POST',
       body: JSON.stringify(
         {
