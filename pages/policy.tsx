@@ -1,17 +1,16 @@
 import Head from 'next/head'
+import { Barricade } from 'phosphor-react'
 
-export default function Custom404() {
+export default function PrivacyPolicy() {
   return (
     <>
       <Head>
-        <title>Owl</title>
+        <title>Privacy Policy | Owl</title>
       </Head>
       
-      <div className="flex h-full w-full justify-center items-center divide-x-2 gap-x-5 fixed mb-20">
-        <div className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-          <h2 className="font-bold">404</h2>
-        </div>
-        <h3 className="pl-5 font-normal">Page Not Found</h3>
+      <div className="flex h-full w-full justify-center items-center gap-x-3 fixed mb-20">
+          <Barricade size={70} color="#BE6CFF" weight="light" />
+        <h3 className="font-normal">Comming Soon!</h3>
       </div>
     </>
   )

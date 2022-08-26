@@ -71,7 +71,7 @@ const Home: NextPage = () => {
               </Link>
 
               <Link href="/contact" passHref>
-                <button className="text-xxl">Register</button>
+                <button className="text-xxl">Contact Us</button>
               </Link>
             </div>
 
@@ -89,7 +89,9 @@ const Home: NextPage = () => {
               <div className="flex flex-col my-10 mr-20">
                 <h1>Find and rent scientific<br/>resources on <span className="text-white header-stroke font-extrabold">Owl</span></h1>
                 <h4 className="text-gray-text mt-6">
-                  Owl makes it exceptionaly easy to book scientific and<br/> research oriented resources offered by universities, colleges<br/> and private organizations. 
+                  Owl makes it exceptionaly easy to book scientific and<br/>
+                  research oriented resources offered by universities, colleges<br/>
+                  and private organizations. 
                 </h4>
 
                 <h5 className="font-medium mt-14 mb-7">Got questions? Send us a message!</h5>
@@ -100,37 +102,42 @@ const Home: NextPage = () => {
                     className="outline-none bg-transparent text-xxl placeholder:text-xxl placeholder:text-gray-text w-full mr-6"
                     onChange={(e) => {setEmail(e.target.value)}}
                   />
-                  <Link href={`/contact?email=${encodeURIComponent(email)}`} passHref>
-                    <button>
-                      <ArrowRight weight="regular" className="text-primary" size={40} />
-                    </button>
-                  </Link>
+
+                  <button disabled={!email} onClick={(e) => {
+                    e.preventDefault();
+                    setLoading(true);
+                    router.push(`/contact?email=${encodeURIComponent(email)}`);
+                  }}>
+                    <ArrowRight weight="regular" className="text-primary" size={40} />
+                  </button>
                 </div>
               </div>
 
               <div className="flex flex-col justify-center divide-y-2 pl-10">
                 <div className="flex flex-col gap-y-6 pb-10">
                   <h3>Looking to rent or learn more?</h3>
-                    <button className="flex items-center gap-x-2 w-fit" onClick={(e) => {
-                      e.preventDefault();
-                      setLoading(true);
-                      router.push('/auth/signup');
-                    }}>
-                      <h4 className="text-primary">Sign up for Owl</h4>
-                      <ArrowRight weight="regular" className="text-primary" size={35} />
-                    </button>
+                  <button className="flex items-center gap-x-2 w-fit" onClick={(e) => {
+                    e.preventDefault();
+                    setLoading(true);
+                    router.push('/auth/signup');
+                  }}>
+                    <h4 className="text-primary">Sign up for Owl</h4>
+                    <ArrowRight weight="regular" className="text-primary" size={35} />
+                  </button>
                 </div>
                 
                 <div className="flex flex-col gap-y-6 pt-10">
                   <h3>Or, register as an admin today!</h3>
-                  <Link href="/contact" passHref>
+                  <Link href="/auth/admin/register" passHref>
                     <button className="flex items-center gap-x-2 w-fit">
                       <h4 className="text-primary">Register today</h4>
                       <ArrowRight weight="regular" className="text-primary" size={35} />
                     </button>
                   </Link>
                   <h5 className="text-gray-text">By registering yourself as an admin, you and your<br/>organization agree to our
-                    <Link href="/terms&conditions" passHref><button className="underline underline-offset-2 ml-1">Terms and Conditions</button></Link>.
+                    <Link href="/terms&conditions" passHref>
+                      <button className="underline underline-offset-2 ml-1">Terms and Conditions</button>
+                    </Link>.
                   </h5>
                 </div>
               </div>

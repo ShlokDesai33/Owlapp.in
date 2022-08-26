@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import { Barricade } from 'phosphor-react'
 
-export default function AdminRegistration() {
+export default function OurVision() {
   return (
     <>
       <Head>
-        <title>Admin Registration | Owl</title>
+        <title>Our Vision | Owl</title>
       </Head>
       
       <div className="flex h-full w-full justify-center items-center gap-x-3 fixed mb-20">
