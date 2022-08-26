@@ -14,8 +14,8 @@ type Payload = {
   exp: number
   // issued by owlapp.in
   iss: string
-  // type of user - admin | verified-user | user | banned-user 
-  aud: string
+  // type of user
+  aud: 'verified' | 'admin' | 'banned' | 'suspended' | 'user'
 }
 
 export default Payload

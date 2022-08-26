@@ -27,7 +27,7 @@ const Home: NextPage = () => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
           <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
           <meta name="author" content="Owl"></meta>
-          <link rel="icon" href="/favicon.ico"/>
+          <link rel="icon" href="/images/favicon.ico"/>
         </Head>
 
         <div className="flex w-screen h-screen items-center justify-center">
@@ -45,7 +45,7 @@ const Home: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
         <meta name="author" content="Owl"></meta>
-        <link rel="icon" href="/favicon.ico"/>
+        <link rel="icon" href="/images/favicon.ico"/>
       </Head>
 
       <main>

@@ -12,8 +12,8 @@ interface User {
   rank: number
   followers: number
   createdAt: Date
-  // verified | admin | banned | suspended | user
-  status: string
+  // current status of user's account
+  status: 'verified' | 'admin' | 'banned' | 'suspended' | 'user'
   // user's bio
   bio: string
   // secondary layer of authentication for users looking to book resources or register as admins

@@ -18,7 +18,7 @@ import searchClient from '../../../components/search/client'
 const PostForum: NextPageWithLayout = () => {
   const { user } = useSession();
   // 3 states - requesting, error, default
-  const [state, setState] = useState('default');
+  const [state, setState] = useState<'default' | 'requesting' | 'error'>('default');
   // declare refs and get user data
   const topicRef = useRef<HTMLInputElement>(null);
   const rankRef = useRef<HTMLInputElement>(null);

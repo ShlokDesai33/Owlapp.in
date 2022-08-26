@@ -59,13 +59,13 @@ interface Product extends ProductBasic {
     id: string
     // obtained from google auth
     fullname: string
-    // google auth image url / amazon s3 url
+    // amazon s3 url
     image: string
     // phone number
     number: string
     // obtained from google auth
     email: string
-    status: string
+    status: 'verified' | 'admin' | 'banned' | 'suspended' | 'user'
   }
 }
 

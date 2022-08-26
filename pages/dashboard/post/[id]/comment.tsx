@@ -10,7 +10,7 @@ import Spinner from '../../../../components/lib/spinner'
 const PostComment: NextPageWithLayout = () => {
   const { user } = useSession();
   // 3 states - requesting, error, default
-  const [state, setState] = useState('default');
+  const [state, setState] = useState<'default' | 'requesting' | 'error'>('default');
   // declare refs
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);

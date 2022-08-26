@@ -45,13 +45,7 @@ export default function useSession(): Output {
     };
   }
   else if (data) {
-    // aud can be 'admin' | 'user' | 'verified-user' | 'banned-user' 
-    // check if aud === 'verified-user' or 'banned-user'
-    const ind = data.aud.indexOf('-');
-    if (ind !== -1) {
-      data.aud = data.aud.substring(0, ind);
-    }
-
+    // aud can be 'admin' | 'user' | 'verified' | 'banned'
     return {
       status: 'authenticated',
       user: {

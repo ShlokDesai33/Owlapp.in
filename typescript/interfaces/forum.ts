@@ -30,6 +30,7 @@ interface Comment {
     image: string
     // obtained from google auth
     fullname: string
+    status: 'verified' | 'admin' | 'banned' | 'suspended' | 'user'
   }
   // firebase class modeling a timestamp
   timestamp: Timestamp

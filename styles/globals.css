@@ -34,6 +34,13 @@
   input:focus {
     outline: none !important;
   }
+  input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px white inset;
+  }
+
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px white inset;
+  }
   /* CSS to render stroke to 'Owl' text in landing page. */
   .header-stroke {
     -webkit-text-stroke-width: 2px;

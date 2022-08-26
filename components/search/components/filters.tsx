@@ -16,7 +16,7 @@ function classNames(...classes: (string | boolean)[]) {
 export default function Filters({ filters, setFilters }: Props) {
   return (
     <>
-      <button 
+      <button
         className={classNames(
           filters.resources && 'bg-gray-bg border-white text-primary',
           'flex items-center gap-x-2 mb-6 mt-8 px-6 py-3 rounded-full border-2'

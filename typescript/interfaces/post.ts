@@ -18,8 +18,7 @@ interface Post {
     fullname: string
     // google auth image url / amazon s3 url
     image: string
-    // admin | verified-user | user | banned-user
-    status: string
+    status: 'verified' | 'admin' | 'banned' | 'suspended' | 'user'
   }
   // firebase class modeling a timestamp
   createdAt: Timestamp

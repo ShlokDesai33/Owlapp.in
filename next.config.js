@@ -3,7 +3,7 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-inline' 'unsafe-eval';
   style-src 'self' 'unsafe-inline' fonts.googleapis.com;
   font-src 'self' fonts.gstatic.com;
-  img-src 'self' data: lh3.googleusercontent.com s3.ap-south-1.amazonaws.com www.w3.org;
+  img-src 'self' data: lh3.googleusercontent.com s3.ap-south-1.amazonaws.com www.w3.org source.boringavatars.com;
   connect-src 'self' *.net *.com;
 `
 
@@ -39,7 +39,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['lh3.googleusercontent.com', 's3.ap-south-1.amazonaws.com'],
+    dangerouslyAllowSVG: true,
+    domains: ['lh3.googleusercontent.com', 's3.ap-south-1.amazonaws.com', 'source.boringavatars.com'],
   },
   async headers() {
     return [
