@@ -26,10 +26,8 @@ export default async function handler(
 
   // hash password and generate avatar
   const hashedPassword = await bcrypt.hash(password, 10);
-  // TODO: avatar size
   const avatar = `https://source.boringavatars.com/marble/60/${email}?colors=2F80ED,BE6CFF,1100D6`
 
-  // TODO: image field
   try {
     const docRef = await addDoc(collection(db, 'users'), {
       fullname: fullname,
@@ -44,17 +42,12 @@ export default async function handler(
     });
 
     // user authenticated; create user's auth token
-    const JWT_TOKEN = await new SignJWT({
-      'name': fullname,
-      'img': avatar,
-    })
-      .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+    const JWT_TOKEN = await new SignJWT({ })
+      .setProtectedHeader({ alg: 'HS256' })
       .setSubject(docRef.id)
       .setIssuedAt()
       .setExpirationTime('10 days')
       .setIssuer('owlapp.in')
-      // can be user / admin / verified
-      .setAudience('user')
       .sign(JWT_SECRET);
 
     res.setHeader('JWT-Token', JWT_TOKEN);

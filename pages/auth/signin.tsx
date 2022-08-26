@@ -115,7 +115,7 @@ const SignIn = ({ pageState }: Props) => {
             </button>
           </form>
 
-          <div className="flex divide-x-2 gap-x-4 w-full justify-center mt-12">
+          <div className="flex divide-x-2 gap-x-4 w-full justify-center mt-10">
             <Link href="/auth/signup">
               <button>
                 <h6 className="hover:underline underline-offset-2">Don&apos;t have an account?</h6>

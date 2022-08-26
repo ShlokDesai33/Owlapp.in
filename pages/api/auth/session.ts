@@ -2,7 +2,9 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { jwtVerify } from 'jose'
 // library for generating symmetric key for jwt
 import { createSecretKey } from 'crypto'
-import Cookies from 'cookies';
+import Cookies from 'cookies'
+import { doc, getDoc } from 'firebase/firestore'
+import db from '../../../firebase'
 
 // convert string to KeyObject
 const JWT_SECRET = createSecretKey(process.env.JWT_SECRET as string, 'utf-8');
@@ -21,10 +23,31 @@ export default async function handler(
       // verify token signature
       const { payload } = await jwtVerify(token, JWT_SECRET, {
         issuer: 'owlapp.in', // iss
-        // aud could be 'user' or 'verified'
       });
       // user is authenticated
-      return res.status(200).json(payload);
+      // get user data from firestore
+      const userDoc = await getDoc(doc(db, 'users', payload.sub as string));
+      // error handling
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        return res.status(200).json({
+          id: userDoc.id,
+          fullname: data.fullname,
+          image: data.image,
+          status: data.status,
+          rank: data.rank,
+          followers: data.followers
+        });
+      } else {
+        // doc.data() will be undefined in this case
+        // fake token
+        // instruct browser to delete auth cookie
+        cookies.set('auth-token', '', {
+          maxAge: 0,
+        });
+        // 309: Redirect to login page
+        return res.status(309).json({ error: 'User does not exist.' });
+      }
     } catch (error: any) {
       // token has been tempered with
       // instruct browser to delete auth cookie

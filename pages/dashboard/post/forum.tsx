@@ -106,9 +106,6 @@ const PostForum: NextPageWithLayout = () => {
         </div>
       </>
     )
-  } else if (state === 'error') {
-    // TODO
-    return <>Error</>
   }
 
   return (
@@ -139,6 +136,12 @@ const PostForum: NextPageWithLayout = () => {
           </div>
 
           <div className="w-3/5">
+            { state === 'error' &&
+              (
+                <h5 className="w-full text-center text-red-500 mb-6">An error occured. Please try again later.</h5>
+              )
+            }
+
             <form noValidate role="form">
               <h5>Enter your forum&apos;s topic/title:</h5>
               <input
@@ -164,7 +167,7 @@ const PostForum: NextPageWithLayout = () => {
               <SearchResources />
             </InstantSearch>
 
-            <div className="flex justify-center w-full mt-12">
+            <div className="flex justify-center w-full mt-10">
               <button className="px-5 py-2 bg-primary text-white rounded-xl font-bold" onClick={e => {
                 sendPost(e);
               }}>

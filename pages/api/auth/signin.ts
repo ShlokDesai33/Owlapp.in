@@ -29,17 +29,12 @@ export default async function handler(
 
       if (matches) {
         // user authenticated; create user's auth token
-        const JWT_TOKEN = await new SignJWT({
-          'name': user.fullname,
-          'img': user.image,
-        })
-          .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+        const JWT_TOKEN = await new SignJWT({ })
+          .setProtectedHeader({ alg: 'HS256' })
           .setSubject(doc.id)
           .setIssuedAt()
           .setExpirationTime('10 days')
           .setIssuer('owlapp.in')
-          // can be user / admin / verified
-          .setAudience(user.status)
           .sign(JWT_SECRET);
   
         res.setHeader('JWT-Token', JWT_TOKEN);

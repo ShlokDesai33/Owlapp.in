@@ -1,5 +1,4 @@
 import useSWR from 'swr'
-import Payload from '../typescript/auth/jwt'
 
 type Output = {
   status: 'authenticated' | 'unauthenticated' | 'loading';
@@ -30,7 +29,7 @@ const fetcher = (url: string) => (
  */
 export default function useSession(): Output {
   // make GET request with httpOnly cookie if it exists
-  const { data, error } = useSWR<Payload, Error>('/api/auth/session', fetcher, {
+  const { data, error } = useSWR<any, Error>('/api/auth/session', fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
@@ -45,14 +44,14 @@ export default function useSession(): Output {
     };
   }
   else if (data) {
-    // aud can be 'admin' | 'user' | 'verified' | 'banned'
+    console.log(data);
     return {
       status: 'authenticated',
       user: {
-        fullname: data.name,
-        image: data.img,
-        id: data.sub,
-        status: data.aud
+        fullname: data.fullname,
+        image: data.image,
+        id: data.id,
+        status: data.status
       }
     };
   }

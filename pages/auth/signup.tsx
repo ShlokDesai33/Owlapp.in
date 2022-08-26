@@ -111,14 +111,13 @@ const SignUp = ({ pageState }: Props) => {
             </button>
           </form>
 
-          <h6 className="mt-12 mb-8 h-fit text-gray-text text-center">
+          <h6 className="mt-10 mb-6 h-fit text-gray-text text-center">
             By signing up, you agree to Owl&apos;s{" "}
             <button className="underline underline-offset-2">
-              Terms &amp; Conditions
+              <Link href="/terms&conditions" passHref>Terms &amp; Conditions</Link>
             </button>{" "}
             and our{" "}
-            <button className="underline underline-offset-2">
-              Privacy Policy
+            <button className="underline underline-offset-2"><Link href="/policy" passHref>Privacy Policy</Link>
             </button>
             .
           </h6>

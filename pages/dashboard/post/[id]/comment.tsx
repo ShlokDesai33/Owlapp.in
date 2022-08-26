@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Lightbulb } from 'phosphor-react'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Layout from '../../../../components/layout/auth'
 import useSession from '../../../../hooks/useSession'
 import type { NextPageWithLayout } from '../../../../typescript/nextpage'
@@ -15,6 +15,25 @@ const PostComment: NextPageWithLayout = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    // check if container exists
+    if (!bodyRef.current) return;
+    const current = bodyRef.current;
+    // add event listener
+    current.addEventListener('input', (e) => {
+      const scrollHeight = current.scrollHeight;
+      current.style.height = (scrollHeight + 4) + 'px';
+    });
+    // on component unmount
+    return () => {
+      // remove event listener
+      current.removeEventListener('input', (e) => {
+        const scrollHeight = current.scrollHeight;
+        current.style.height = (scrollHeight + 4) + 'px';
+      });
+    };
+  })
 
   /**
    * Posts a new comment to a forum
@@ -92,9 +111,6 @@ const PostComment: NextPageWithLayout = () => {
         </div>
       </>
     )
-  } else if (state === 'error') {
-    // TODO
-    return <>Error</>
   }
 
   return (
@@ -125,6 +141,12 @@ const PostComment: NextPageWithLayout = () => {
           </div>
 
           <div className="w-3/5">
+            { state === 'error' &&
+              (
+                <h5 className="w-full text-center text-red-500 mb-6">An error occured. Please try again later.</h5>
+              )
+            }
+
             <form noValidate role="form">
               <h5>Enter your comment&apos;s title:</h5>
               <input
@@ -139,12 +161,13 @@ const PostComment: NextPageWithLayout = () => {
               <textarea
                 ref={bodyRef}
                 placeholder="body"
-                className="input-field resize-none"
+                className="input-field resize-none overflow-hidden"
                 maxLength={1000}
+                rows={1}
               />
             </form>
 
-            <div className="flex justify-center w-full mt-12">
+            <div className="flex justify-center w-full mt-10">
               <button className="px-5 py-2 bg-primary text-white rounded-xl font-bold" onClick={e => {
                 sendPost(e);
               }}>
