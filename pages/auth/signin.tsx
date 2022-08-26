@@ -10,14 +10,16 @@ import { useState } from 'react'
 import Spinner from '../../components/lib/spinner'
 
 type Props = {
-  pageState: 'default' | '401' | '309' | '500',
+  pageState: 'default' | '401' | '309' | '500'
 }
 
 const SignIn = ({ pageState }: Props) => {
-  // 3 states: default, loading, success
+  // state of the page
   const [state, setState] = useState<'default' | 'loading' | '401' | '309' | '500'>(pageState);
   // input fields' state
   const [inputsState, setInputsState] = useState({
+    // not used in this page
+    isNameValid: false,
     isEmailValid: false,
     isPasswordValid: false,
   });
@@ -34,7 +36,7 @@ const SignIn = ({ pageState }: Props) => {
           <link rel="icon" href="/images/favicon.ico"/>
         </Head>
 
-        <div className="flex w-screen h-screen items-center justify-center">
+        <div className="flex w-screen h-screen items-center justify-center bg-landing bg-cover">
           <Spinner />
         </div>
       </>
@@ -75,10 +77,9 @@ const SignIn = ({ pageState }: Props) => {
                 This email is not registered.{' '}
                 <Link href="/auth/signup">
                   <span className="text-secondary underline underline-offset-2">
-                    Sign up here
+                    Sign up
                   </span>
                 </Link>
-                .
               </h6>
             )
           }
@@ -120,8 +121,8 @@ const SignIn = ({ pageState }: Props) => {
                 <h6 className="hover:underline underline-offset-2">Don&apos;t have an account?</h6>
               </button>
             </Link>
-            
-            <Link href="/auth/signup">
+
+            <Link href="/auth/forgot">
               <button className="pl-4">
                 <h6 className="hover:underline underline-offset-2">Forgot Password</h6>
               </button>

@@ -1,5 +1,8 @@
-function regexTest(email: string): boolean {
-  return /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/.test(email);
+function lengthTest(name: string): boolean {
+  if (name.length === 0) {
+    return false;
+  }
+  else return true;
 }
 
 function classNames(...classes: (string | boolean)[]) {
@@ -21,25 +24,25 @@ type Props = {
   ) => void,
 }
 
-export default function EmailInputField({ state, setState }: Props) {
+export default function NameInputField({ state, setState }: Props) {
   return (
     <input
-      aria-label="email"
-      type="email"
-      name="email"
-      placeholder="Email"
+      aria-label="name"
+      type="name"
+      name="name"
+      placeholder="Full name"
       className={classNames(
-        state.isEmailValid && 'border-green-500',
-        !state.isEmailValid && 'focus:border-red-500',
+        state.isNameValid && 'border-green-500',
+        !state.isNameValid && 'focus:border-red-500',
         'outline-none bg-transparent placeholder:text-xl placeholder:text-gray-text',
         'mb-6 border-2 py-4 px-4 w-full rounded-xl border-gray-btn text-xl'
       )}
       onChange={(e) => {
-        if (regexTest(e.target.value) && !state.isEmailValid) {
-          setState({ ...state, isEmailValid: true });
+        if (lengthTest(e.target.value) && !state.isNameValid) {
+          setState({ ...state, isNameValid: true });
         }
-        else if (!regexTest(e.target.value) && state.isEmailValid) {
-          setState({ ...state, isEmailValid: false });
+        else if (!lengthTest(e.target.value) && state.isNameValid) {
+          setState({ ...state, isNameValid: false });
         }
       }}
     />

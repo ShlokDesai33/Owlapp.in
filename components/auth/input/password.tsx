@@ -11,10 +11,17 @@ function classNames(...classes: (string | boolean)[]) {
 
 type Props = {
   state: {
+    isNameValid: boolean,
     isEmailValid: boolean,
     isPasswordValid: boolean,
   }
-  setState: (state: { isEmailValid: boolean, isPasswordValid: boolean }) => void,
+  setState: (state:
+    {
+      isNameValid: boolean,
+      isEmailValid: boolean,
+      isPasswordValid: boolean
+    }
+  ) => void,
 }
 
 export default function PasswordInputField({ state, setState }: Props) {
