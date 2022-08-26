@@ -75,10 +75,10 @@ const SignUp = ({ pageState }: Props) => {
             (
               <h6 className="w-full text-center mb-8">
                 This email is already registered.{' '}
-                <Link href="/auth/signup">
-                  <span className="text-secondary underline underline-offset-2">
+                <Link href="/auth/signin">
+                  <button className="text-secondary underline underline-offset-2">
                     Sign in
-                  </span>
+                  </button>
                 </Link>
               </h6>
             )
@@ -151,7 +151,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
   else {
     const url = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://owlapp.in';
-    const res = await fetch(`${url}/api/auth/signin`, {
+    const res = await fetch(`${url}/api/auth/signup`, {
       method: 'POST',
       body: JSON.stringify(
         {

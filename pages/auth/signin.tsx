@@ -76,9 +76,9 @@ const SignIn = ({ pageState }: Props) => {
               <h6 className="w-full text-center mb-8">
                 This email is not registered.{' '}
                 <Link href="/auth/signup">
-                  <span className="text-secondary underline underline-offset-2">
+                  <button className="text-secondary underline underline-offset-2">
                     Sign up
-                  </span>
+                  </button>
                 </Link>
               </h6>
             )
