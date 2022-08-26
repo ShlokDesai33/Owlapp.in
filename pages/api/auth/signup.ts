@@ -27,7 +27,7 @@ export default async function handler(
   // hash password and generate avatar
   const hashedPassword = await bcrypt.hash(password, 10);
   // TODO: avatar size
-  const avatar = `https://source.boringavatars.com/marble/60/${email}?colors=2F80ED,BE6CFF,BDBDBD`
+  const avatar = `https://source.boringavatars.com/marble/60/${email}?colors=2F80ED,BE6CFF,1100D6`
 
   // TODO: image field
   try {
