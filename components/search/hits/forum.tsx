@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { formatRelative } from 'date-fns'
 import blueCheck from '../../../public/images/blue-check.svg'
-import adminCheck from '../../../public/images/admin-check.svg'
 
 export default function ForumHit({ hit }: { hit: any }) {
   return (
@@ -24,16 +23,6 @@ export default function ForumHit({ hit }: { hit: any }) {
                   (
                     <Image
                       src={blueCheck}
-                      width={25}
-                      height={25}
-                      alt="Verified Check"
-                    />
-                  )
-                }
-                { hit.creator.status === 'admin' &&
-                  (
-                    <Image
-                      src={adminCheck}
                       width={25}
                       height={25}
                       alt="Verified Check"

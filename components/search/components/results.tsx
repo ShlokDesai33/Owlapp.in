@@ -1,6 +1,6 @@
 import { Keyboard, MagnifyingGlassMinus } from 'phosphor-react'
 import { useInstantSearch } from 'react-instantsearch-hooks-web'
-import Spinner from '../../lib/spinner';
+import Spinner from '../../lib/spinner'
 
 export function NoResultsBoundary({ children }: { children: any }) {
   const { results } = useInstantSearch();

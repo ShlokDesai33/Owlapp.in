@@ -30,9 +30,9 @@ export default function EmailInputField({ state, setState }: Props) {
       placeholder="Email"
       className={classNames(
         state.isEmailValid && 'border-green-500',
-        !state.isEmailValid && 'focus:border-red-500',
+        !state.isEmailValid && 'focus:border-red-500 border-gray-btn',
         'outline-none bg-transparent placeholder:text-xl placeholder:text-gray-text',
-        'mb-6 border-2 py-4 px-4 w-full rounded-xl border-gray-btn text-xl'
+        'mb-6 border-2 py-4 px-4 w-full rounded-xl text-xl'
       )}
       onChange={(e) => {
         if (regexTest(e.target.value) && !state.isEmailValid) {

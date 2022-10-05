@@ -6,7 +6,6 @@ import Link from 'next/link'
 import logoSvg from '../../public/images/logo.svg'
 import NavBar from './navigation/navbar'
 import blueCheck from '../../public/images/blue-check.svg'
-import adminCheck from '../../public/images/admin-check.svg'
 import { MagnifyingGlass } from 'phosphor-react'
 import UserBoundary from './components/user_boundary'
 
@@ -86,16 +85,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                       (
                         <Image
                           src={blueCheck}
-                          width={32}
-                          height={32}
-                          alt="Verified Check"
-                        />
-                      )
-                    }
-                    { user?.status === 'admin' &&
-                      (
-                        <Image
-                          src={adminCheck}
                           width={32}
                           height={32}
                           alt="Verified Check"

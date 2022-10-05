@@ -3,8 +3,9 @@ import Link from 'next/link'
 import { Chats } from 'phosphor-react'
 import Layout from '../../components/layout'
 import { Forum } from '../../typescript/interfaces/forum'
+import { NextPageWithLayout } from '../../typescript/nextpage'
 
-const ViewForum = ({ forum }: { forum: Forum }) => {
+const ViewForum: NextPageWithLayout = () => {
   return (
     <>
       <Head>

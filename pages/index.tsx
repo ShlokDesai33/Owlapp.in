@@ -128,12 +128,11 @@ const Home: NextPage = () => {
                 
                 <div className="flex flex-col gap-y-6 pt-10">
                   <h3>Or, register as an admin today!</h3>
-                  <Link href="/auth/admin/register" passHref>
-                    <button className="flex items-center gap-x-2 w-fit">
-                      <h4 className="text-primary">Register today</h4>
-                      <ArrowRight weight="regular" className="text-primary" size={35} />
-                    </button>
-                  </Link>
+                  <a className="flex items-center gap-x-2 w-fit" href="https://owl-console.vercel.app">
+                    <h4 className="text-primary">Register today</h4>
+                    <ArrowRight weight="regular" className="text-primary" size={35} />
+                  </a>
+
                   <h5 className="text-gray-text">By registering yourself as an admin, you and your<br/>organization agree to our
                     <Link href="/terms&conditions" passHref>
                       <button className="underline underline-offset-2 ml-1">Terms and Conditions</button>

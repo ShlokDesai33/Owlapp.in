@@ -44,7 +44,6 @@ export default function useSession(): Output {
     };
   }
   else if (data) {
-    console.log(data);
     return {
       status: 'authenticated',
       user: {

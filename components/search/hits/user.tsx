@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import blueCheck from '../../../public/images/blue-check.svg'
-import adminCheck from '../../../public/images/admin-check.svg'
 
 export default function UserHit({ hit }: { hit: any }) {
+  // TODO: render organizations
+  if (hit.logo && hit.name) return <></>
+
   return (
     <Link href={`/${hit.objectID}/profile`} passHref>
       <button className="w-post-element py-7 px-8 mb-10 mx-10 rounded-xl shadow-post-shadow border-2 border-white hover:border-primary hover:shadow-none">
@@ -26,16 +28,6 @@ export default function UserHit({ hit }: { hit: any }) {
               (
                 <Image
                   src={blueCheck}
-                  width={32}
-                  height={32}
-                  alt="Verified Check"
-                />
-              )
-            }
-            { hit.status === 'admin' &&
-              (
-                <Image
-                  src={adminCheck}
                   width={32}
                   height={32}
                   alt="Verified Check"

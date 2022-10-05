@@ -10,7 +10,7 @@ interface UserHit extends AlgoliaHit  {
   id: string
   followers: number
   rank: number
-  status: 'verified' | 'admin' | 'banned' | 'suspended' | 'user'
+  status: 'verified' | 'banned'
 }
 
 interface ForumHit extends AlgoliaHit {
@@ -21,7 +21,7 @@ interface ForumHit extends AlgoliaHit {
     fullname: string
     image: string
     id: string
-    status: 'verified' | 'admin' | 'banned' | 'suspended' | 'user'
+    status: 'verified' | 'banned'
   }
 }
 

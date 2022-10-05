@@ -33,9 +33,9 @@ export default function PasswordInputField({ state, setState }: Props) {
       placeholder="Password"
       className={classNames(
         state.isPasswordValid && 'border-green-500',
-        !state.isPasswordValid && 'focus:border-red-500',
+        !state.isPasswordValid && 'focus:border-red-500 border-gray-btn',
         'outline-none bg-transparent placeholder:text-xl placeholder:text-gray-text',
-        'mb-6 border-2 py-4 px-4 w-full rounded-xl border-gray-btn text-xl'
+        'mb-6 border-2 py-4 px-4 w-full rounded-xl text-xl'
       )}
       onChange={(e) => {
         if (strengthTest(e.target.value) && !state.isPasswordValid) {

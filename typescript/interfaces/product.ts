@@ -25,7 +25,7 @@ interface ProductBasic extends Post {
     // character count: 100 (including whitespace)
     name: string
     // amazon s3 url
-    image: string
+    logo: string
   }
 }
 
@@ -65,7 +65,7 @@ interface Product extends ProductBasic {
     number: string
     // obtained from google auth
     email: string
-    status: 'verified' | 'admin' | 'banned' | 'suspended' | 'user'
+    status: 'verified' | 'banned'
   }
 }
 

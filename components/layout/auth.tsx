@@ -7,7 +7,6 @@ import logoSvg from '../../public/images/logo.svg'
 import NavBar from './navigation/navbar'
 import { useRouter } from 'next/router'
 import blueCheck from '../../public/images/blue-check.svg'
-import adminCheck from '../../public/images/admin-check.svg'
 import { MagnifyingGlass } from 'phosphor-react'
 
 export default function LayoutWithAuth({ children }: { children: React.ReactNode }) {
@@ -31,7 +30,7 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
           <link rel="icon" href="/images/favicon.ico" />
         </Head>
 
-        <div className="flex w-screen h-screen items-center justify-center">
+        <div className="flex w-screen h-screen items-center justify-center bg-landing bg-cover">
           <Spinner />
         </div>
       </>
@@ -47,7 +46,6 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
           <link rel="icon" href="/images/favicon.ico" />
         </Head>
 
-        {/* @ts-ignore */}
         <div className="flex flex-col w-screen h-screen">
           {/* top bar div */}
           <div className="flex w-full border-b-2 bg-gray-bg">
@@ -92,16 +90,6 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
                       (
                         <Image
                           src={blueCheck}
-                          width={32}
-                          height={32}
-                          alt="Verified Check"
-                        />
-                      )
-                    }
-                    { user.status === 'admin' &&
-                      (
-                        <Image
-                          src={adminCheck}
                           width={32}
                           height={32}
                           alt="Verified Check"
