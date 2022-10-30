@@ -7,9 +7,6 @@ import Spinner from '../../../components/lib/spinner'
 import { useState } from 'react'
 import { Info } from 'phosphor-react'
 import useSession from '../../../hooks/useSession'
-import SearchResources from '../../../components/forum/create/search'
-import { InstantSearch } from 'react-instantsearch-hooks-web'
-import searchClient from '../../../components/search/client'
 
 /**
  * Allows the user to create a new forum
@@ -161,11 +158,6 @@ const PostForum: NextPageWithLayout = () => {
                 maxLength={3}
               />
             </form>
-
-            {/* @ts-ignore */}
-            <InstantSearch searchClient={searchClient} indexName="forums">
-              <SearchResources />
-            </InstantSearch>
 
             <div className="flex justify-center w-full mt-10">
               <button className="px-5 py-2 bg-primary text-white rounded-xl font-bold" onClick={e => {

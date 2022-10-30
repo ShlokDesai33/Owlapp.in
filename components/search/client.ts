@@ -1,28 +1,24 @@
 import algoliasearch from 'algoliasearch/lite';
 
-const algoliaClient = algoliasearch(
+const client = algoliasearch(
   '0Q9AHOYTD6',
   '1082e2607eb9dfe00542fd25210af538'
 );
 
-// prevent empty searches
-const searchClient = {
-  ...algoliaClient,
-  search(requests: any[]) {
-    if (requests.every(({ params }) => !params.query)) {
-      return Promise.resolve({
-        results: requests.map(() => ({
-          hits: [],
-          nbHits: 0,
-          nbPages: 0,
-          page: 0,
-          processingTimeMS: 0,
-        })),
-      });
-    }
+const resources_ind = client.initIndex('resources');
+const users_ind = client.initIndex('users');
+const forums_ind = client.initIndex('forums');
 
-    return algoliaClient.search(requests);
-  },
-};
+function searchResources(query: string) {
+  return resources_ind.search(query);
+}
 
-export default searchClient;
+function searchUsers(query: string) {
+  return users_ind.search(query);
+}
+
+function searchForums(query: string) {
+  return forums_ind.search(query);
+}
+
+export { resources_ind, users_ind, forums_ind };

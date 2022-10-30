@@ -1,10 +1,8 @@
 import { MagnifyingGlass, X } from 'phosphor-react'
 import { useRef } from 'react'
-import { useSearchBox } from 'react-instantsearch-hooks-web'
 
 export default function CustomSearchBox({ placeholder }: { placeholder: string }) {
   // connect custom search box to algolia
-  const { refine } = useSearchBox();
   // ref to search box
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -14,7 +12,6 @@ export default function CustomSearchBox({ placeholder }: { placeholder: string }
         e.preventDefault();
         e.stopPropagation();
         // manually trigger search
-        refine(inputRef.current!.value);
       }}>
         <button><MagnifyingGlass size={30} color="#BE6CFF" /></button>
         <input

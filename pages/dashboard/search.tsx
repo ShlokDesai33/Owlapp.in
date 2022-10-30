@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout from '../../components/layout/search'
-import { Hits, Index } from 'react-instantsearch-hooks-web'
 import type { NextPageWithLayout } from '../../typescript/nextpage'
 import ForumHit from '../../components/search/hits/forum'
 import UserHit from '../../components/search/hits/user'
@@ -8,7 +7,6 @@ import { useState } from 'react'
 import Filters from '../../components/search/components/filters'
 import { Warning } from 'phosphor-react'
 import ResourceHit from '../../components/search/hits/resource'
-import { EmptyQueryBoundary, NoResultsBoundary } from '../../components/search/components/results'
 
 const Search: NextPageWithLayout = () => {
   const [filters, setFilters] = useState(
@@ -32,14 +30,10 @@ const Search: NextPageWithLayout = () => {
         </div>
 
         <div className="flex flex-col items-center grow">
-          <EmptyQueryBoundary>
             { filters.resources &&
               (
                 <>
                   <h6 className="text-gray-text w-post-element border-b-2 mb-7">Resources</h6>
-                  <NoResultsBoundary>
-                    <Hits hitComponent={ResourceHit} />
-                  </NoResultsBoundary>
                 </>
               )
             }
@@ -48,11 +42,6 @@ const Search: NextPageWithLayout = () => {
               (
                 <>
                   <h6 className="text-gray-text w-post-element border-b-2 mb-7">Users</h6>
-                    <Index indexName="users">
-                      <NoResultsBoundary>
-                        <Hits hitComponent={UserHit} />
-                      </NoResultsBoundary>
-                    </Index>
                 </>
               )
             }
@@ -61,11 +50,6 @@ const Search: NextPageWithLayout = () => {
               (
                 <>
                   <h6 className="text-gray-text w-post-element border-b-2 mb-7">Forums</h6>
-                    <Index indexName="forums">
-                      <NoResultsBoundary>
-                        <Hits hitComponent={ForumHit} />
-                      </NoResultsBoundary>
-                    </Index>
                 </>
               )
             }
@@ -78,7 +62,6 @@ const Search: NextPageWithLayout = () => {
                 </div>
               )
             }
-          </EmptyQueryBoundary>
         </div>
       </main>
     </>

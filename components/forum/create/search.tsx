@@ -1,12 +1,8 @@
 import { MagnifyingGlass, X } from 'phosphor-react'
 import { useRef } from 'react'
-import { Hits, useSearchBox } from 'react-instantsearch-hooks-web'
-import ForumHit from '../../search/hits/forum'
-import ResourceHit from '../../search/hits/resource'
 
 export default function SearchResources() {
   // connect custom search box to algolia
-  const { refine, clear } = useSearchBox();
   // ref to search box
   const inputRef = useRef<HTMLInputElement>(null);
   
@@ -19,9 +15,8 @@ export default function SearchResources() {
             e.preventDefault();
             e.stopPropagation();
             // manually trigger search
-            refine(inputRef.current!.value);
           }}>
-            <button><MagnifyingGlass size={30} color="#BE6CFF" /></button>
+            <button type="submit"><MagnifyingGlass size={30} color="#BE6CFF" /></button>
             <input
               ref={inputRef}
               className="outline-none bg-transparent font-normal text-xl placeholder:text-xl placeholder:text-gray-text w-full ml-4 pl-4"
@@ -32,13 +27,10 @@ export default function SearchResources() {
 
           <button onClick={() => {
             inputRef.current!.value = '';
-            clear();
           }}>
             <X size={30} color="#717171" />
           </button>
         </div>
-        
-        <Hits hitComponent={ForumHit} />
       </div>
     </>
   )

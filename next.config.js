@@ -40,7 +40,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['lh3.googleusercontent.com', 's3.ap-south-1.amazonaws.com', 'source.boringavatars.com'],
+    domains: ['lh3.googleusercontent.com', 'owlimagesbucket.s3.ap-south-1.amazonaws.com', 'source.boringavatars.com'],
   },
   async headers() {
     return [
