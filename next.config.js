@@ -3,7 +3,7 @@ const ContentSecurityPolicy = `
   script-src 'self' 'unsafe-inline' 'unsafe-eval';
   style-src 'self' 'unsafe-inline' fonts.googleapis.com;
   font-src 'self' fonts.gstatic.com;
-  img-src 'self' data: lh3.googleusercontent.com s3.ap-south-1.amazonaws.com www.w3.org source.boringavatars.com;
+  img-src 'self' data: lh3.googleusercontent.com owlimagesbucket.s3.ap-south-1.amazonaws.com www.w3.org source.boringavatars.com s3.ap-south-1.amazonaws.com;
   connect-src 'self' *.net *.com;
 `
 
@@ -40,7 +40,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     dangerouslyAllowSVG: true,
-    domains: ['lh3.googleusercontent.com', 'owlimagesbucket.s3.ap-south-1.amazonaws.com', 'source.boringavatars.com'],
+    domains: ['lh3.googleusercontent.com', 'owlimagesbucket.s3.ap-south-1.amazonaws.com', 'source.boringavatars.com', 's3.ap-south-1.amazonaws.com'],
   },
   async headers() {
     return [

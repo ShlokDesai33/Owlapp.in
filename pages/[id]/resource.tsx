@@ -11,8 +11,8 @@ function classNames(...classes: (string | boolean)[]) {
 
 const gridCell = (count: number, content: string) => (
   <div className="py-4 px-5 rounded-xl shadow-post-shadow" key={content}>
-    <h5>{count}</h5>
-    <p className="text-gray-text">{content}</p>
+    <p>{count}</p>
+    <h5 className="text-gray-text">{content}</h5>
   </div>
 )
 
@@ -51,7 +51,7 @@ const ViewProduct = ({ id }: { id: string }) => {
         <title>{product.name} | Owl</title>
       </Head>
 
-      <main className="pt-10 px-12 overflow-y-auto h-full">
+      <main className="pt-10 px-12 overflow-y-auto h-full w-full">
         <div className="flex gap-x-10 justify-between bg-gray-bg p-8 rounded-xl">
           <div className="shrink-0">
             <Image
