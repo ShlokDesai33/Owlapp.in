@@ -4,6 +4,7 @@ import useResource from '../../hooks/useResource'
 import Image from 'next/image'
 import { GetServerSideProps } from 'next'
 import useResourceParam from '../../hooks/useResourceParam'
+import { UserCircle } from 'phosphor-react'
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ');
@@ -65,6 +66,17 @@ const ViewProduct = ({ id }: { id: string }) => {
 
           <div className="flex divide-x-2 w-full justify-between gap-x-10">
             <div>
+              <div className="flex items-center gap-x-2 mb-2">
+                <Image
+                  src={product.org.logo}
+                  width={50}
+                  height={50}
+                  className="h-full w-full object-cover object-center rounded-full shrink-0"
+                />
+
+                <h6 className="text-gray-700 truncate">{product.org.name}</h6>
+              </div>
+
               <h4>{product.name}</h4>
               <p className="mt-2">{product.description}</p>
             </div>
@@ -97,6 +109,14 @@ const ViewProduct = ({ id }: { id: string }) => {
                 }
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="flex bg-gray-bg px-8 py-6 items-center rounded-xl mt-8">
+          <UserCircle size={32} weight="fill" className="text-secondary" />
+          <div className="flex items-center divide-x-2 divide-gray-500 gap-x-2 ml-2">
+            <h5>{product.admin.name}</h5>
+            <h5 className="pl-2">{product.admin.email}</h5>
           </div>
         </div>
 
