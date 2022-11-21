@@ -146,7 +146,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     if (token) {
       return {
         redirect: {
-          destination: '/resources',
+          destination: '/dashboard/resources',
           statusCode: 302
         }
       };
@@ -178,7 +178,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       // authentication successful
       return {
         redirect: {
-          destination: '/resources',
+          destination: '/dashboard/resources',
           statusCode: 302
         }
       };

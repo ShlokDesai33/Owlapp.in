@@ -176,7 +176,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       // authentication successful
       return {
         redirect: {
-          destination: '/resources',
+          destination: '/dashboard/resources',
           statusCode: 302
         }
       };
