@@ -29,7 +29,7 @@ const Search: NextPageWithLayout = () => {
           <Filters filters={filters} setFilters={setFilters}/>
         </div>
 
-        <div className="flex flex-col items-center grow">
+        {/* <div className="flex flex-col items-center grow">
             { filters.resources &&
               (
                 <>
@@ -62,7 +62,7 @@ const Search: NextPageWithLayout = () => {
                 </div>
               )
             }
-        </div>
+        </div> */}
       </main>
     </>
   )

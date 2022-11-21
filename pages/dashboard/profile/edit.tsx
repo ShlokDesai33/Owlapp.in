@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { Barricade } from 'phosphor-react'
 import Layout from '../../../components/layout/auth'
 import type { NextPageWithLayout } from '../../../typescript/nextpage'
 
@@ -8,6 +9,11 @@ const EditProfile: NextPageWithLayout = () => {
       <Head>
         <title>Edit Profile | Owl</title>
       </Head>
+
+      <div className="flex w-full justify-center items-center gap-x-3 m-10 bg-gray-bg rounded-xl">
+        <Barricade size={70} color="#BE6CFF" weight="light" />
+        <h3 className="font-normal">Comming Soon!</h3>
+      </div>
     </>
   )
 }
