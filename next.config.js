@@ -5,6 +5,7 @@ const ContentSecurityPolicy = `
   font-src 'self' fonts.gstatic.com;
   img-src 'self' data: lh3.googleusercontent.com owlimagesbucket.s3.ap-south-1.amazonaws.com www.w3.org source.boringavatars.com s3.ap-south-1.amazonaws.com;
   connect-src 'self' *.net *.com;
+  frame-src 'self' docs.google.com;
 `
 
 const securityHeaders = [

@@ -25,11 +25,11 @@ export default function NavBar(): JSX.Element {
           icon={<Books size={30} weight="light" />}
           url="/dashboard/resources"
         />
-        <NavButton
+        {/* <NavButton
           title="Create Forum"
           icon={<PlusCircle size={30} />}
           url="/dashboard/post/forum"
-        />
+        /> */}
       </div>
 
       {/* other nav buttons */}
