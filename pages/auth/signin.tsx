@@ -27,7 +27,7 @@ const SignIn: NextPage = () => {
           <link rel="icon" href="/images/favicon.ico"/>
         </Head>
 
-        <div className="flex w-screen h-screen items-center justify-center">
+        <div className="flex w-full h-full items-center justify-center">
           <Spinner />
         </div>
       </>
@@ -45,7 +45,7 @@ const SignIn: NextPage = () => {
         <link rel="icon" href="/images/favicon.ico"/>
       </Head>
 
-      <div className="flex h-screen pb-20 items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex h-full pb-20 items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
             <div className="flex justify-center">
