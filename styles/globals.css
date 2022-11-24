@@ -49,8 +49,12 @@
   ::-webkit-scrollbar {
     @apply w-0;
   }
+  
+  html {
+    @apply h-full;
+  }
   body {
-    @apply h-screen;
+    @apply h-full;
   }
   #__next {
     @apply h-full;
