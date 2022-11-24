@@ -5,6 +5,7 @@ import { createSecretKey } from 'crypto'
 import { collection, getDocs, query, where, serverTimestamp, addDoc } from 'firebase/firestore'
 import db from '../../../firebase'
 import bcrypt from 'bcryptjs'
+import Cookies from 'cookies'
 
 const JWT_SECRET = createSecretKey(process.env.JWT_SECRET as string, 'utf-8');
 
@@ -14,6 +15,11 @@ export default async function handler(
 ) {
 
   const { fullname, email, password } = req.body;
+
+  if (!fullname || !email || !password) {
+    return res.status(400).end();
+  }
+
   // Create a query against the /users collection.
   const q = query(collection(db, 'users'), where('email', '==', email));
 
@@ -50,7 +56,16 @@ export default async function handler(
       .setIssuer('owlapp.in')
       .sign(JWT_SECRET);
 
-    res.setHeader('JWT-Token', JWT_TOKEN);
+    const cookies = new Cookies(req, res);
+
+    cookies.set('auth-token', JWT_TOKEN, {
+      httpOnly: true,
+      // secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      // 10 days
+      maxAge: 864000000,
+    });
+
     res.status(200).end();
   } catch {
     // 500: Internal Server Error

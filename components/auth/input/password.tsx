@@ -1,50 +1,48 @@
-function strengthTest(password: string): boolean {
-  if (password.length < 8) {
-    return false;
-  }
-  else return true;
-}
+import { Eye, EyeSlash } from 'phosphor-react'
+import { useState } from 'react'
 
-function classNames(...classes: (string | boolean)[]) {
-  return classes.filter(Boolean).join(' ');
-}
+export default function PasswordInputField() {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
-type Props = {
-  state: {
-    isNameValid: boolean,
-    isEmailValid: boolean,
-    isPasswordValid: boolean,
-  }
-  setState: (state:
-    {
-      isNameValid: boolean,
-      isEmailValid: boolean,
-      isPasswordValid: boolean
-    }
-  ) => void,
-}
-
-export default function PasswordInputField({ state, setState }: Props) {
   return (
-    <input
-      aria-label="password"
-      type="password"
-      name="password"
-      placeholder="Password"
-      className={classNames(
-        state.isPasswordValid && 'border-green-500',
-        !state.isPasswordValid && 'focus:border-red-500 border-gray-btn',
-        'outline-none bg-transparent placeholder:text-xl placeholder:text-gray-text',
-        'mb-6 border-2 py-4 px-4 w-full rounded-xl text-xl'
-      )}
-      onChange={(e) => {
-        if (strengthTest(e.target.value) && !state.isPasswordValid) {
-          setState({ ...state, isPasswordValid: true });
-        }
-        else if (!strengthTest(e.target.value) && state.isPasswordValid) {
-          setState({ ...state, isPasswordValid: false });
-        }
-      }}
-    />
+    <div className="relative">
+      <label htmlFor="password" className="sr-only">
+        Password
+      </label>
+      <input
+        id="password"
+        name="password"
+        type={showPassword ? 'text' : 'password'}
+        autoComplete="current-password"
+        // onInvalid={(e) => {
+        //   if (e.currentTarget.validity.valueMissing) {
+        //     e.currentTarget.setCustomValidity('Please enter a password.');
+        //   }
+        //   else if (e.currentTarget.validity.patternMismatch) {
+        //     if (e.currentTarget.value.length > 32) {
+        //       e.currentTarget.setCustomValidity('Password must less than 32 characters.');
+        //     }
+        //     e.currentTarget.setCustomValidity('Password must contain atleast 8 characters, one uppercase letter and a number.');
+        //   }
+        // }}
+        // pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,32}$'
+        minLength={8}
+        maxLength={32}
+        required
+        className="relative block appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 w-full text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+        placeholder="Password"
+      />
+
+      <button
+        type="button"
+        onClick={e => {
+          e.preventDefault();
+          setShowPassword(!showPassword)
+        }}
+        className="absolute bottom-0 right-0 p-2"
+      >
+        {showPassword ?  <EyeSlash size={22} className="text-gray-600" /> : <Eye size={22} className="text-gray-600" />}
+      </button>
+    </div>
   );
 }

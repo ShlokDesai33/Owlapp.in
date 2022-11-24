@@ -1,27 +1,31 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import logoSvg from '../../public/images/logo.svg'
-import Link from 'next/link'
-import PasswordInputField from '../../components/auth/input/password'
-import { useState } from 'react'
-import Spinner from '../../components/lib/spinner'
-import { useRouter } from 'next/router'
 import { LockSimple } from 'phosphor-react'
-import { NextPage } from 'next'
+import Image from 'next/image'
+import logoSvg from '../public/images/logo.svg'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import Link from 'next/link'
+import Spinner from '../components/lib/spinner'
+import PasswordInputField from '../components/auth/input/password'
 
-const SignUp: NextPage = () => {
+type Props = {
+  pageState: 'default' | '401' | '309' | '500'
+}
+
+const SignUp = ({ pageState }: Props) => {
   // state of the page
-  const [state, setState] = useState<'default' | 'loading' | '401' | '309' | '500'>('default');
+  const [state, setState] = useState<'default' | 'loading' | '401' | '309' | '500'>(pageState);
+  // router
   const router = useRouter();
 
   if (state === 'loading') {
     return (
       <>
         <Head>
-          <title>Sign Up | Owl</title>
-          <meta name="description" content="Sign Up"/>
+          <title>Sign In | Owl</title>
+          <meta name="description" content="Owl's landing page"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-          <meta name="keywords" content="owl, home, log up, sign up"></meta>
+          <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
           <meta name="author" content="Owl"></meta>
           <link rel="icon" href="/images/favicon.ico"/>
         </Head>
@@ -36,10 +40,10 @@ const SignUp: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Sign Up | Owl</title>
-        <meta name="description" content="Sign Up"/>
+        <title>Sign In | Owl</title>
+        <meta name="description" content="Owl's landing page"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-        <meta name="keywords" content="owl, home, log up, sign up"></meta>
+        <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
         <meta name="author" content="Owl"></meta>
         <link rel="icon" href="/images/favicon.ico"/>
       </Head>
@@ -115,57 +119,7 @@ const SignUp: NextPage = () => {
             )
           }
 
-          <form className="mt-8 space-y-6" onSubmit={e => {
-            e.preventDefault();
-            setState('loading');
-
-            const formData = new FormData(e.target as HTMLFormElement);
-            // check if the inputs are valid
-            const email = formData.get('email');
-            const password = formData.get('password');
-            const name = formData.get('name');
-
-            if (email === null || password === null || name === null) {
-              setState('500');
-              return;
-            }
-
-            // test email with regex
-            if (/^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/.test(email as string) === false) {
-              setState('500');
-              return;
-            }
-
-            // test password with regex
-            // if (/^$/.test(password as string) === false) {
-            //   setState('500');
-            //   return;
-            // }
-
-            fetch('/api/auth/signup', {
-              method: 'POST',
-              body: JSON.stringify(
-                {
-                  email,
-                  password,
-                  fullname: name
-                }
-              ),
-              headers: { 'Content-Type': 'application/json' }
-            })
-            .then(res => {
-              if (res.status === 200) {
-                // redirect to home
-                router.push('/dashboard/resources');
-              } else if (res.status === 401) {
-                setState('401');
-              } else if (res.status === 309) {
-                setState('309');
-              } else {
-                setState('500');
-              }
-            });
-          }}>
+          <form className="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>

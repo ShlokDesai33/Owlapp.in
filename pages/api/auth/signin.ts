@@ -5,6 +5,7 @@ import { createSecretKey } from 'crypto'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import db from '../../../firebase'
 import bcrypt from 'bcryptjs'
+import Cookies from 'cookies'
 
 const JWT_SECRET = createSecretKey(process.env.JWT_SECRET as string, 'utf-8');
 
@@ -14,6 +15,11 @@ export default async function handler(
 ) {
 
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).end();
+  }
+
   // Create a query against the /users collection.
   const q = query(collection(db, 'users'), where('email', '==', email));
 
@@ -36,8 +42,17 @@ export default async function handler(
           .setExpirationTime('10 days')
           .setIssuer('owlapp.in')
           .sign(JWT_SECRET);
+
+        const cookies = new Cookies(req, res);
+
+        cookies.set('auth-token', JWT_TOKEN, {
+          httpOnly: true,
+          // secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          // 10 days
+          maxAge: 864000000,
+        });
   
-        res.setHeader('JWT-Token', JWT_TOKEN);
         res.status(200).end();
       }
       else {
