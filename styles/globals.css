@@ -37,7 +37,6 @@
   input:-webkit-autofill {
     -webkit-box-shadow:0 0 0 50px white inset;
   }
-
   input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0 50px white inset;
   }
@@ -49,6 +48,12 @@
   /* Configures scroll bar aesthetic. */
   ::-webkit-scrollbar {
     @apply w-0;
+  }
+  body {
+    @apply h-screen;
+  }
+  #__next {
+    @apply h-full;
   }
 }
 
