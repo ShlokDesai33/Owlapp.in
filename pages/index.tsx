@@ -44,7 +44,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/images/favicon.ico"/>
       </Head>
 
-      <div className="isolate bg-white h-full pb-20">
+      <div className="h-full">
         <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg
             className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
@@ -73,9 +73,11 @@ const Home: NextPage = () => {
           </svg>
         </div>
         
-        <MainNavbar />
+        <div className="absolute w-full top-0 z-10">
+          <MainNavbar />
+        </div>
         
-        <main className="h-full pb-20">
+        <main className="h-full">
           <div className="relative px-6 lg:px-8 h-full">
             <div className="mx-auto max-w-3xl h-full flex items-center">
               <div>
@@ -127,7 +129,7 @@ const Home: NextPage = () => {
           </div>
         </main>
 
-        <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-40rem)]">
+        <div className="absolute inset-x-0 top-[calc(100%-13rem)] bottom-0 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-40rem)]">
           <svg
             className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
             viewBox="0 0 1155 678"

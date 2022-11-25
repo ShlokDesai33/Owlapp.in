@@ -8,6 +8,7 @@ import Spinner from '../../components/lib/spinner'
 import { useRouter } from 'next/router'
 import { LockSimple } from 'phosphor-react'
 import { NextPage } from 'next'
+import MainNavbar from '../../components/layout/components/navbar'
 
 const SignUp: NextPage = () => {
   // state of the page
@@ -47,17 +48,21 @@ const SignUp: NextPage = () => {
       <div className="flex h-full pb-20 items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <div className="flex justify-center">
-              <Image
-                src={logoSvg}
-                alt="Logo"
-                width={70}
-                height={70}
-              />
-            </div>
+            <Link href="/">
+              <button className="w-full">
+                <Image
+                  src={logoSvg}
+                  alt="Logo"
+                  width={70}
+                  height={70}
+                />
+              </button>
+            </Link>
+
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign up to get started
             </h2>
+            
             <p className="mt-2 text-center text-sm text-gray-600">
               Already have an account?{' '}
               <Link href="/auth/signin">
