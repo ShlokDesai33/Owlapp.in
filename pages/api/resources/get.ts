@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { collection, getDocs, orderBy, query } from 'firebase/firestore'
+import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore'
 import db from '../../../firebase'
 
 export default async function handler(
@@ -7,15 +7,14 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-  // get all admins
-  const q = query(collection(db, `resources`), orderBy('createdAt', 'desc'));
+  const q = query(collection(db, `resources`), orderBy('createdAt', 'desc'), limit(9));
   const querySnapshot = await getDocs(q);
 
   const resources: any[] = [];
 
   querySnapshot.forEach((doc) => {
     resources.push({
-      id: doc.id,
+      objectID: doc.id,
       ...doc.data()
     });
   });
