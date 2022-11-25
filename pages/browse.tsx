@@ -18,7 +18,7 @@ const Browse: NextPage = () => {
       setError(null);
       setLoading(true);
 
-      fetch("/api/resources/get") 
+      fetch("/api/resources/get")
         .then(res => res.json())
         .then(data => {
           setSearchResults(data);

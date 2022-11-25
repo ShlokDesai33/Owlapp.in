@@ -9,16 +9,4 @@ const resources_ind = client.initIndex('resources');
 const users_ind = client.initIndex('users');
 const forums_ind = client.initIndex('forums');
 
-function searchResources(query: string) {
-  return resources_ind.search(query);
-}
-
-function searchUsers(query: string) {
-  return users_ind.search(query);
-}
-
-function searchForums(query: string) {
-  return forums_ind.search(query);
-}
-
 export { resources_ind, users_ind, forums_ind };

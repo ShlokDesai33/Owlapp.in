@@ -9,7 +9,6 @@ import { useState } from 'react'
 import Spinner from '../../components/lib/spinner'
 import { useRouter } from 'next/router'
 import { LockSimple } from 'phosphor-react'
-import MainNavbar from '../../components/layout/components/navbar'
 
 const SignIn: NextPage = () => {
   // state of the page
@@ -63,7 +62,7 @@ const SignIn: NextPage = () => {
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign in to your account
             </h2>
-            
+
             <p className="mt-2 text-center text-sm text-gray-600">
               Don&apos;t have an account?{' '}
               <button type="button" className="font-medium text-primary hover:text-primary/80" onClick={e => {

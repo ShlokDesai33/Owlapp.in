@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Barricade } from 'phosphor-react'
-import Layout from '../../components/layout/auth'
-import type { NextPageWithLayout } from '../../typescript/nextpage'
+import Layout from '../../../components/layout/auth'
+import type { NextPageWithLayout } from '../../../typescript/nextpage'
 
 const Settings: NextPageWithLayout = () => {
   return (

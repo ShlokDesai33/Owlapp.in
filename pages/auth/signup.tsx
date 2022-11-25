@@ -8,7 +8,6 @@ import Spinner from '../../components/lib/spinner'
 import { useRouter } from 'next/router'
 import { LockSimple } from 'phosphor-react'
 import { NextPage } from 'next'
-import MainNavbar from '../../components/layout/components/navbar'
 
 const SignUp: NextPage = () => {
   // state of the page
@@ -62,7 +61,7 @@ const SignUp: NextPage = () => {
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign up to get started
             </h2>
-            
+
             <p className="mt-2 text-center text-sm text-gray-600">
               Already have an account?{' '}
               <Link href="/auth/signin">

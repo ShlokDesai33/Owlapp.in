@@ -23,9 +23,6 @@ module.exports = {
       fontSize: {
         "xxl": "1.375rem",
       },
-      backgroundImage: {
-        'landing': "url('/images/landing.svg')",
-      }
     },
   },
   plugins: [

@@ -3,54 +3,36 @@ import Image from 'next/image'
 import blueCheck from '../../../public/images/blue-check.svg'
 
 export default function UserHit({ hit }: { hit: any }) {
-  // TODO: render organizations
-  if (hit.logo && hit.name) return <></>
-
   return (
     <Link href={`/${hit.objectID}/profile`} passHref>
-      <button className="w-post-element py-7 px-8 mb-10 mx-10 rounded-xl shadow-post-shadow border-2 border-white hover:border-primary hover:shadow-none">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
+      <div className="group bg-gray-100 pt-8 pb-6 px-3 rounded-md">
+        <div className="flex justify-center">
+          <Image
+            height={150}
+            width={150}
+            src={hit.image || hit.logo}
+            alt={hit.name}
+            className="h-full w-full object-cover object-center group-hover:opacity-75 rounded-full"
+          />
+        </div>
+
+        <div className="flex items-center mt-5 gap-x-3">
+          <div>
+            <p className="text-lg font-medium text-gray-900">{hit.fullname || hit.name}</p>
+            <h3 className="text-sm text-gray-700 truncate">@{hit.objectID}</h3>
+          </div>
+
+          {hit.status === 'verified' && (
             <Image
-              src={hit.image}
-              alt="Profile Picture"
-              width={60}
-              height={60}
-              className="rounded-full"
+              src={blueCheck}
+              alt="Verified"
+              width={25}
+              height={25}
+              className="rounded-full shrink-0"
             />
-
-            <div className="w-min ml-3 mr-5 text-left">
-              <h5 className="truncate">{hit.fullname}</h5>
-              <p className="text-gray-text truncate">@{hit.objectID}</p>
-            </div>
-
-            { hit.status === 'verified' &&
-              (
-                <Image
-                  src={blueCheck}
-                  width={32}
-                  height={32}
-                  alt="Verified Check"
-                />
-              )
-            }
-          </div>
-
-          <div className="px-6 py-2 bg-gray-bg rounded-full">
-            <h6>User</h6>
-          </div>
+          )}
         </div>
-
-        <hr className="border-t-2 mt-6"/>
-
-        <div className="flex items-centre justify-between mt-4">
-          <div className="flex items-center">
-            <h6 className="text-gray-text">Rank:{' '}{hit.rank}</h6>
-            <div className="mx-4 w-2 h-2 rounded-full bg-gray-btn"></div>
-            <h6 className="text-gray-text">Followers:{' '}{hit.rank}</h6>
-          </div>
-        </div>
-      </button>
+      </div>
     </Link>
   );
 }
