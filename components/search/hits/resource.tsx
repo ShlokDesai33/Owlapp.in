@@ -26,10 +26,10 @@ export default function ResourceHit({ hit }: { hit: any }) {
           <p className="text-sm text-gray-700 truncate">{hit.org.name}</p>
         </div>
 
-        <h3 className="mt-1 text-lg font-medium text-gray-900">{hit.name}</h3>
+        <h3 className="mt-1 text-base font-medium text-gray-900">{hit.name}</h3>
 
         <div className="flex items-center mt-2 gap-x-2">
-          <p className="text-lg font-medium text-gray-900">
+          <p className="text-base font-medium text-gray-900">
             ₹{hit.prices.industry}
             <span className="text-gray-700 text-sm">{' /' + hit.prices.metric}</span>
           </p>

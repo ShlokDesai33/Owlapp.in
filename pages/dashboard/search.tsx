@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import Layout from '../../components/layout/auth'
 import type { NextPageWithLayout } from '../../typescript/nextpage'
-import { Funnel, MagnifyingGlass, X } from "phosphor-react"
+import { Funnel, MagnifyingGlass, SortAscending, X } from "phosphor-react"
 import { useEffect, useRef, useState } from "react"
 import Spinner from "../../components/lib/spinner"
 import { resources_ind, users_ind } from "../../components/search/client"
 import Filters from '../../components/search/components/filters'
 import UserHit from '../../components/search/hits/user'
 import ResourceHit from '../../components/search/hits/resource'
+import SortBy from '../../components/search/components/sortby'
 
 const Resources: NextPageWithLayout = () => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -124,9 +125,17 @@ const Resources: NextPageWithLayout = () => {
           </button>
         </form>
 
-        <div className="mt-10 flex items-center gap-x-2">
-          <Funnel className="h-6 w-6 text-gray-600" />
-          <Filters filters={filters} setFilters={setFilters} />
+        <div className="mt-10 flex items-center justify-between">
+          <div className="flex items-center gap-x-2">
+            <Funnel className="h-6 w-6 text-gray-600" />
+            <Filters filters={filters} setFilters={setFilters} />
+          </div>
+
+          {/* <button className="text-indigo-600 hover:text-indigo-700 flex items-center gap-x-1">
+            Sort by
+            <SortAscending className="h-6 w-6" />
+          </button> */}
+          <SortBy />
         </div>
 
         {
@@ -164,7 +173,7 @@ const Resources: NextPageWithLayout = () => {
                   )
                 }
 
-                <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+                <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                   {searchResults.resources.map((product: any) => (
                     <ResourceHit key={product.objectID} hit={product} />
                   ))}

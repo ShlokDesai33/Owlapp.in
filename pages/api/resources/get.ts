@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-  const q = query(collection(db, `resources`), orderBy('createdAt', 'desc'), limit(9));
+  const q = query(collection(db, `resources`), orderBy('createdAt', 'desc'), limit(8));
   const querySnapshot = await getDocs(q);
 
   const resources: any[] = [];

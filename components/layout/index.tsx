@@ -1,5 +1,5 @@
-import Head from "next/head";
-import LandingNavbar from "./components/navbar";
+import Head from "next/head"
+import LandingNavbar from "./components/navbar"
 
 export default function Layout({ children, classes }: { children: React.ReactNode, classes?: string }) {
   return (

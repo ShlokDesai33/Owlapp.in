@@ -1,12 +1,12 @@
-import { NextPage } from "next"
-import { MagnifyingGlass, Tag, X } from "phosphor-react"
+import { MagnifyingGlass, X } from "phosphor-react"
 import { useEffect, useRef, useState } from "react"
-import MainNavbar from "../components/layout/components/navbar"
+import Layout from "../components/layout"
 import Spinner from "../components/lib/spinner"
 import { resources_ind } from "../components/search/client"
 import ResourceHit from "../components/search/hits/resource"
+import { NextPageWithLayout } from "../typescript/nextpage"
 
-const Browse: NextPage = () => {
+const Browse: NextPageWithLayout = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -32,9 +32,7 @@ const Browse: NextPage = () => {
 
   return (
     <>
-      <MainNavbar classes="border-b-2 border-gray-100" />
-
-      <main className="max-w-7xl px-4 sm:px-6 mx-auto pt-6 overflow-y-scroll">
+      <main className="max-w-7xl px-4 sm:px-6 mx-auto pt-28 mt-4 overflow-y-scroll">
         <form role="search" className="flex items-center w-full shadow-post-shadow rounded-full px-6 py-4" onSubmit={e => {
           e.preventDefault();
           const query = inputRef.current?.value;
@@ -58,7 +56,7 @@ const Browse: NextPage = () => {
 
           <input
             ref={inputRef}
-            className="relative block w-full appearance-none text-gray-900 placeholder-gray-500 focus:z-10 text-base mx-3"
+            className="relative block w-full appearance-none text-gray-900 placeholder-gray-500 text-base mx-3"
             placeholder="Search for a Resource"
             autoFocus={true}
           />
@@ -96,7 +94,7 @@ const Browse: NextPage = () => {
               <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="sr-only">Products</h2>
 
-                <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+                <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                   {searchResults.map((product) => (
                     <ResourceHit key={product.objectID} hit={product} />
                   ))}
@@ -109,5 +107,10 @@ const Browse: NextPage = () => {
     </>
   )
 };
+
+// return the Home page wrapped in the Layout component
+Browse.getLayout = function getLayout(page: React.ReactElement) {
+  return <Layout classes="border-b-2 border-gray-100 bg-white">{page}</Layout>;
+}
 
 export default Browse

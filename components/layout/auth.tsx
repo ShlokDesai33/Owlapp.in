@@ -24,6 +24,7 @@ const userNavigation = [
 const headerUrls = [
   '/dashboard',
   '/dashboard/social',
+  '/dashboard/profile',
   '/dashboard/profile/settings',
 ]
 
