@@ -9,6 +9,7 @@ import { useState } from 'react'
 import Spinner from '../../components/lib/spinner'
 import { useRouter } from 'next/router'
 import { LockSimple } from 'phosphor-react'
+import Gradient from '../../components/layout/components/gradient'
 
 const SignIn: NextPage = () => {
   // state of the page
@@ -46,7 +47,7 @@ const SignIn: NextPage = () => {
       </Head>
 
       <div className="flex h-full pb-20 items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
+        <main className="w-full max-w-md space-y-8">
           <div>
             <Link href="/">
               <button className="w-full">
@@ -131,7 +132,7 @@ const SignIn: NextPage = () => {
             .then(res => {
               if (res.status === 200) {
                 // redirect to home
-                router.push('/dashboard/resources');
+                router.push('/dashboard');
               } else if (res.status === 401) {
                 setState('401');
               } else if (res.status === 309) {
@@ -193,7 +194,9 @@ const SignIn: NextPage = () => {
               </button>
             </div>
           </form>
-        </div>
+        </main>
+
+        <Gradient />
       </div>
     </>
   )
@@ -206,7 +209,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     // token exists, redirect to dashboard
     return {
       redirect: {
-        destination: '/dashboard/resources',
+        destination: '/dashboard',
         statusCode: 302
       }
     };

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../../../components/layout'
+import Layout from '../../../components/layout/'
 import useResource from '../../../hooks/useResource'
 import Image from 'next/image'
 import { GetServerSideProps } from 'next'
@@ -7,6 +7,7 @@ import useResourceParam from '../../../hooks/useResourceParam'
 import { Chats, UserCircle } from 'phosphor-react'
 import useCustomData from '../../../hooks/useCustomData'
 import blueCheck from '../../../public/images/blue-check.svg'
+import Spinner from '../../../components/lib/spinner'
 
 function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(' ');
@@ -46,7 +47,22 @@ const ViewProduct = ({ id }: { id: string }) => {
   }
 
   if (!product) {
-    return <>Loading..</>
+    return (
+      <>
+        <Head>
+          <title>Owl</title>
+          <meta name="description" content="Owl's landing page"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+          <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
+          <meta name="author" content="Owl"></meta>
+          <link rel="icon" href="/images/favicon.ico"/>
+        </Head>
+
+        <div className="flex w-full h-full items-center justify-center">
+          <Spinner />
+        </div>
+      </>
+    )
   }
   
   return (
@@ -55,7 +71,7 @@ const ViewProduct = ({ id }: { id: string }) => {
         <title>{product.name} | Owl</title>
       </Head>
 
-      <main className="pt-10 px-12 overflow-y-auto h-full w-full">
+      <main className="w-full max-w-7xl px-4 sm:px-6 mx-auto mt-32">
         <div className="flex gap-x-10 justify-between bg-gray-bg p-8 rounded-xl">
           <div className="shrink-0">
             <Image
@@ -64,6 +80,7 @@ const ViewProduct = ({ id }: { id: string }) => {
               width={250}
               height={250}
               className="rounded-xl"
+              priority
             />
           </div>
 
@@ -291,7 +308,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 // return the Home page wrapped in the Layout component
 ViewProduct.getLayout = function getLayout(page: React.ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <Layout classes="border-b-2 border-gray-100 bg-white">{page}</Layout>;
 }
 
 export default ViewProduct

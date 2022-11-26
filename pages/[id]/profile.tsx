@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '../../components/layout'
+import Layout from '../../components/layout/'
 import type { NextPageWithLayout } from '../../typescript/nextpage'
 
 const ViewProfile: NextPageWithLayout = () => {

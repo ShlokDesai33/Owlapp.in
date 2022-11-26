@@ -73,7 +73,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function MainNavbar({ classes = '' }) {
+export default function LandingNavbar({ classes = '' }) {
   return (
     <Popover className={`${classes}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -267,6 +267,7 @@ export default function MainNavbar({ classes = '' }) {
                 Sign in
               </button>
             </Link>
+            
             <Link href="/auth/signup">
               <button className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
                 Sign up

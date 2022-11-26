@@ -1,8 +1,5 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import { Chats } from 'phosphor-react'
-import Layout from '../../components/layout'
-import { Forum } from '../../typescript/interfaces/forum'
+import Layout from '../../components/layout/'
 import { NextPageWithLayout } from '../../typescript/nextpage'
 
 const ViewForum: NextPageWithLayout = () => {
@@ -12,7 +9,7 @@ const ViewForum: NextPageWithLayout = () => {
         <title>Forum | Owl</title>
       </Head>
 
-      <div className="flex flex-col grow p-12">
+      {/* <div className="flex flex-col grow p-12">
         <div className="flex items-center justify-between border-b-2 pb-8">
           <div className="flex items-center gap-x-3 mr-5">
             <Chats size={40} weight="light" color="#BE6CFF" />
@@ -24,7 +21,6 @@ const ViewForum: NextPageWithLayout = () => {
             </button>
           </Link>
         </div>
-        {/* forum details (lhs) */}
         <div className="flex grow mt-8">
           <div className="grow bg-white">
             hello
@@ -33,7 +29,7 @@ const ViewForum: NextPageWithLayout = () => {
             hello
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

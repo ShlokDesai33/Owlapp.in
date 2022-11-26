@@ -8,12 +8,12 @@ import blueCheck from '../../public/images/blue-check.svg'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { List, X } from 'phosphor-react'
+import Link from 'next/link'
 
 const navigation = [
-  { name: 'Home', href: '/dashboard', current: true },
-  { name: 'Search', href: '/dashboard/search', current: false },
-  { name: 'Social', href: '/dashboard/social', current: false },
-  { name: 'Resources', href: '/dashboard/resources', current: false },
+  { name: 'Home', href: '/dashboard' },
+  { name: 'Search', href: '/dashboard/search' },
+  { name: 'Social', href: '/dashboard/social' },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '/dashboard/profile' },
@@ -21,8 +21,18 @@ const userNavigation = [
   { name: 'Sign out', href: '/auth/signout' },
 ]
 
+const headerUrls = [
+  '/dashboard',
+  '/dashboard/social',
+  '/dashboard/profile/settings',
+]
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
+}
+
+function capitalize(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 export default function LayoutWithAuth({ children }: { children: React.ReactNode }) {
@@ -80,19 +90,20 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.name}
                             href={item.href}
-                            className={classNames(
-                              item.current
+                            aria-current={router.pathname === item.href ? 'page' : undefined}
+                          >
+                            <button className={classNames(
+                              router.pathname === item.href
                                 ? 'bg-gray-900 text-white'
                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                               'px-3 py-2 rounded-md text-sm font-medium'
-                            )}
-                            aria-current={item.current ? 'page' : undefined}
-                          >
-                            {item.name}
-                          </a>
+                            )}>
+                              {item.name}
+                            </button>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -119,16 +130,15 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
                           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
-                                {({ active }) => (
-                                  <a
+                                {() => (
+                                  <Link
                                     href={item.href}
-                                    className={classNames(
-                                      active ? 'bg-gray-100' : '',
-                                      'block px-4 py-2 text-sm text-gray-700'
-                                    )}
+                                    legacyBehavior={false}
                                   >
-                                    {item.name}
-                                  </a>
+                                    <button className="block px-4 py-2 text-sm text-gray-700 w-full text-left hover:bg-gray-100">
+                                      {item.name}
+                                    </button>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
@@ -154,18 +164,18 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
               <Disclosure.Panel className="md:hidden">
                 <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
                   {navigation.map((item) => (
-                    <Disclosure.Button
+                    <Link
                       key={item.name}
-                      as="a"
                       href={item.href}
-                      className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'block px-3 py-2 rounded-md text-base font-medium'
-                      )}
-                      aria-current={item.current ? 'page' : undefined}
+                      aria-current={router.pathname === item.href ? 'page' : undefined}
                     >
-                      {item.name}
-                    </Disclosure.Button>
+                      <button className={classNames(
+                        router.pathname === item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'block px-3 py-2 rounded-md text-base font-medium w-full text-left'
+                      )}>
+                        {item.name}
+                      </button>
+                    </Link>
                   ))}
                 </div>
                 
@@ -193,14 +203,17 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
 
                   <div className="mt-3 space-y-1 px-2">
                     {userNavigation.map((item) => (
-                      <Disclosure.Button
+                      <Link
                         key={item.name}
-                        as="a"
                         href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                       >
-                        {item.name}
-                      </Disclosure.Button>
+                        <button className={classNames(
+                          router.pathname === item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'block px-3 py-2 rounded-md text-base font-medium w-full text-left'
+                        )}>
+                          {item.name}
+                        </button>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -209,11 +222,15 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
           )}
         </Disclosure>
 
-        {/* <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
-          </div>
-        </header> */}
+        {
+          headerUrls.includes(router.pathname) && (
+            <header className="bg-white shadow">
+              <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+                <h1 className="text-3xl font-bold tracking-tight text-gray-800">{capitalize(router.pathname.split('/').pop() as string)}</h1>
+              </div>
+            </header>
+          )
+        }
 
         <main className="grow overflow-y-scroll">
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 h-full">
