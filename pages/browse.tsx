@@ -14,7 +14,6 @@ const Browse: NextPageWithLayout = () => {
 
   useEffect(() => {
     if (searchResults.length === 0) {
-      setError(null);
       setLoading(true);
 
       fetch("/api/resources/get")
@@ -28,7 +27,7 @@ const Browse: NextPageWithLayout = () => {
           setLoading(false);
         })
     }
-  }, [searchResults]);
+  }, []);
 
   return (
     <>

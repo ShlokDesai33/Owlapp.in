@@ -1,12 +1,19 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { SortAscending } from 'phosphor-react'
+import { CheckCircle, SortAscending } from 'phosphor-react'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function SortBy() {
+type Props = {
+  sortBy: {
+    price: boolean
+  }
+  setSortBy: (sortBy: { price: boolean }) => void
+}
+
+export default function SortBy({ sortBy, setSortBy }: Props) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -28,18 +35,24 @@ export default function SortBy() {
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             <Menu.Item>
-              {({ active }) => (
+              {() => (
                 <button
-                  className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm w-full text-left'
-                  )}
+                  className="flex items-center px-4 py-2 text-sm w-full text-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setSortBy({ price: !sortBy.price })
+                  }}
                 >
                   Price
+                  {
+                    sortBy.price && (
+                      <CheckCircle className="ml-auto h-5 w-5" aria-hidden="true" />
+                    )
+                  }
                 </button>
               )}
             </Menu.Item>
-            <Menu.Item>
+            {/* <Menu.Item>
               {({ active }) => (
                 <button
                   className={classNames(
@@ -50,7 +63,7 @@ export default function SortBy() {
                   Location
                 </button>
               )}
-            </Menu.Item>
+            </Menu.Item> */}
           </div>
         </Menu.Items>
       </Transition>
