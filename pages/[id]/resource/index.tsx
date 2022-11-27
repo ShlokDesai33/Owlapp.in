@@ -89,6 +89,7 @@ const ViewProduct = ({ id }: { id: string }) => {
               <div className="flex items-center gap-x-2 mb-2">
                 <Image
                   src={product.org.logo}
+                  alt={product.org.name}
                   width={50}
                   height={50}
                   className="h-full w-full object-cover object-center rounded-full shrink-0"

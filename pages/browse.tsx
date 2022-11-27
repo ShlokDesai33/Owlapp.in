@@ -9,29 +9,27 @@ import { NextPageWithLayout } from "../typescript/nextpage"
 const Browse: NextPageWithLayout = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (searchResults.length === 0) {
-      setLoading(true);
+    setLoading(true);
 
-      fetch("/api/resources/get")
-        .then(res => res.json())
-        .then(data => {
-          setSearchResults(data);
-          setLoading(false);
-        })
-        .catch(err => {
-          setError(err.message);
-          setLoading(false);
-        })
-    }
+    fetch("/api/search/resources")
+      .then(res => res.json())
+      .then(data => {
+        setSearchResults(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        // TODO: Handle error
+        setSearchResults([]);
+        setLoading(false);
+      });
   }, []);
 
   return (
     <>
-      <main className="max-w-7xl px-4 sm:px-6 mx-auto pt-28 mt-4 overflow-y-scroll">
+      <main className="max-w-7xl px-4 sm:px-6 mx-auto pt-28 mt-4 overflow-y-scroll" id="no_sb">
         <form role="search" className="flex items-center w-full shadow-post-shadow rounded-full px-6 py-4" onSubmit={e => {
           e.preventDefault();
           const query = inputRef.current?.value;
@@ -45,7 +43,9 @@ const Browse: NextPageWithLayout = () => {
               setSearchResults(hits);
               setLoading(false);
             }).catch((err) => {
-              setError(err);
+              // TODO: Handle error
+              setSearchResults([]);
+              setLoading(false);
             });
           }
         }}>
@@ -77,18 +77,7 @@ const Browse: NextPageWithLayout = () => {
         }
 
         {
-          error && (
-            <div className="flex place-content-center items-center mt-20 divide-x-2">
-              <div className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary pr-2">
-                <h3 className="font-bold text-2xl">500</h3>
-              </div>
-              <h3 className="font-normal text-xl pl-2">Internal Server Error</h3>
-            </div>
-          )
-        }
-
-        {
-          !loading && !error && (
+          !loading && (
             <div className="bg-white my-10">
               <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="sr-only">Products</h2>

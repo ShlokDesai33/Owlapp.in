@@ -1,11 +1,26 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import blueCheck from '../../../public/images/blue-check.svg'
+import { Medal } from 'phosphor-react';
 
 export default function UserHit({ hit }: { hit: any }) {
   return (
     <Link href={`/${hit.objectID}/profile`} passHref>
-      <div className="group bg-gray-100 pt-8 pb-6 px-3 rounded-md">
+      <div className="group relative bg-gray-100 pt-8 pb-4 px-3 rounded-md">
+        {
+          hit.status === 'verified' && (
+            <div className="absolute top-0 right-0 p-3">
+              <Image
+                src={blueCheck}
+                alt="Verified"
+                width={27}
+                height={27}
+                className="rounded-full shrink-0"
+              />
+            </div>
+          )
+        }
+
         <div className="flex justify-center">
           <Image
             height={150}
@@ -17,20 +32,17 @@ export default function UserHit({ hit }: { hit: any }) {
         </div>
 
         <div className="flex items-center mt-5 gap-x-3">
-          <div>
-            <p className="text-lg font-medium text-gray-900">{hit.fullname || hit.name}</p>
+          <div className="shrink overflow-hidden">
+            <p className="text-lg font-medium text-gray-900 truncate">{hit.fullname || hit.name}</p>
             <h3 className="text-sm text-gray-700 truncate">@{hit.objectID}</h3>
           </div>
+        </div>
 
-          {hit.status === 'verified' && (
-            <Image
-              src={blueCheck}
-              alt="Verified"
-              width={25}
-              height={25}
-              className="rounded-full shrink-0"
-            />
-          )}
+        <hr className=" border-gray-300 mt-3"/>
+
+        <div className="flex items-center justify-between gap-x-3 mt-2 text-gray-700">
+          <p>{hit.followers} Followers</p>
+          <p className="flex items-center">{hit.rank} <span><Medal size={30} className="w-6 h-6" /></span></p>
         </div>
       </div>
     </Link>

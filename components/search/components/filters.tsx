@@ -1,13 +1,11 @@
 import { ArrowsVertical, Books, CheckCircle, UserCircle } from 'phosphor-react'
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 
 type Props = {
-  filters: {
-    users: boolean
-    resources: boolean
-  }
-  setFilters: (filters: { users: boolean, resources: boolean }) => void
+  objectFilter: number
+  setObjectFilter: (arg0: number) => void
+  inputRef: React.RefObject<HTMLInputElement>
 }
 
 function classNames(...classes: (string | boolean)[]) {
@@ -16,29 +14,30 @@ function classNames(...classes: (string | boolean)[]) {
 
 const options = [
   {
-    id: 1,
+    id: 0,
     name: 'Resources',
     avatar: <Books size={30} weight="regular" className="h-6 w-6 flex-shrink-0 text-indigo-600" />,
   },
   {
-    id: 2,
+    id: 1,
     name: 'Users',
     avatar: <UserCircle size={30} weight="regular" className="h-6 w-6 flex-shrink-0 text-indigo-600" />
   }
 ]
 
-export default function Example() {
-  const [selected, setSelected] = useState(options[0]);
-
+export default function Example({ objectFilter, setObjectFilter, inputRef }: Props) {
   return (
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox value={options[objectFilter]} onChange={e => {
+      inputRef.current!.value = '';
+      setObjectFilter(e.id)
+    }}>
       {({ open }) => (
         <>
           <div className="relative">
             <Listbox.Button className="relative w-44 cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
               <span className="flex items-center">
-                {selected.avatar}
-                <span className="ml-1 block truncate">{selected.name}</span>
+                {options[objectFilter].avatar}
+                <span className="ml-1 block truncate">{options[objectFilter].name}</span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-1 flex items-center pr-2">
                 <ArrowsVertical className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -92,40 +91,3 @@ export default function Example() {
     </Listbox>
   )
 }
-
-
-// export default function Filters({ filters, setFilters }: Props) {
-//   return (
-//     <div className="flex gap-x-2">
-//       <button
-//         className={classNames(
-//           filters.resources && 'bg-gray-bg border-2 border-gray-bg text-primary',
-//           !filters.resources && 'text-gray-500',
-//           'flex items-center gap-x-2 px-4 py-2 rounded-full border-2'
-//         )}
-//         onClick={(e) => {
-//           e.preventDefault();
-//           setFilters({ resources: true, users: false });
-//         }}
-//       >
-//         <Books size={20} weight="regular" />
-//         Resources
-//       </button>
-
-//       <button
-//         className={classNames(
-//           filters.users && 'bg-gray-bg border-2 border-gray-bg text-primary',
-//           !filters.users && 'text-gray-500',
-//           'flex items-center gap-x-2 px-4 py-2 rounded-full border-2'
-//         )}
-//         onClick={(e) => {
-//           e.preventDefault();
-//           setFilters({ resources: false, users: true });
-//         }}
-//       >
-//         <UserCircle size={20} weight="regular" />
-//         Users
-//       </button>
-//     </div>
-//   )
-// }

@@ -107,7 +107,13 @@ export default function LandingNavbar({ classes = '' }) {
               </button>
             </Link>
 
-            <Popover className="relative">
+            <Link href="/contact" passHref>
+              <button className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Contact Us
+              </button>
+            </Link>
+
+            {/* <Popover className="relative">
               {({ open }) => (
                 <>
                   <Popover.Button
@@ -174,13 +180,11 @@ export default function LandingNavbar({ classes = '' }) {
                   </Transition>
                 </>
               )}
-            </Popover>
+            </Popover> */}
 
-            <Link href="#" passHref>
-              <button className="text-base font-medium text-gray-500 hover:text-gray-900">
-                Pricing
-              </button>
-            </Link>
+            <a href="https://owl-console.vercel.app" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                Console
+            </a>
 
             <Popover className="relative">
               {({ open }) => (
@@ -325,9 +329,9 @@ export default function LandingNavbar({ classes = '' }) {
 
             <div className="space-y-6 py-6 px-5">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <Link href="#">
+                <Link href="/dashboard">
                   <button className="text-base font-medium text-gray-900 hover:text-gray-700 text-left w-fit">
-                    Pricing
+                    Dashboard
                   </button>
                 </Link>
 
@@ -337,7 +341,17 @@ export default function LandingNavbar({ classes = '' }) {
                   </button>
                 </Link>
 
-                {solutions.map((item) => (
+                <a href="https://owl-console.vercel.app" className="text-base font-medium text-gray-900 hover:text-gray-700 text-left w-fit">
+                    Console
+                </a>
+
+                <Link href="/browse">
+                  <button className="text-base font-medium text-gray-900 hover:text-gray-700 text-left w-fit">
+                    Browse
+                  </button>
+                </Link>
+
+                {/* {solutions.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
@@ -346,7 +360,7 @@ export default function LandingNavbar({ classes = '' }) {
                       {item.name}
                     </button>
                   </Link>
-                ))}
+                ))} */}
               </div>
 
               <div>

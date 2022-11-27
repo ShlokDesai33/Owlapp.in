@@ -1,17 +1,19 @@
 import Head from 'next/head'
-import { Barricade } from 'phosphor-react'
+import Layout from '../components/layout'
+import { NextPageWithLayout } from '../typescript/nextpage'
 
-export default function AboutUs() {
+const AboutUs: NextPageWithLayout = () => {
   return (
     <>
       <Head>
         <title>About Us | Owl</title>
       </Head>
-      
-      <div className="flex h-full w-full justify-center items-center gap-x-3 fixed mb-20">
-          <Barricade size={70} color="#BE6CFF" weight="light" />
-        <h3 className="font-normal">Comming Soon!</h3>
-      </div>
     </>
   )
 }
+
+AboutUs.getLayout = function getLayout(page: React.ReactElement) {
+  return <Layout classes="border-b-2 border-gray-100 bg-white">{page}</Layout>;
+}
+
+export default AboutUs

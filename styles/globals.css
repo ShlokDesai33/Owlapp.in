@@ -46,7 +46,7 @@
     -webkit-text-stroke-color: black;
   }
   /* Configures scroll bar aesthetic. */
-  ::-webkit-scrollbar {
+  #no_sb::-webkit-scrollbar {
     @apply w-0;
   }
   

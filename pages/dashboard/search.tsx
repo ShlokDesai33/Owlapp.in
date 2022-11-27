@@ -9,52 +9,29 @@ import Filters from '../../components/search/components/filters'
 import UserHit from '../../components/search/hits/user'
 import ResourceHit from '../../components/search/hits/resource'
 import SortBy from '../../components/search/components/sortby'
+import { EmptyQueryBoundary, NoResultsBoundary } from '../../components/search/components/results'
 
 const Search: NextPageWithLayout = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false); // track page state
+
   // the search results to be rendered after filtering and sorting
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  // two kinds of filters:
-  // 1. filters that are applied to the search object (resource/user/etc)
-  // 2. filters that are applied to the search parameters (price range, followers, etc)
-  const [objectFilters, setObjectFilters] = useState({
-    users: false,
-    resources: true
-  });
-  // sort by is not a filter, it is a transformation of the search results
+  const [objectFilter, setObjectFilter] = useState<number>(0); // 0 = resources, 1 = users
+
   // sort by is only applicable to resources
-  // users are automatically sorted by algolia
   const [sortBy, setSortBy] = useState({
     price: false
     // TODO: location: false
   });
 
   useEffect(() => {
-    // this should (theoretically) only run once
-    if (searchResults.length === 0) {
-      setLoading(true);
-
-      fetch("/api/resources/get")
-        .then(res => res.json())
-        .then(data => {
-          setSearchResults(data);
-          setLoading(false);
-        })
-        .catch(err => {
-          // TODO: Handle error
-          setLoading(false);
-        })
-    }
-  }, []);
-
-  useEffect(() => {
-    if (sortBy.price) {
+    if (sortBy.price && objectFilter === 0) {
       setSearchResults([...searchResults].sort((a, b) => {
         return a.prices.industry - b.prices.industry;
       }));
     }
-  }, [sortBy, searchResults]);
+  }, [sortBy]);
 
   return (
     <>
@@ -62,31 +39,34 @@ const Search: NextPageWithLayout = () => {
         <title>Search | Owl</title>
       </Head>
 
-      <main className="max-w-7xl px-4 sm:px-6 mx-auto pt-6 overflow-y-scroll">
+      <main className="max-w-7xl px-4 sm:px-6 mx-auto pt-6 overflow-y-scroll" id="no_sb">
         <form role="search" className="flex items-center w-full shadow-post-shadow rounded-full px-6 py-4" onSubmit={e => {
           e.preventDefault();
           const query = inputRef.current?.value;
 
           if (query && query.length > 0) {
+            if (sortBy.price) setSortBy({ price: false });
             setLoading(true);
 
-            if (objectFilters.resources) {
+            if (objectFilter === 0) {
               resources_ind.search(query, { hitsPerPage: 20,})
                 .then(({ hits }: { hits: any}) => {
                   setSearchResults(hits);
                   setLoading(false);
                 }).catch(err => {
                   // TODO: Handle error
+                  setSearchResults([]);
                   setLoading(false);
                 });
             }
-            else if (objectFilters.users) {
+            else if (objectFilter === 1) {
               users_ind.search(query, { hitsPerPage: 20,})
                 .then(({ hits }: { hits: any}) => {
                   setSearchResults(hits);
                   setLoading(false);
                 }).catch(err => {
                   // TODO: Handle error
+                  setSearchResults([]);
                   setLoading(false);
                 });
             }
@@ -115,7 +95,7 @@ const Search: NextPageWithLayout = () => {
         <div className="mt-10 flex items-center justify-between">
           <div className="flex items-center gap-x-4">
             <FunnelSimple className="h-6 w-6 text-gray-500" weight="fill" />
-            <Filters filters={objectFilters} setFilters={setObjectFilters} />
+            <Filters objectFilter={objectFilter} setObjectFilter={setObjectFilter} inputRef={inputRef} />
           </div>
 
           <SortBy sortBy={sortBy} setSortBy={setSortBy} />
@@ -129,38 +109,31 @@ const Search: NextPageWithLayout = () => {
           )
         }
 
-        {/* {
-          error && (
-            <div className="flex place-content-center items-center mt-20 divide-x-2">
-              <div className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary pr-2">
-                <h3 className="font-bold text-2xl">500</h3>
-              </div>
-              <h3 className="font-normal text-xl pl-2">Internal Server Error</h3>
-            </div>
-          )
-        } */}
-
         {
           !loading && (
             <div className="bg-white my-10">
               <div className="mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="sr-only">Products & Users</h2>
 
-                {
-                  objectFilters.users ? (
-                    <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mb-10">
-                      {searchResults.map((user: any) => (
-                        <UserHit key={user.objectID} hit={user} />
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                      {searchResults.map((product: any) => (
-                        <ResourceHit key={product.objectID} hit={product} />
-                      ))}
-                    </div>
-                  )
-                }
+                <EmptyQueryBoundary query={inputRef.current?.value}>
+                  <NoResultsBoundary searchResults={searchResults}>
+                    {
+                      objectFilter === 0 ? (
+                        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                          {searchResults.map((product: any) => (
+                            <ResourceHit key={product.objectID} hit={product} />
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
+                          {searchResults.map((user: any) => (
+                            <UserHit key={user.objectID} hit={user} />
+                          ))}
+                        </div>
+                      )
+                    }
+                  </NoResultsBoundary>
+                </EmptyQueryBoundary>
               </div>
             </div>
           )
