@@ -15,7 +15,7 @@ export default async function handler(
       topic: body.topic,
       minRank: body.minRank,
       creator: {
-        fullname: body.creator.fullname,
+        name: body.creator.name,
         image: body.creator.image,
         id: body.creator.id,
         status: body.creator.status

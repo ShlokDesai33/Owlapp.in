@@ -32,7 +32,7 @@ export default async function handler(
         const data = userDoc.data();
         return res.status(200).json({
           id: userDoc.id,
-          fullname: data.fullname,
+          name: data.name,
           image: data.image,
           status: data.status,
           rank: data.rank,

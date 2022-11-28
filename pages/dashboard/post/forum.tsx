@@ -69,7 +69,7 @@ const PostForum: NextPageWithLayout = () => {
           creator: {
             // user is not null during request
             id: user?.id,
-            fullname: user?.fullname,
+            name: user?.name,
             image: user?.image,
             status: user?.status
           },

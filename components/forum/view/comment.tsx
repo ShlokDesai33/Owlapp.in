@@ -31,7 +31,7 @@ export default function Comment({ comment, userId }: Props) {
                   alt="Profile Img"
                 />
 
-                <p className="ml-2 mr-2 overflow-hidden truncate">{comment.creator.fullname}</p>
+                <p className="ml-2 mr-2 overflow-hidden truncate">{comment.creator.name}</p>
                 <p className="text-gray-text overflow-hidden truncate">@{comment.creator.id}</p>
               </div>
             </Link>
@@ -78,7 +78,7 @@ export default function Comment({ comment, userId }: Props) {
                   alt="Profile Img"
                 />
     
-                <p className="ml-2 mr-2 overflow-hidden truncate">{comment.creator.fullname}</p>
+                <p className="ml-2 mr-2 overflow-hidden truncate">{comment.creator.name}</p>
                 <p className="text-gray-text overflow-hidden truncate">@{comment.creator.id}</p>
               </div>
             </Link>

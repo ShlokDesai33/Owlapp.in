@@ -18,7 +18,7 @@ export default function ForumHit({ hit }: { hit: any }) {
                   height={35}
                   className="rounded-full"
                 />
-                <h6 className="ml-2 overflow-hidden truncate mr-2">{hit.creator.fullname}</h6>
+                <h6 className="ml-2 overflow-hidden truncate mr-2">{hit.creator.name}</h6>
                 { hit.creator.status === 'verified' &&
                   (
                     <Image

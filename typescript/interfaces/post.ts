@@ -15,7 +15,7 @@ interface Post {
     // firestore document id
     id: string
     // obtained from google auth
-    fullname: string
+    name: string
     // google auth image url / amazon s3 url
     image: string
     status: 'verified' | 'admin' | 'banned' | 'suspended' | 'user'

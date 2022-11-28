@@ -4,8 +4,9 @@ import blueCheck from '../../../public/images/blue-check.svg'
 import { Medal } from 'phosphor-react';
 
 export default function UserHit({ hit }: { hit: any }) {
+  // TODO: add a link to the user's profile
   return (
-    <Link href={`/${hit.objectID}/profile`} passHref>
+    <Link href="#" passHref>
       <div className="group relative bg-gray-100 pt-8 pb-4 px-3 rounded-md">
         {
           hit.status === 'verified' && (
@@ -25,7 +26,7 @@ export default function UserHit({ hit }: { hit: any }) {
           <Image
             height={150}
             width={150}
-            src={hit.image || hit.logo}
+            src={hit.image || hit.image}
             alt={hit.name}
             className="h-full w-full object-cover object-center group-hover:opacity-75 rounded-full"
           />
@@ -33,7 +34,7 @@ export default function UserHit({ hit }: { hit: any }) {
 
         <div className="flex items-center mt-5 gap-x-3">
           <div className="shrink overflow-hidden">
-            <p className="text-lg font-medium text-gray-900 truncate">{hit.fullname || hit.name}</p>
+            <p className="text-lg font-medium text-gray-900 truncate">{hit.name || hit.name}</p>
             <h3 className="text-sm text-gray-700 truncate">@{hit.objectID}</h3>
           </div>
         </div>

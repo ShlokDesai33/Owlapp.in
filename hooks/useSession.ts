@@ -3,7 +3,7 @@ import useSWR from 'swr'
 type Output = {
   status: 'authenticated' | 'unauthenticated' | 'loading';
   user: {
-    fullname: string
+    name: string
     image: string
     id: string
     status: string
@@ -47,7 +47,7 @@ export default function useSession(): Output {
     return {
       status: 'authenticated',
       user: {
-        fullname: data.fullname,
+        name: data.name,
         image: data.image,
         id: data.id,
         status: data.status

@@ -14,9 +14,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-  const { fullname, email, password } = req.body;
+  const { name, email, password } = req.body;
 
-  if (!fullname || !email || !password) {
+  if (!name || !email || !password) {
     return res.status(400).end();
   }
 
@@ -36,7 +36,7 @@ export default async function handler(
 
   try {
     const docRef = await addDoc(collection(db, 'users'), {
-      fullname: fullname,
+      name: name,
       email: email,
       password: hashedPassword,
       image: avatar,

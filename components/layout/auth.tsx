@@ -9,15 +9,16 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { List, X } from 'phosphor-react'
 import Link from 'next/link'
+import SearchBanner from './components/banner'
 
 const navigation = [
   { name: 'Home', href: '/dashboard' },
   { name: 'Search', href: '/dashboard/search' },
-  { name: 'Social', href: '/dashboard/social' },
+  // { name: 'Social', href: '/dashboard/social' },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '/dashboard/profile' },
-  { name: 'Settings', href: '/dashboard/profile/settings' },
+  // { name: 'Settings', href: '/dashboard/profile/settings' },
   { name: 'Sign out', href: '/auth/signout' },
 ]
 
@@ -198,7 +199,7 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
                         />
                       </div>
                       <div className="ml-3 mr-2">
-                        <div className="text-base font-medium leading-none text-white">{user.fullname}</div>
+                        <div className="text-base font-medium leading-none text-white">{user.name}</div>
                         <div className="text-sm font-medium leading-none text-gray-400 mt-1">@{user.id}</div>
                       </div>
                       {
@@ -235,23 +236,29 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
             )}
           </Disclosure>
 
-          {
-            headerUrls.includes(router.pathname) && (
-              <header className="bg-white shadow">
-                <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-                  <h1 className="text-3xl font-bold tracking-tight text-gray-800">{capitalize(router.pathname.split('/').pop() as string)}</h1>
-                </div>
-              </header>
-            )
-          }
+          <div className="grow overflow-y-scroll" id="no_sb">
+            {
+              router.pathname === '/dashboard' && (
+                <SearchBanner />
+              )
+            }
 
-          <main className="grow overflow-y-scroll" id="no_sb">
-            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 h-full">
+            {
+              headerUrls.includes(router.pathname) && (
+                <header className="bg-white shadow">
+                  <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+                    <h1 className="text-3xl font-bold tracking-tight text-gray-800">{capitalize(router.pathname.split('/').pop() as string)}</h1>
+                  </div>
+                </header>
+              )
+            }
+
+            <main className="mx-auto max-w-7xl sm:px-6 lg:px-8 h-full">
               <div className="px-4 mt-4 sm:px-0">
                 {children}
               </div>
-            </div>
-          </main>
+            </main>
+          </div>
         </div>
       </>
     );

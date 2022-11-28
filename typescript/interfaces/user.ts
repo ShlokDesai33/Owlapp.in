@@ -3,7 +3,7 @@ interface User {
   id: string
   // amazon s3 url
   image: string
-  fullname: string
+  name: string
   // hidden
   email: string
   // hidden

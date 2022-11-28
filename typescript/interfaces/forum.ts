@@ -29,7 +29,7 @@ interface Comment {
     // google auth image url / amazon s3 url
     image: string
     // obtained from google auth
-    fullname: string
+    name: string
     status: 'verified' | 'banned'
   }
   // firebase class modeling a timestamp

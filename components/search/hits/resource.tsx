@@ -17,7 +17,7 @@ export default function ResourceHit({ hit }: { hit: any }) {
 
         <div className="flex items-center mt-4 gap-x-2">
           <Image
-            src={hit.org.logo}
+            src={hit.org.image}
             alt={hit.org.name}
             width={30}
             height={30}

@@ -58,7 +58,7 @@ interface Product extends ProductBasic {
     // firestore document id
     id: string
     // obtained from google auth
-    fullname: string
+    name: string
     // amazon s3 url
     image: string
     // phone number

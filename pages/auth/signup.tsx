@@ -125,7 +125,7 @@ const SignUp: NextPage = () => {
                 {
                   email,
                   password,
-                  fullname: name
+                  name
                 }
               ),
               headers: { 'Content-Type': 'application/json' }
