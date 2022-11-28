@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import Layout from "../components/layout"
 import Spinner from "../components/lib/spinner"
 import { resources_ind } from "../components/search/client"
+import { NoResultsBoundary } from "../components/search/components/results"
 import ResourceHit from "../components/search/hits/resource"
 import { NextPageWithLayout } from "../typescript/nextpage"
 
@@ -14,7 +15,7 @@ const Browse: NextPageWithLayout = () => {
   useEffect(() => {
     setLoading(true);
 
-    fetch("/api/search/resources")
+    fetch("/api/resource/get/inf")
       .then(res => res.json())
       .then(data => {
         setSearchResults(data);
@@ -78,17 +79,19 @@ const Browse: NextPageWithLayout = () => {
 
         {
           !loading && (
-            <div className="bg-white my-10">
-              <div className="mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="sr-only">Products</h2>
+            <NoResultsBoundary searchResults={searchResults}>
+              <div className="bg-white my-10">
+                <div className="mx-auto px-4 sm:px-6 lg:px-8">
+                  <h2 className="sr-only">Products</h2>
 
-                <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                  {searchResults.map((product) => (
-                    <ResourceHit key={product.objectID} hit={product} />
-                  ))}
+                  <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+                    {searchResults.map((product) => (
+                      <ResourceHit key={product.objectID} hit={product} />
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            </NoResultsBoundary>
           )
         }
       </main>

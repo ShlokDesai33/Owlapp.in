@@ -2,7 +2,7 @@ import algoliasearch from 'algoliasearch/lite';
 
 const client = algoliasearch(
   '0Q9AHOYTD6',
-  'bac156bf6503389605b448c08aa6bc0f' // owlapp.in restricted api key
+  'bac156bf6503389605b448c08aa6bc0f' // restricted search api key
 );
 
 const resources_ind = client.initIndex('resources');

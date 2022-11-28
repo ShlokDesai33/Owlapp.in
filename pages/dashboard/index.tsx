@@ -58,7 +58,7 @@ const Dashboard: NextPageWithLayout = () => {
           ) : (
             <button
               type="button"
-              className="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-semibold text-gray-700 hover:bg-gray-50"
+              className="w-full rounded-md border border-gray-500 bg-white px-4 py-2 text-base font-semibold text-gray-700 hover:bg-gray-50"
               onClick={() => setSize(size + 1)}
             >
               Load More
