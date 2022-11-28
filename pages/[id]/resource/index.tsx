@@ -4,9 +4,8 @@ import useResource from '../../../hooks/useResource'
 import Image from 'next/image'
 import { GetServerSideProps } from 'next'
 import useResourceParam from '../../../hooks/useResourceParam'
-import { Chats, UserCircle } from 'phosphor-react'
+import { UserCircle } from 'phosphor-react'
 import useCustomData from '../../../hooks/useCustomData'
-import blueCheck from '../../../public/images/blue-check.svg'
 import Spinner from '../../../components/lib/spinner'
 
 function classNames(...classes: (string | boolean)[]) {
@@ -133,8 +132,6 @@ const ViewProduct = ({ id }: { id: string }) => {
           </div>
         </div>
 
-        {/* <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScZo6iPfIhP4NPumK7uvJcUVKvZDYaLg2jwXHE_7SqJYL3hgQ/viewform?embedded=true" className="w-full h-full" frameBorder={0} marginHeight={0} marginWidth={0}>Loading…</iframe> */}
-
         <div className="flex bg-gray-bg px-8 py-6 items-center rounded-xl mt-8">
           <UserCircle size={32} weight="fill" className="text-secondary" />
           <div className="flex items-center divide-x-2 divide-gray-500 gap-x-2 ml-2">
@@ -143,9 +140,14 @@ const ViewProduct = ({ id }: { id: string }) => {
           </div>
         </div>
 
-        <div className="rounded-2xl py-2 px-4 mt-8 bg-gradient-to-r from-primary to-secondary opacity-95">
-          <h6 className="text-white font-medium">This resource will be available to rent soon!</h6>
-        </div>
+        <a 
+          href="https://docs.google.com/forms/d/e/1FAIpQLSdSB1u3M0GnRUfD8IYG5jPLTy02EznTOHu4SaNlhoKDCGY83Q/viewform?usp=sf_link"
+          target="_blank"
+          rel="noreferrer"
+          className="flex justify-center rounded-md py-3 px-4 mt-8 bg-gradient-to-r from-primary to-secondary opacity-95 hover:opacity-90"
+        >
+          <h6 className="text-white font-medium">Click here to rent this resource!</h6>
+        </a>
 
         <hr className="mt-8 border-t-2"/>
 
@@ -207,7 +209,7 @@ const ViewProduct = ({ id }: { id: string }) => {
           )
         }
         
-        <hr className="mt-8 border-t-2"/>
+        {/* <hr className="mt-8 border-t-2"/>
 
         <div className="bg-gray-bg p-8 my-8 rounded-xl">
           <div className="flex items-center gap-x-2">
@@ -290,7 +292,7 @@ const ViewProduct = ({ id }: { id: string }) => {
               </h5>
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
     </>
   )
