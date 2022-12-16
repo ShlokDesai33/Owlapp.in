@@ -29,8 +29,6 @@ const SubmitRentForm = ({ productID, booking }: { productID: string, booking: an
     router.prefetch('/dashboard/' + productID + '/resource/rent/');
   }, [])
 
-
-
   if (state === 'loading') {
     return (
       <div className="flex h-full items-center justify-center">
