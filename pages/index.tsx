@@ -60,7 +60,7 @@ const Home: NextPageWithLayout = () => {
               </div>
               <div>
                 <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
-                  Find and Rent Scientific Resources at <span className="text-white header-stroke font-extrabold tracking-wide sm:tracking-normal">Instrumus</span>
+                  Find and Rent Scientific Resources at <span className="font-semibold text-gray-400">Instrumus</span>
                 </h1>
                 <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
                   We make it exceptionaly easy to book scientific and research oriented

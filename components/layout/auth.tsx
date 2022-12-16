@@ -81,12 +81,12 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                   <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
-                      <div className="flex-shrink-0">
+                      <div className="flex-shrink-0 bg-white flex items-center rounded-full">
                         <Image
                           src={logoSvg}
                           alt="Logo"
-                          width={32}
-                          height={32}
+                          width={35}
+                          height={35}
                         />
                       </div>
                       <div className="hidden md:block">

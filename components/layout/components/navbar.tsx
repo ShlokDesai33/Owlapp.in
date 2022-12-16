@@ -80,7 +80,7 @@ export default function LandingNavbar({ classes = '' }) {
         <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/">
-              <button className="flex items-center gap-x-2">
+              <button className="flex items-center gap-x-1">
                 <span className="sr-only">Instrumus</span>
                 <Image
                   src={logoSvg}
@@ -88,7 +88,7 @@ export default function LandingNavbar({ classes = '' }) {
                   width={45}
                   height={45}
                 />
-                <h1 className="text-2xl font-medium hidden lg:inline">Instrumus</h1>
+                <h1 className="text-xl font-medium hidden lg:inline">Instrumus</h1>
               </button>
             </Link>
           </div>
