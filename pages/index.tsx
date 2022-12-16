@@ -19,7 +19,7 @@ const Home: NextPageWithLayout = () => {
     return (
       <>
         <Head>
-          <title>Owl</title>
+          <title>Instrumus</title>
           <meta name="description" content="Owl's landing page"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
           <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
@@ -38,7 +38,7 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Owl</title>
+        <title>Instrumus</title>
         <meta name="description" content="Owl's landing page"/>
         <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
       </Head>
@@ -60,7 +60,7 @@ const Home: NextPageWithLayout = () => {
               </div>
               <div>
                 <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
-                  Find and Rent Scientific Resources at <span className="text-white header-stroke font-extrabold tracking-wide sm:tracking-normal">Owl</span>
+                  Find and Rent Scientific Resources at <span className="text-white header-stroke font-extrabold tracking-wide sm:tracking-normal">Instrumus</span>
                 </h1>
                 <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
                   We make it exceptionaly easy to book scientific and research oriented

@@ -9,17 +9,15 @@ export default async function handler(
 
   const { param, id } = req.query
 
-  if (!id) {
+  if (!id || !param) {
     return res.status(400).end();
   }
 
-  const arr: string[] = [];
-
+  const arr: any[] = [];
   const docs = await getDocs(collection(db, `resources/${id}/${param}`));
 
   docs.forEach(doc => {
-    const data = doc.data();
-    arr.push(data.content);
+    arr.push({ id: doc.id, ...doc.data()});
   });
 
   res.status(200).json(arr);

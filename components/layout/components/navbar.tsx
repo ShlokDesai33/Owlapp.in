@@ -81,14 +81,14 @@ export default function LandingNavbar({ classes = '' }) {
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/">
               <button className="flex items-center gap-x-2">
-                <span className="sr-only">Owl</span>
+                <span className="sr-only">Instrumus</span>
                 <Image
                   src={logoSvg}
                   alt="Logo"
                   width={45}
                   height={45}
                 />
-                <h1 className="text-2xl font-medium hidden lg:inline">Owl</h1>
+                <h1 className="text-2xl font-medium hidden lg:inline">Instrumus</h1>
               </button>
             </Link>
           </div>

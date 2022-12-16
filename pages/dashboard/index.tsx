@@ -32,7 +32,7 @@ const Dashboard: NextPageWithLayout = () => {
 
       <div className="text-gray-700 mt-6 flex items-center gap-x-1">
         <Compass size={24} />
-        Explore all of our equipement/machines/intruments below!
+        Explore all of our equipement / machines / intruments below!
       </div>
 
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mt-6">

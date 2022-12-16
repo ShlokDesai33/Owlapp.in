@@ -9,7 +9,7 @@ export default function UserHit({ hit }: { hit: any }) {
     <Link href="#" passHref>
       <div className="group relative bg-gray-100 pt-8 pb-4 px-3 rounded-md">
         {
-          hit.status === 'verified' && (
+          hit.status === 'verified' || hit.status === 'org'  && (
             <div className="absolute top-0 right-0 p-3">
               <Image
                 src={blueCheck}

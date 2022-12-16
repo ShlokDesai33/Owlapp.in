@@ -1,18 +1,47 @@
-import { Timestamp } from "firebase/firestore"
+import { Timestamp } from 'firebase/firestore'
 
-interface Booking {
-  // firstore document id
-  id: string
-  // booking date and time
-  time: Timestamp
-  // booking status
+// data stored in the user/bookings collection
+interface UserBooking {
+  selectedSlot: Timestamp
+  // complete | pending | cancelled
+  metricQuantity: number
+  metric: string
+  // visit | shipment | pickup | online | consultation
+  type: string
   status: string
   // resource id
-  resourceId: string
-  // user id
-  userId: string
+  resourceID: string
+  // org details
+  org: {
+    name: string
+    id: string
+    image: string
+  }
   // when the booking was made
-  timestamp: Timestamp
+  createdAt: Timestamp
 }
 
-export default Booking
+// data stored in the resource/bookings collection
+interface ResourceBooking {
+  customInputs: {
+    [key: string]: string
+  }
+  // complete | pending | cancelled
+  metricQuantity: number
+  metric: string
+  // visit | shipment | pickup | online | consultation
+  type: string
+  status: string
+  // user details
+  user: {
+    name: string
+    id: string
+    image: string
+  }
+  // when the booking was made
+  createdAt: Timestamp
+  // the time slot selected by the user
+  selectedSlot: Timestamp
+}
+
+export type { UserBooking, ResourceBooking }

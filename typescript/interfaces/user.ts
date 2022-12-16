@@ -13,7 +13,7 @@ interface User {
   followers: number
   createdAt: Date
   // current status of user's account
-  status: 'verified' | 'banned' 
+  status: 'verified' | 'banned' | 'org'
   // user's bio
   bio: string
   // secondary layer of authentication for users looking to book resources
