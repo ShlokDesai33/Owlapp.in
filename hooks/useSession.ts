@@ -7,6 +7,9 @@ type Output = {
     image: string
     id: string
     status: string
+    email: string
+    rank: number
+    followers: number
   } | null;
 }
 
@@ -50,7 +53,10 @@ export default function useSession(): Output {
         name: data.name,
         image: data.image,
         id: data.id,
-        status: data.status
+        status: data.status,
+        email: data.email,
+        rank: data.rank,
+        followers: data.followers,
       }
     };
   }

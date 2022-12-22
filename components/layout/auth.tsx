@@ -200,7 +200,7 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
                       </div>
                       <div className="ml-3 mr-2">
                         <div className="text-base font-medium leading-none text-white">{user.name}</div>
-                        <div className="text-sm font-medium leading-none text-gray-400 mt-1">@{user.id}</div>
+                        <div className="text-sm font-medium leading-none text-gray-400 mt-1">{user.email}</div>
                       </div>
                       {
                         user.status === 'verified' &&

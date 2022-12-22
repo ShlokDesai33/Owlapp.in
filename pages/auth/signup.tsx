@@ -6,9 +6,10 @@ import PasswordInputField from '../../components/auth/input/password'
 import { useState } from 'react'
 import Spinner from '../../components/lib/spinner'
 import { useRouter } from 'next/router'
-import { LockSimple } from 'phosphor-react'
+import { ArrowRight, LockSimple } from 'phosphor-react'
 import { NextPage } from 'next'
 import Gradient from '../../components/layout/components/gradient'
+import msalInstance from '../../components/auth/msal'
 
 const SignUp: NextPage = () => {
   // state of the page
@@ -46,7 +47,7 @@ const SignUp: NextPage = () => {
       </Head>
 
       <div className="flex h-full pb-20 items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <main className="w-full max-w-md space-y-8">
+        <main className="w-full max-w-md">
           <div>
             <Link href="/">
               <button className="w-full">
@@ -82,17 +83,58 @@ const SignUp: NextPage = () => {
           </div>
 
           {
-            state === '309' && (
-              <p className="text-center text-red-600 text-base">This email is already registered to an account.</p>
-            )
-          }
-          {
             state === '500' && (
-              <p className="text-center text-red-600 text-base">An error occured. Please try again later.</p>
+              <p className="text-center text-red-600 text-base mt-6">An error occured. Please try again later.</p>
             )
           }
 
-          <form className="mt-8 space-y-6" onSubmit={e => {
+          <button
+            className="border-2 w-full py-2 border-indigo-500 hover:border-indigo-700 flex justify-between px-3 items-center mt-8"
+            type="button"
+            onClick={e => {
+              e.preventDefault();
+              setState('loading');
+              msalInstance
+                .loginPopup({ scopes: ['User.Read'] })
+                .then(() => {
+                  // use the account to get an auth-token
+                  fetch('/api/auth/msal', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(msalInstance.getAllAccounts()[0])
+                  })
+                    .then((res) => {
+                      if (res.status === 200) {
+                        // redirect to home
+                        router.push('/dashboard/');
+                      } else {
+                        setState('500');
+                      }
+                    })
+                })
+                .catch(() => {
+                  localStorage.clear();
+                  setState('500');
+                });
+            }}
+          >
+            Student / Instructor Sign In
+            <ArrowRight className="h-5 w-5" />
+          </button>
+
+          {
+            state == '309' ? (
+              <p className="text-center text-red-600 text-base my-8">This email is already registered to an account.</p>
+            )
+              :
+            (
+              <p className="text-center text-sm text-gray-600 mt-2">or</p>
+            )
+          }
+
+          <form className="mt-3" onSubmit={e => {
             e.preventDefault();
             setState('loading');
 
@@ -176,7 +218,7 @@ const SignUp: NextPage = () => {
               <PasswordInputField />
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mt-6">
               <div className="flex items-center">
                 <input
                   id="remember-me"
@@ -201,7 +243,7 @@ const SignUp: NextPage = () => {
             <div>
               <button
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="mt-6 group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                   <LockSimple weight="fill" size={30} className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
@@ -210,7 +252,7 @@ const SignUp: NextPage = () => {
               </button>
             </div>
 
-            <p className="text-gray-600 text-center text-sm">
+            <p className="text-gray-600 text-center text-sm mt-4">
               By signing up, you agree to Owl&apos;s{" "}
               <button className="underline underline-offset-2">
                 <a href="/terms&conditions" target="_blank">Terms &amp; Conditions</a>

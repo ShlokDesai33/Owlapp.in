@@ -36,7 +36,8 @@ export default async function handler(
           image: data.image,
           status: data.status,
           rank: data.rank,
-          followers: data.followers
+          followers: data.followers,
+          email: data.email,
         });
       } else {
         // doc.data() will be undefined in this case

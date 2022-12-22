@@ -30,6 +30,12 @@ export default async function handler(
     querySnapshot.forEach(async (doc) => {
       // create a user authentication jwt token
       const user = doc.data();
+
+      if (!user.password) {
+        // 309: Redirect to sign up page
+        return res.status(309).end();
+      }
+
       // check password
       const matches = await bcrypt.compare(password, user.password);
 
