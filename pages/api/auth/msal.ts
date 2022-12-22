@@ -16,11 +16,11 @@ export default async function handler(
 
   // check if request is from owlapp.in
   // check if app is in production
-  if (process.env.NODE_ENV === 'production') {
-    if (req.headers.referer !== 'https://owlapp.in/') {
-      return res.status(401).end();
-    }
-  }
+  // if (process.env.NODE_ENV === 'production') {
+  //   if (req.headers.referer !== 'https://owlapp.in/') {
+  //     return res.status(401).end();
+  //   }
+  // }
 
   const body: AccountInfo = req.body;
 
