@@ -1,8 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and written in Typescript.
 
-# Owl
+# Instrumus
 
-Owl is a networking tool for scientists, researchers and students hosted at [owlapp.in](https://owlapp.in).
+Instrumus is a networking tool for scientists, researchers and students hosted at [owlapp.in](https://owlapp.in).
 
 ## Dependencies
 
@@ -31,6 +31,6 @@ Tailwind 3.0 - [Documentation](https://tailwindcss.com/docs/installation).
 
 ## Deployed on Vercel
 
-Currently, Owl resides in a hobby account. The production build is linked to this repository. Any commits made to the *main* branch of this repository will reflect in the deployment at [owlapp.in](https://owlapp.in). To create a preview deployment, create a branch and make the commit to it.
+Currently, Instrumus resides in a hobby account. The production build is linked to this repository. Any commits made to the *main* branch of this repository will reflect in the deployment at [owlapp.in](https://owlapp.in). To create a preview deployment, create a branch and make the commit to it.
 
 Read [Vercel documentation](https://vercel.com/docs) for more details.

@@ -4,7 +4,7 @@ export default function TermsAndConditions() {
   return (
     <>
       <Head>
-        <title>Terms & Conditions | Owl</title>
+        <title>Terms & Conditions | Instrumus</title>
       </Head>
     </>
   )

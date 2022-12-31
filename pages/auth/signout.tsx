@@ -7,11 +7,11 @@ const SignOut: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Signing Out | Owl</title>
+        <title>Signing Out | Instrumus</title>
         <meta name="description" content="Loading Screen"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <meta name="keywords" content="owl, sign out, log In, sign in, loading"></meta>
-        <meta name="author" content="Owl"></meta>
+        <meta name="author" content="Instrumus"></meta>
         <link rel="icon" href="/images/favicon.ico"/>
       </Head>
 

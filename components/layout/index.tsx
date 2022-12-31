@@ -6,7 +6,7 @@ export default function Layout({ children, classes }: { children: React.ReactNod
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-        <meta name="author" content="Owl"></meta>
+        <meta name="author" content="Instrumus"></meta>
         <link rel="icon" href="/images/favicon.ico" />
       </Head>
 

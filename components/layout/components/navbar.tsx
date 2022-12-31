@@ -57,7 +57,7 @@ const resources = [
   },
   {
     name: 'Terms of Service',
-    description: 'The rules, specifications, and requirements for the use of Owl and other products.',
+    description: 'The rules, specifications, and requirements for the use of Instrumus and other products.',
     href: '/terms&conditions',
     icon: Scales,
   },

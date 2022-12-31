@@ -11,15 +11,15 @@ import RadioField from '../../../../../components/resource/fields/radio'
 import Calendar from '../../../../../components/resource/calendar'
 import { ArrowRight, Warning } from 'phosphor-react'
 import { parseISO, startOfToday } from 'date-fns'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import useSession from '../../../../../hooks/useSession'
 import useSessionStorage from '../../../../../hooks/useSessionStorage'
+import { PriceContext } from '../../../../../components/resource/context'
 
 const RentResource: NextPageWithLayout = () => {
   const router = useRouter();
-
   const { id } = router.query;
-  const booking = useSessionStorage();
+  let booking = useSessionStorage();
   const { product, error: prodError } = useResource(id as string);
   const { user } = useSession();
 
@@ -29,9 +29,28 @@ const RentResource: NextPageWithLayout = () => {
     product ? product.fields.custom_input : null
   );
   
-  let [selectedDay, setSelectedDay] = useState<Date>(
+  const [selectedDay, setSelectedDay] = useState<Date>(
     booking ? parseISO(booking.selectedSlot) : startOfToday()
   );
+
+  const [price, setPrice] = useState<number>(booking ? booking.totalPrice : -1);
+  const [metricQuantity, setMetricQuantity] = useState<number>(booking ? booking.metricQuantity : 1);
+
+  useEffect(() => {
+    if (product && user && price === -1) {
+      if (user.email.endsWith('@manipal.edu'))
+        setPrice(product.prices.faculty || product.prices.industry);
+      else
+        setPrice(product.prices.industry);
+    }
+  }, [product, user, price]);
+
+  useEffect(() => {
+    if (booking && product && booking.productID !== product.id) {
+      sessionStorage.removeItem('booking');
+      booking = null;
+    }
+  }, [booking]);
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -39,7 +58,7 @@ const RentResource: NextPageWithLayout = () => {
     return (
       <>
         <Head>
-          <title>Rent Resource | Owl</title>
+          <title>Rent Resource | Instrumus</title>
         </Head>
         
         <div className="flex h-full items-center justify-center">
@@ -52,7 +71,7 @@ const RentResource: NextPageWithLayout = () => {
     return (
       <>
         <Head>
-          <title>Rent Resource | Owl</title>
+          <title>Rent Resource | Instrumus</title>
         </Head>
 
         <div className="flex flex-col gap-y-1 h-full items-center justify-center">
@@ -67,7 +86,7 @@ const RentResource: NextPageWithLayout = () => {
     return (
       <>
         <Head>
-          <title>Rent {product.name} | Owl</title>
+          <title>Rent {product.name} | Instrumus</title>
         </Head>
 
         <div className="flex h-full items-center justify-center">
@@ -83,8 +102,12 @@ const RentResource: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Rent {product.name} | Owl</title>
+        <title>Rent {product.name} | Instrumus</title>
       </Head>
+
+      <div className="absolute right-0 bottom-0 m-4 bg-white p-6 rounded-md border-2 border-gray-100">
+        Total Price: ₹{price}
+      </div>
 
       <form
         action={`/dashboard/${product.id}/resource/rent/submit`}
@@ -117,9 +140,28 @@ const RentResource: NextPageWithLayout = () => {
           name="metricQuantity"
           id="metricQuantity"
           required={true}
-          defaultValue={booking ? booking.metricQuantity : null}
+          defaultValue={booking ? booking.metricQuantity : 1}
           className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           placeholder="Type here..."
+          onChange={(e) => {
+            if (e.target.valueAsNumber < 1) {
+              e.target.value = '1';
+            }
+          }}
+          onBlur={(e) => {
+            if (user.email.endsWith('@manipal.edu')) {
+              const sampleCost = product.prices.faculty || product.prices.industry;
+              const diff = price - (sampleCost * metricQuantity);
+              setPrice(sampleCost * e.target.valueAsNumber + diff);
+              setMetricQuantity(e.target.valueAsNumber);
+            }
+            else {
+              const sampleCost = product.prices.industry;
+              const diff = price - (sampleCost * metricQuantity);
+              setPrice(sampleCost * e.target.valueAsNumber + diff);
+              setMetricQuantity(e.target.valueAsNumber);
+            }
+          }}
         />
 
         <label htmlFor="first-name" className="block text-sm font-medium text-gray-900 mt-4">
@@ -139,51 +181,53 @@ const RentResource: NextPageWithLayout = () => {
           </option>
         </select>
 
-        {
-          product.fields.custom_input > 0 && (
-            <>
-              <div className="grid lg:grid-cols-2 gap-6">
-                {inputFields.map((field: any) => {
-                  if (field.type === 'text') {
-                    return (
-                      <TextField
-                        id={field.id}
-                        title={field.title}
-                        isRequired={field.isRequired}
-                        key={field.title}
-                        defaultValue={booking ? booking['@' + field.id + ';' + field.title] : ''}
-                      />
-                    )
-                  }
-                  else if (field.type === 'checkbox') {
-                    return (
-                      <CheckboxField
-                        id={field.id}
-                        title={field.title}
-                        options={field.content}
-                        isRequired={field.isRequired}
-                        key={field.title}
-                        defaultValue={booking ? booking['@' + field.id + ';' + field.title]: []}
-                      />
-                    )
-                  }
-                  else {
-                    return (
-                      <RadioField
-                        id={field.id}
-                        title={field.title}
-                        options={field.content}
-                        isRequired={field.isRequired}
-                        key={field.title}
-                        defaultValue={booking ? booking['@' + field.id + ';' + field.title] : ''}
-                      />
-                    )
-                  }
-                })}
-              </div>
-            </>
-          )
-        }
+        <PriceContext.Provider value={{ price, setPrice }}>
+          {
+            product.fields.custom_input > 0 && (
+              <>
+                <div className="grid lg:grid-cols-2 gap-6">
+                  {inputFields.map((field: any) => {
+                    if (field.type === 'text') {
+                      return (
+                        <TextField
+                          id={field.id}
+                          title={field.title}
+                          isRequired={field.isRequired}
+                          key={field.title}
+                          defaultValue={booking ? booking['@' + field.id + ';' + field.title] : ''}
+                        />
+                      )
+                    }
+                    else if (field.type === 'checkbox') {
+                      return (
+                        <CheckboxField
+                          id={field.id}
+                          title={field.title}
+                          options={field.content}
+                          isRequired={field.isRequired}
+                          key={field.title}
+                          defaultValue={booking ? booking['@' + field.id + ';' + field.title]: []}
+                        />
+                      )
+                    }
+                    else {
+                      return (
+                        <RadioField
+                          id={field.id}
+                          title={field.title}
+                          options={field.content}
+                          isRequired={field.isRequired}
+                          key={field.title}
+                          defaultValue={booking ? booking['@' + field.id + ';' + field.title] : ''}
+                        />
+                      )
+                    }
+                  })}
+                </div>
+              </>
+            )
+          }
+        </PriceContext.Provider>
 
         <div className="border-b-2 pb-2 my-8 border-gray-300 text-gray-500">
           Please select the date your sample arrives by (estimate)
@@ -196,15 +240,20 @@ const RentResource: NextPageWithLayout = () => {
         />
         
         <input type="text" value={selectedDay.toISOString()} onChange={() => {}} name="selectedSlot" className="hidden" hidden />
+        <input type="number" value={price} onChange={() => {}} name="totalPrice" className="hidden" hidden />
+
         <input type="text" defaultValue={product.name} name="productName" className="hidden" hidden />
         <input type="text" defaultValue={product.prices.metric} name="productMetric" className="hidden" hidden />
+
         <input type="text" defaultValue={user.id} name="userID" className="hidden" hidden />
         <input type="text" defaultValue={user.name} name="userName" className="hidden" hidden />
         <input type="text" defaultValue={user.image} name="userImage" className="hidden" hidden />
+
         <input type="text" defaultValue={product.org.id} name="orgID" className="hidden" hidden />
         <input type="text" defaultValue={product.org.name} name="orgName" className="hidden" hidden />
         <input type="text" defaultValue={product.org.image} name="orgImage" className="hidden" hidden />
-        <input type="text" defaultValue={"E7aSn3rTK2mlQbz1nuuD"} name="adminID" className="hidden" hidden />
+
+        <input type="text" defaultValue={product.admin.id} name="adminID" className="hidden" hidden />
 
         <button
           type="submit"

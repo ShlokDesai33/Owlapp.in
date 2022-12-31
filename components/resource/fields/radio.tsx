@@ -1,3 +1,6 @@
+import { useContext, useState } from "react";
+import { PriceContext } from "../../resource/context";
+
 type Props = {
   id: string;
   title: string;
@@ -7,9 +10,14 @@ type Props = {
   }[]
   isRequired?: boolean;
   defaultValue: string;
-}
+};
 
 export default function RadioField({ id, title, options, isRequired, defaultValue }: Props) {
+  const { price, setPrice } = useContext(PriceContext);
+
+  const find = options.find((option) => option.value === defaultValue);
+  const [priceContribution, setPriceContribution] = useState(find ? find.priceAddition : 0);
+
   return (
     <div className="overflow-hidden border-2 border-gray-100 rounded sm:rounded-md">
       <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
@@ -22,11 +30,16 @@ export default function RadioField({ id, title, options, isRequired, defaultValu
                   <input
                     id={option.value}
                     value={option.value}
-                    name={'@' + id + ';' + title} 
+                    name={'@' + id + ';' + title}
                     type="radio"
                     required={isRequired || false}
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
                     defaultChecked={defaultValue === option.value}
+                    // This is the important part
+                    onChange={(e) => {
+                      setPrice(price - priceContribution + option.priceAddition);
+                      setPriceContribution(option.priceAddition);
+                    }}
                   />
                 </div>
                 <div className="ml-3 text-sm">

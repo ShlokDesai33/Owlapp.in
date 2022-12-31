@@ -20,11 +20,11 @@ const SignUp: NextPage = () => {
     return (
       <>
         <Head>
-          <title>Sign Up | Owl</title>
+          <title>Sign Up | Instrumus</title>
           <meta name="description" content="Sign Up"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
           <meta name="keywords" content="owl, home, log up, sign up"></meta>
-          <meta name="author" content="Owl"></meta>
+          <meta name="author" content="Instrumus"></meta>
           <link rel="icon" href="/images/favicon.ico"/>
         </Head>
 
@@ -38,11 +38,11 @@ const SignUp: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Sign Up | Owl</title>
+        <title>Sign Up | Instrumus</title>
         <meta name="description" content="Sign Up"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <meta name="keywords" content="owl, home, log up, sign up"></meta>
-        <meta name="author" content="Owl"></meta>
+        <meta name="author" content="Instrumus"></meta>
         <link rel="icon" href="/images/favicon.ico"/>
       </Head>
 
@@ -253,7 +253,7 @@ const SignUp: NextPage = () => {
             </div>
 
             <p className="text-gray-600 text-center text-sm mt-4">
-              By signing up, you agree to Owl&apos;s{" "}
+              By signing up, you agree to Instrumus&apos;s{" "}
               <button className="underline underline-offset-2">
                 <a href="/terms&conditions" target="_blank">Terms &amp; Conditions</a>
               </button>{" "}and our{" "}

@@ -1,1 +1,4 @@
-Welcome to Owl!
+User-agent: *
+Allow: *
+
+Sitemap: https://www.intrumus.com/sitemap.xml

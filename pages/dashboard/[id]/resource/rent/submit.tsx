@@ -27,7 +27,7 @@ const SubmitRentForm = ({ productID, booking }: { productID: string, booking: an
 
   useEffect(() => {
     router.prefetch('/dashboard/' + productID + '/resource/rent/');
-  }, [])
+  }, [router, productID])
 
   if (state === 'loading') {
     return (
@@ -132,14 +132,18 @@ const SubmitRentForm = ({ productID, booking }: { productID: string, booking: an
         <div className="border-t border-gray-200">
           <dl>
             <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Total Estimated Price</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">₹{booking.totalPrice}</dd>
+            </div>
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Number of {booking.productMetric}s</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{booking.metricQuantity}</dd>
             </div>
-            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Booking Preference</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{parseBookingType(booking.bookingType)}</dd>
             </div>
-            <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-medium text-gray-500">Selected Slot</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{parseISO(booking.selectedSlot).toDateString()}</dd>
             </div>
@@ -160,8 +164,8 @@ const SubmitRentForm = ({ productID, booking }: { productID: string, booking: an
           }}>
             <Pencil className="h-8 w-8 text-gray-400 hover:text-gray-500" />
           </button>
-          
         </div>
+
         <div className="border-t border-gray-200">
           <dl>
             {customFields}
@@ -214,7 +218,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (req.method !== 'POST') {
     return {
       redirect: {
-        destination: '/dashboard' + id + '/resource/rent',
+        destination: '/dashboard/' + id + '/resource/rent',
         permanent: false
       }
     }

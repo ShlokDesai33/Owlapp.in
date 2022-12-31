@@ -4,7 +4,7 @@ export default function Contact() {
   return (
     <>
       <Head>
-        <title>Contact | Owl</title>
+        <title>Contact | Instrumus</title>
       </Head>
     </>
   )

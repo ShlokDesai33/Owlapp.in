@@ -5,7 +5,7 @@ import type { NextPageWithLayout } from '../../typescript/nextpage'
 const Social: NextPageWithLayout = () => (
   <>
     <Head>
-      <title>Social | Owl</title>
+      <title>Social | Instrumus</title>
     </Head>
   </>
 )

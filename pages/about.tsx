@@ -6,7 +6,7 @@ const AboutUs: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>About Us | Owl</title>
+        <title>About Us | Instrumus</title>
       </Head>
     </>
   )

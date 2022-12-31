@@ -40,14 +40,17 @@ const ViewProduct = ({ id }: { id: string }) => {
     product ? product.fields.custom_info : null
   );
 
+  console.log(customInfo);
+
   let appCount = 1;
   let limitCount = 1;
+  let customCount = 1;
 
   if (error) {
     return (
       <>
         <Head>
-          <title>Owl</title>
+          <title>Instrumus</title>
         </Head>
 
         <div className="flex grow justify-center items-center divide-x-2 gap-x-5">
@@ -64,11 +67,11 @@ const ViewProduct = ({ id }: { id: string }) => {
     return (
       <>
         <Head>
-          <title>Owl</title>
-          <meta name="description" content="Owl's landing page"/>
+          <title>Instrumus</title>
+          <meta name="description" content="Instrumus's landing page"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-          <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
-          <meta name="author" content="Owl"></meta>
+          <meta name="keywords" content="Instrumus, Home, Log In, Sign Up, Landing Page"></meta>
+          <meta name="author" content="Instrumus"></meta>
           <link rel="icon" href="/images/favicon.ico"/>
         </Head>
 
@@ -82,7 +85,7 @@ const ViewProduct = ({ id }: { id: string }) => {
   return (
     <>
       <Head>
-        <title>{product.name} | Owl</title>
+        <title>{product.name} | Instrumus</title>
       </Head>
 
       <main className="w-full max-w-7xl px-4 sm:px-6 mx-auto mt-8">
@@ -170,7 +173,7 @@ const ViewProduct = ({ id }: { id: string }) => {
               <h4>Applications</h4>
               
               <div className="grid grid-cols-2 gap-6 mt-5">
-                {applications.map((content: string) => gridCell(appCount++, content))}
+                {applications.map((obj: any) => gridCell(appCount++, obj.content))}
               </div>
             </div>
           ) :
@@ -186,7 +189,7 @@ const ViewProduct = ({ id }: { id: string }) => {
               <h4>Limitations</h4>
               
               <div className="grid grid-cols-2 gap-6 mt-5">
-                {limitations.map((content: string) => gridCell(limitCount++, content))}
+                {limitations.map((obj: any) => gridCell(limitCount++, obj.content))}
               </div>
             </div>
           ) :
@@ -202,7 +205,7 @@ const ViewProduct = ({ id }: { id: string }) => {
               <h4>{info.name}</h4>
               
               <div className="grid grid-cols-2 gap-6 mt-5">
-                {info.content.map((content: string) => gridCell(limitCount++, content))}
+                {info.content.map((content: string) => gridCell(customCount++, content))}
               </div>
             </div>
           ))
@@ -211,91 +214,6 @@ const ViewProduct = ({ id }: { id: string }) => {
             <></>
           )
         }
-        
-        {/* <hr className="mt-8 border-t-2"/>
-
-        <div className="bg-gray-bg p-8 my-8 rounded-xl">
-          <div className="flex items-center gap-x-2">
-            <Chats size={32} className="text-secondary" />
-            <h4>FAQ</h4>
-          </div>
-
-          <div className="mt-6">
-            <div className="flex items-center gap-x-2">
-              <Image
-                src="https://source.boringavatars.com/marble/60/shlok6203@gmail.com?colors=2F80ED,BE6CFF,1100D6"
-                width={30}
-                height={30}
-                alt="Profile Picture"
-                className="rounded-full"
-              />
-
-              <h6>Shlok Desai</h6>
-
-              <Image
-                src={blueCheck}
-                width={25}
-                height={25}
-                alt="Verified Check"
-              />
-            </div>
-
-            <div className="ml-3 pl-3 mt-1 border-l-2 border-gray-btn">
-              <h5 className="pt-2">
-                <span className="text-gray-text">Q: </span>
-                How many samples can be submitted in a single request form?
-              </h5>
-
-              <div className="flex items-center gap-x-2 mt-4">
-                <Image
-                  src="https://source.boringavatars.com/marble/60/shlok6203@gm.com?colors=2F80ED,BE6CFF,1100D6"
-                  width={30}
-                  height={30}
-                  alt="Profile Picture"
-                  className="rounded-full"
-                />
-
-                <h6>Arjun Kohli <span className="text-gray-text">(used this resource before)</span></h6>
-              </div>
-
-              <h5 className="mt-2 pb-2">
-                <span className="text-gray-text">A: </span>
-                Maximum of 5 samples.
-              </h5>
-            </div>
-          </div>
-
-          <div className="mt-6">
-            <div className="flex items-center gap-x-2">
-              <Image
-                src="https://source.boringavatars.com/marble/60/bhavyadoshi@gmail.com?colors=2F80ED,BE6CFF,1100D6"
-                width={30}
-                height={30}
-                alt="Profile Picture"
-                className="rounded-full"
-              />
-
-              <h6>Bhavya Doshi</h6>
-            </div>
-
-            <div className="ml-3 pl-3 mt-1 border-l-2 border-gray-btn">
-              <h5 className="pt-2">
-                <span className="text-gray-text">Q: </span>
-                Which plot should I use for calculating Pore Volume (Diameter)?
-              </h5>
-
-              <div className="flex items-center gap-x-2 mt-4">
-                <UserCircle size={32} weight="fill" className="text-secondary" />
-                <h6>{product.admin.name} <span className="text-gray-text">(admin)</span></h6>
-              </div>
-
-              <h5 className="mt-2 pb-2">
-                <span className="text-gray-text">A: </span>
-                BET plot, and also you can refer BJH and t-plot to study the mesoporous characters of samples.
-              </h5>
-            </div>
-          </div>
-        </div> */}
       </main>
     </>
   )

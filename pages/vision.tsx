@@ -4,7 +4,7 @@ export default function OurVision() {
   return (
     <>
       <Head>
-        <title>Our Vision | Owl</title>
+        <title>Our Vision | Instrumus</title>
       </Head>
     </>
   )

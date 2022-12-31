@@ -1,5 +1,5 @@
 /**
- * Renders Owl's default loading state
+ * Renders Instrumus's default loading state
  * @returns {JSX.Element} the spinner
  */
  export default function Spinner() {

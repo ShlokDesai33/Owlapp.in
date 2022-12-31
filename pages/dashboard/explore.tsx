@@ -1,12 +1,12 @@
 import Head from 'next/head'
-import { Calendar, Warning } from 'phosphor-react'
+import { Compass, Warning } from 'phosphor-react'
 import Layout from '../../components/layout/auth'
 import Spinner from '../../components/lib/spinner'
 import ResourceHit from '../../components/search/hits/resource'
 import useResourcesInf from '../../hooks/useResourcesInf'
 import type { NextPageWithLayout } from '../../typescript/nextpage'
 
-const Dashboard: NextPageWithLayout = () => {
+const Explore: NextPageWithLayout = () => {
   const { data, error, size, setSize } = useResourcesInf();
 
   const isLoadingMore = (!data && !error) || (size > 0 && data && typeof data[size - 1] === "undefined");
@@ -27,13 +27,8 @@ const Dashboard: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Home | Instrumus</title>
+        <title>Explore | Instrumus</title>
       </Head>
-
-      <div className="text-gray-700 mt-6 flex items-center gap-x-1">
-        <Calendar size={24} />
-        Your pending and completed bookings:
-      </div>
 
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mt-6">
         {
@@ -71,8 +66,8 @@ const Dashboard: NextPageWithLayout = () => {
 }
 
 // return the Home page wrapped in the Layout component
-Dashboard.getLayout = function getLayout(page: React.ReactElement) {
+Explore.getLayout = function getLayout(page: React.ReactElement) {
   return <Layout>{page}</Layout>;
 }
 
-export default Dashboard
+export default Explore

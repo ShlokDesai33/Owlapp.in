@@ -27,7 +27,7 @@ const Search: NextPageWithLayout = () => {
 
   useEffect(() => {
     if (sortBy.price && objectFilter === 0) {
-      setSearchResults([...searchResults].sort((a, b) => {
+      setSearchResults(s => [...s].sort((a, b) => {
         return a.prices.industry - b.prices.industry;
       }));
     }
@@ -36,7 +36,7 @@ const Search: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Search | Owl</title>
+        <title>Search | Instrumus</title>
       </Head>
 
       <main className="max-w-7xl px-4 sm:px-6 mx-auto pt-6 overflow-y-scroll" id="no_sb">
@@ -80,7 +80,7 @@ const Search: NextPageWithLayout = () => {
           <input
             ref={inputRef}
             className="relative block w-full appearance-none text-gray-900 placeholder-gray-500 focus:z-10 text-base mx-3"
-            placeholder="Search Owl"
+            placeholder="Search Instrumus"
             autoFocus={true}
           />
 

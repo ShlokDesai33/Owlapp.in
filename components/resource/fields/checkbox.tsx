@@ -1,3 +1,6 @@
+import { useContext, useState } from "react";
+import { PriceContext } from "../../resource/context";
+
 type Props = {
   id: string;
   title: string;
@@ -7,9 +10,20 @@ type Props = {
   }[]
   isRequired?: boolean;
   defaultValue: string[];
-}
+};
 
 export default function CheckboxField({ id, title, options, isRequired, defaultValue }: Props) {
+  const { price, setPrice } = useContext(PriceContext);
+
+  const defaultPriceContribution = options.reduce((acc, option) => {
+    if (defaultValue.includes(option.value)) {
+      return acc + option.priceAddition;
+    }
+    return acc;
+  }, 0);
+
+  const [priceContribution, setPriceContribution] = useState(defaultPriceContribution);
+
   return (
     <div className="overflow-hidden border-2 border-gray-100 rounded sm:rounded-md">
       <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
@@ -27,6 +41,16 @@ export default function CheckboxField({ id, title, options, isRequired, defaultV
                     required={isRequired || false}
                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
                     defaultChecked={defaultValue?.includes(option.value)}
+                    // This is the important part
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setPrice(price + option.priceAddition);
+                        setPriceContribution(priceContribution + option.priceAddition);
+                      } else {
+                        setPrice(price - option.priceAddition);
+                        setPriceContribution(priceContribution - option.priceAddition);
+                      }
+                    }}
                   />
                 </div>
                 <div className="ml-3 text-sm">

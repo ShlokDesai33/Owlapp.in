@@ -8,7 +8,7 @@ interface User {
   email: string
   // hidden
   password: string
-  // Owl Rank
+  // Instrumus Rank
   rank: number
   followers: number
   createdAt: Date

@@ -5,12 +5,32 @@
 @layer base {
   html {
     font-family: 'Manrope', sans-serif;
+    height: 100%;
+  }
+  body {
+    height: 100%;
+  }
+  #__next {
+    height: 100%;
+  }
+  /* Configures scroll bar aesthetic. */
+  #no_sb::-webkit-scrollbar {
+    width: 0px;
+  }
+  input:focus {
+    outline: none !important;
+  }
+  input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px white inset;
+  }
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px white inset;
   }
   /* Main call to action header. */
   h1 {
     @apply text-6xl font-medium leading-snug tracking-wide;
   }
-  /* Owl logo header. font-normal -> font-medium if new logo allows it. */
+  /* Instrumus logo header. font-normal -> font-medium if new logo allows it. */
   h2 {
     @apply text-4xl font-normal leading-8 tracking-wide;
   }
@@ -31,44 +51,7 @@
   p {
     @apply text-base font-normal leading-8 tracking-wide;
   }
-  input:focus {
-    outline: none !important;
-  }
-  input:-webkit-autofill {
-    -webkit-box-shadow:0 0 0 50px white inset;
-  }
-  input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 50px white inset;
-  }
-  /* CSS to render stroke to 'Owl' text in landing page. */
-  .header-stroke {
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
-  }
-  /* Configures scroll bar aesthetic. */
-  #no_sb::-webkit-scrollbar {
-    @apply w-0;
-  }
-  
-  html {
-    @apply h-full;
-  }
-  body {
-    @apply h-full;
-  }
-  #__next {
-    @apply h-full;
-  }
 }
 
 @tailwind components;
-
-@layer components {
-  /* A simple input field class. */
-  .input-field {
-    @apply outline-none bg-transparent placeholder:text-xl placeholder:text-gray-text;
-    @apply mt-6 border-2 py-4 px-4 w-full rounded-xl border-gray-btn text-xl focus:border-gray-text;
-  }
-}
-
 @tailwind utilities;

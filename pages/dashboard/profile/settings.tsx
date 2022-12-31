@@ -6,7 +6,7 @@ const Settings: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Settings | Owl</title>
+        <title>Settings | Instrumus</title>
       </Head>
     </>
   )

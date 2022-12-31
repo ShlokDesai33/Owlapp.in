@@ -6,7 +6,7 @@ const EditProfile: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Edit Profile | Owl</title>
+        <title>Edit Profile | Instrumus</title>
       </Head>
     </>
   )

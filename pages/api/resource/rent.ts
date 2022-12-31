@@ -26,10 +26,10 @@ export default async function handler(
     batch.set(doc(collection(db, `users/${body.userID}/bookings`)), {
       selectedSlot: body.selectedSlot,
       metricQuantity: body.metricQuantity,
-      metric: body.metric,
-      type: body.type,
+      priceMetric: body.productMetric,
+      type: body.bookingType,
       status: 'pending',
-      resourceID: body.resourceID,
+      resourceID: body.productID,
       org: {
         name: body.orgName,
         id: body.orgID,
@@ -41,9 +41,9 @@ export default async function handler(
     batch.set(doc(collection(db, `users/${body.orgID}/admins/${body.adminID}/bookings`)), {
       customInputs: customInputs,
       metricQuantity: body.metricQuantity,
-      resourceID: body.resourceID,
-      metric: body.metric,
-      type: body.type,
+      resourceID: body.productID,
+      priceMetric: body.productMetric,
+      type: body.bookingType,
       status: 'pending',
       user: {
         name: body.userName,
@@ -54,7 +54,7 @@ export default async function handler(
       selectedSlot: body.selectedSlot,
     });
 
-    batch.set(doc(collection(db, `resources/${body.resourceID}/bookings`)), {
+    batch.set(doc(collection(db, `resources/${body.productID}/bookings`)), {
       selectedSlot: body.selectedSlot,
     });
 

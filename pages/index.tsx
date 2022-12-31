@@ -20,10 +20,10 @@ const Home: NextPageWithLayout = () => {
       <>
         <Head>
           <title>Instrumus</title>
-          <meta name="description" content="Owl's landing page"/>
+          <meta name="description" content="Instrumus's landing page"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-          <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
-          <meta name="author" content="Owl"></meta>
+          <meta name="keywords" content="Instrumus, Home, Log In, Sign Up, Landing Page"></meta>
+          <meta name="author" content="Instrumus"></meta>
           <link rel="icon" href="/images/favicon.ico"/>
         </Head>
 
@@ -39,8 +39,8 @@ const Home: NextPageWithLayout = () => {
     <>
       <Head>
         <title>Instrumus</title>
-        <meta name="description" content="Owl's landing page"/>
-        <meta name="keywords" content="Owl, Home, Log In, Sign Up, Landing Page"></meta>
+        <meta name="description" content="Instrumus's landing page"/>
+        <meta name="keywords" content="Instrumus, Home, Log In, Sign Up, Landing Page"></meta>
       </Head>
 
       <main className="h-full">

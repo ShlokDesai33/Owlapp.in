@@ -21,11 +21,11 @@ const SignIn: NextPage = () => {
     return (
       <>
         <Head>
-          <title>Sign In | Owl</title>
+          <title>Sign In | Instrumus</title>
           <meta name="description" content="Sign In"/>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
           <meta name="keywords" content="owl, log In, sign in, forgot password"></meta>
-          <meta name="author" content="Owl"></meta>
+          <meta name="author" content="Instrumus"></meta>
           <link rel="icon" href="/images/favicon.ico"/>
         </Head>
 
@@ -39,11 +39,11 @@ const SignIn: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Sign In | Owl</title>
+        <title>Sign In | Instrumus</title>
         <meta name="description" content="Sign In"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <meta name="keywords" content="owl, log In, sign in, forgot password"></meta>
-        <meta name="author" content="Owl"></meta>
+        <meta name="author" content="Instrumus"></meta>
         <link rel="icon" href="/images/favicon.ico"/>
       </Head>
 
