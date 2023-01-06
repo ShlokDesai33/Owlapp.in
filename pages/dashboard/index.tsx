@@ -68,7 +68,7 @@ const Booking = ({ booking }: { booking: any }) => {
           }
         </div>
             
-        <div className="flex items-center mt-3 text-lg truncate">
+        <div className="flex items-center mt-2 text-lg truncate">
           <h5>{booking.product.name}</h5>
         </div>
 
