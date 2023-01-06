@@ -127,7 +127,7 @@ const Dashboard: NextPageWithLayout = () => {
         <Link href="/search">
           <a className="text-primary hover:underline">Search</a>
         </Link>
-        {' '}for what you're looking for, or{' '}
+        {' '}for what you&apos;re looking for, or{' '}
         <Link href="/explore">
           <a className="text-primary hover:underline">explore</a>
         </Link>
