@@ -56,6 +56,8 @@ const SignUp: NextPage = () => {
                   alt="Logo"
                   width={70}
                   height={70}
+                  priority
+                  
                 />
               </button>
             </Link>

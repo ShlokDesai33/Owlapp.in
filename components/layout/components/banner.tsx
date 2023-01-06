@@ -18,8 +18,8 @@ export default function SearchBanner() {
               <MegaphoneSimple className="h-6 w-6 text-white" aria-hidden="true" />
             </span>
             <p className="ml-3 truncate font-medium text-white">
-              <span className="md:hidden">Looking for specific machines/instruments?</span>
-              <span className="hidden md:inline">Looking for specific machines/instruments? Cick to search all our resources!</span>
+              <span className="md:hidden">Looking for something specific?</span>
+              <span className="hidden md:inline">Looking for something specific? Cick to search all our products!</span>
             </p>
           </div>
           <div className="order-3 mt-2 w-full flex-shrink-0 sm:order-2 sm:mt-0 sm:w-auto">

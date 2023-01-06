@@ -19,7 +19,8 @@ import { PriceContext } from '../../../../../components/resource/context'
 const RentResource: NextPageWithLayout = () => {
   const router = useRouter();
   const { id } = router.query;
-  let booking = useSessionStorage();
+  let booking = useSessionStorage(id as string);
+
   const { product, error: prodError } = useResource(id as string);
   const { user } = useSession();
 
@@ -45,20 +46,13 @@ const RentResource: NextPageWithLayout = () => {
     }
   }, [product, user, price]);
 
-  useEffect(() => {
-    if (booking && product && booking.productID !== product.id) {
-      sessionStorage.removeItem('booking');
-      booking = null;
-    }
-  }, [booking]);
-
   const [loading, setLoading] = useState<boolean>(false);
 
   if (!product || !user || loading || (!inputFields && !inputFieldsError && product.fields.custom_input > 0)) {
     return (
       <>
         <Head>
-          <title>Rent Resource | Instrumus</title>
+          <title>Book Resource | Instrumus</title>
         </Head>
         
         <div className="flex h-full items-center justify-center">
@@ -71,7 +65,7 @@ const RentResource: NextPageWithLayout = () => {
     return (
       <>
         <Head>
-          <title>Rent Resource | Instrumus</title>
+          <title>Book Resource | Instrumus</title>
         </Head>
 
         <div className="flex flex-col gap-y-1 h-full items-center justify-center">
@@ -86,12 +80,12 @@ const RentResource: NextPageWithLayout = () => {
     return (
       <>
         <Head>
-          <title>Rent {product.name} | Instrumus</title>
+          <title>Book {product.name} | Instrumus</title>
         </Head>
 
         <div className="flex h-full items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold">This resource is not available to rent</h1>
+            <h1 className="text-2xl font-bold">This resource is not available to book</h1>
             <p className="text-gray-500">Please contact the admin for more information</p>
           </div>
         </div>
@@ -102,7 +96,7 @@ const RentResource: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Rent {product.name} | Instrumus</title>
+        <title>Book {product.name} | Instrumus</title>
       </Head>
 
       <div className="absolute right-0 bottom-0 m-4 bg-white p-6 rounded-md border-2 border-gray-100">
@@ -119,11 +113,15 @@ const RentResource: NextPageWithLayout = () => {
           }, 500);
         }}
       >
-        <div className="">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-800 truncate max-w-3xl">Rent {product.name}</h1>
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-800 truncate max-w-3xl">Book {product.name}</h1>
           <p className="text-gray-800">Base price is{' '}
             <span className="text-indigo-500 font-semibold">
               ₹{product.prices.industry} per {product.prices.metric}
+            </span>
+            {' '}
+            <span className="text-gray-600">
+              (Disclaimer: this price is subject to additional charges/discounts and is not final)
             </span>
           </p>
         </div>
@@ -254,6 +252,9 @@ const RentResource: NextPageWithLayout = () => {
         <input type="text" defaultValue={product.org.image} name="orgImage" className="hidden" hidden />
 
         <input type="text" defaultValue={product.admin.id} name="adminID" className="hidden" hidden />
+        <input type="text" defaultValue={product.admin.name} name="adminName" className="hidden" hidden />
+        <input type="text" defaultValue={product.admin.email} name="adminEmail" className="hidden" hidden />
+        <input type="text" defaultValue={product.admin.cell} name="adminCell" className="hidden" hidden />
 
         <button
           type="submit"

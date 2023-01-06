@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { writeBatch, doc, collection } from 'firebase/firestore'
 import db from '../../../firebase'
+import { parseISO } from 'date-fns'
 
 export default async function handler(
   req: NextApiRequest,
@@ -23,39 +24,63 @@ export default async function handler(
       }
     }
 
-    batch.set(doc(collection(db, `users/${body.userID}/bookings`)), {
-      selectedSlot: body.selectedSlot,
+    const bookingDoc = doc(collection(db, `resources/${body.productID}/bookings`));
+    const selectedSlot = parseISO(body.selectedSlot);
+
+    batch.set(bookingDoc, {
+      selectedSlot: selectedSlot
+    });
+
+    batch.set(doc(db, `users/${body.userID}/bookings`, bookingDoc.id), {
+      customInputs: customInputs,
+      // booking details
+      selectedSlot: selectedSlot,
       metricQuantity: body.metricQuantity,
-      priceMetric: body.productMetric,
       type: body.bookingType,
       status: 'pending',
-      resourceID: body.productID,
+      totalCost: body.totalPrice,
+      // product details
+      product: {
+        id: body.productID,
+        name: body.productName,
+        priceMetric: body.productMetric,
+      },
+      // org details
       org: {
         name: body.orgName,
         id: body.orgID,
         image: body.orgImage,
       },
+      admin: {
+        name: body.adminName,
+        id: body.adminID,
+        email: body.adminEmail,
+        cell: body.adminCell,
+      },
       createdAt: timestamp,
     });
 
-    batch.set(doc(collection(db, `users/${body.orgID}/admins/${body.adminID}/bookings`)), {
+    batch.set(doc(db, `users/${body.orgID}/admins/${body.adminID}/bookings`, bookingDoc.id), {
       customInputs: customInputs,
+      // booking details
       metricQuantity: body.metricQuantity,
-      resourceID: body.productID,
-      priceMetric: body.productMetric,
+      selectedSlot: selectedSlot,
       type: body.bookingType,
+      totalCost: body.totalPrice,
       status: 'pending',
+      // product details
+      product: {
+        id: body.productID,
+        name: body.productName,
+        priceMetric: body.productMetric,
+      },
+      // user details
       user: {
         name: body.userName,
         id: body.userID,
         image: body.userImage,
       },
       createdAt: timestamp,
-      selectedSlot: body.selectedSlot,
-    });
-
-    batch.set(doc(collection(db, `resources/${body.productID}/bookings`)), {
-      selectedSlot: body.selectedSlot,
     });
 
     await batch.commit();

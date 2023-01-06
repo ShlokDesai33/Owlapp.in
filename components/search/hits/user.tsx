@@ -7,7 +7,7 @@ export default function UserHit({ hit }: { hit: any }) {
   // TODO: add a link to the user's profile
   return (
     <Link href="#" passHref>
-      <div className="group relative bg-gray-100 pt-8 pb-4 px-3 rounded-md">
+      <div className="group relative bg-gray-100 pt-8 pb-4 px-3 rounded-md will-change-scroll">
         {
           hit.status === 'verified' || hit.status === 'org'  && (
             <div className="absolute top-0 right-0 p-3">

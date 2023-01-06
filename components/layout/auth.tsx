@@ -89,6 +89,8 @@ export default function LayoutWithAuth({ children }: { children: React.ReactNode
                           alt="Logo"
                           width={35}
                           height={35}
+                          priority
+                          
                         />
                       </div>
                       <div className="hidden md:block">

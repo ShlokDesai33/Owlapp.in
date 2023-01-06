@@ -57,6 +57,8 @@ const SignIn: NextPage = () => {
                   alt="Logo"
                   width={70}
                   height={70}
+                  priority
+                  
                 />
               </button>
             </Link>

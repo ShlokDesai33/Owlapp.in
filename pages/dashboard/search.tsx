@@ -49,7 +49,7 @@ const Search: NextPageWithLayout = () => {
             setLoading(true);
 
             if (objectFilter === 0) {
-              resources_ind.search(query, { hitsPerPage: 20,})
+              resources_ind.search(query, { hitsPerPage: 20 })
                 .then(({ hits }: { hits: any}) => {
                   setSearchResults(hits);
                   setLoading(false);
@@ -60,7 +60,7 @@ const Search: NextPageWithLayout = () => {
                 });
             }
             else if (objectFilter === 1) {
-              users_ind.search(query, { hitsPerPage: 20,})
+              users_ind.search(query, { hitsPerPage: 20 })
                 .then(({ hits }: { hits: any}) => {
                   setSearchResults(hits);
                   setLoading(false);

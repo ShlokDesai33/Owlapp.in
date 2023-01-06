@@ -40,8 +40,6 @@ const ViewProduct = ({ id }: { id: string }) => {
     product ? product.fields.custom_info : null
   );
 
-  console.log(customInfo);
-
   let appCount = 1;
   let limitCount = 1;
   let customCount = 1;
