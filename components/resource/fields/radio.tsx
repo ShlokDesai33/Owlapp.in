@@ -40,6 +40,13 @@ export default function RadioField({ id, title, options, isRequired, defaultValu
                       setPrice(price - priceContribution + option.priceAddition);
                       setPriceContribution(option.priceAddition);
                     }}
+                    onKeyDown={(e) => {
+                      if (['Enter', 'NumpadEnter'].includes(e.key)) {
+                        // prevent form submission
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }
+                    }}
                   />
                 </div>
                 <div className="ml-3 text-sm">

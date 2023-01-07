@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { writeBatch, doc, collection } from 'firebase/firestore'
+import { writeBatch, doc, collection, getDoc } from 'firebase/firestore'
 import db from '../../../firebase'
 import { parseISO } from 'date-fns'
+import nodeMailer from 'nodemailer'
 
 export default async function handler(
   req: NextApiRequest,
@@ -85,6 +86,50 @@ export default async function handler(
 
     await batch.commit();
     res.status(200).end();
+
+    // send email to admin
+    let transport = nodeMailer.createTransport({
+      host: 'smtpout.secureserver.net',
+      port: 465,
+      auth: {
+        user: 'no-reply@owlapp.in',
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    transport.sendMail({
+      from: '"Owl" no-reply@owlapp.in', // sender address
+      to: body.adminEmail, // list of receivers
+      subject: `New booking on product @${body.productID}`, // Subject line
+      html:
+      `
+        <h5>Product Name: ${body.productName}</h5>
+        <h5>Selected Slot: ${body.selectedSlot}</h5>
+        <hr></hr>
+        <p>This booking is waiting for your approval.</p>
+        <p>Go to the <a href="https://owl-console.vercel.app/">console</a> to see more.</p>
+      `, // html body
+    });
+
+    // get the user's email
+    const userDoc = await getDoc(doc(db, `users/${body.userID}`));
+
+    // send email to user
+    transport.sendMail({
+      from: '"Owl" no-reply@owlapp.in', // sender address
+      to: userDoc.data()?.email, // list of receivers
+      subject: `New booking received`, // Subject line
+      html:
+      `
+        <h2>Thank you for booking with us!</h2>
+        <p>Your booking has been received and is currently awaiting approval.</p>
+        <hr></hr>
+        <h5>Product Name: ${body.productName}</h5>
+        <h5>Selected Slot: ${body.selectedSlot}</h5>
+        <hr></hr>
+        <p>This product's admin may reach out to you. If you have any questions, feel free to contact the admin directly.</p>
+      `, // html body
+    });
   }
   catch (e) {
     console.log(e);

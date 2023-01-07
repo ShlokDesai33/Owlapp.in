@@ -51,6 +51,13 @@ export default function CheckboxField({ id, title, options, isRequired, defaultV
                         setPriceContribution(priceContribution - option.priceAddition);
                       }
                     }}
+                    onKeyDown={(e) => {
+                      if (['Enter', 'NumpadEnter'].includes(e.key)) {
+                        // prevent form submission
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }
+                    }}
                   />
                 </div>
                 <div className="ml-3 text-sm">

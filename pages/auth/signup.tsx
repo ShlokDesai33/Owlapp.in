@@ -110,7 +110,7 @@ const SignUp: NextPage = () => {
                     .then((res) => {
                       if (res.status === 200) {
                         // redirect to home
-                        router.push('/dashboard/');
+                        router.push('/dashboard/explore');
                       } else {
                         setState('500');
                       }
@@ -177,7 +177,7 @@ const SignUp: NextPage = () => {
             .then(res => {
               if (res.status === 200) {
                 // redirect to home
-                router.push('/dashboard/');
+                router.push('/dashboard/explore');
               } else if (res.status === 401) {
                 setState('401');
               } else if (res.status === 309) {

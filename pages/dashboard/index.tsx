@@ -12,7 +12,7 @@ import formatRelative from 'date-fns/formatRelative'
 import { Timestamp } from 'firebase/firestore'
 import { format } from 'date-fns'
 
-const Booking = ({ booking }: { booking: any }) => {  
+const Booking = ({ booking }: { booking: any }) => {
   return (
     <Link href={`/dashboard/bookings/${booking.id}`} passHref>
       <li className="py-6 px-6 rounded-xl shadow-post-shadow border-2 border-white border-wbookinge hover:border-primary hover:shadow-none will-change-scroll hover:cursor-pointer">
@@ -46,12 +46,12 @@ const Booking = ({ booking }: { booking: any }) => {
             booking.status === 'approved' && (
               <div className="flex items-center gap-x-1 text-primary bg-blue-100/70 rounded-full px-3 py-1">
                 <ThumbsUp size={24} />
-                <p>Confirmed</p>
+                <p>Approved</p>
               </div>
             )
           }
           {
-            booking.status === 'complete' && (
+            booking.status === 'completed' && (
               <div className="flex items-center gap-x-1 text-green-500 bg-green-100/70 rounded-full px-3 py-1">
                 <CheckCircle size={24} />
                 <p>Completed</p>

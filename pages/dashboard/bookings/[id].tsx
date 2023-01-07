@@ -23,8 +23,8 @@ function parseBookingStatus(type: string) {
     case 'pending':
       return 'Pending Approval';
     case 'approved':
-      return 'Confirmed';
-    case 'complete':
+      return 'Approved';
+    case 'completed':
       return 'Completed';
     case 'cancelled':
       return 'Cancelled';

@@ -105,7 +105,7 @@ const SignIn: NextPage = () => {
                     .then((res) => {
                       if (res.status === 200) {
                         // redirect to home
-                        router.push('/dashboard/');
+                        router.push('/dashboard/explore');
                       } else {
                         setState('500');
                       }
