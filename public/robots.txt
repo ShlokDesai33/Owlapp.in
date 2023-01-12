@@ -3,7 +3,7 @@
 User-agent: *
 Disallow: /api/
 
-User-agent: *
-Disallow: /dashboard/
+# User-agent: *
+# Disallow: /dashboard/
 
 # Sitemap: https://www.intrumus.com/sitemap.xml
