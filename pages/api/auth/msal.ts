@@ -14,14 +14,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-  // check if request is from owlapp.in
-  // check if app is in production
-  // if (process.env.NODE_ENV === 'production') {
-  //   if (req.headers.referer !== 'https://owlapp.in/') {
-  //     return res.status(401).end();
-  //   }
-  // }
-
   const body: AccountInfo = req.body;
 
   if (!body.username || !body.name) {
@@ -42,7 +34,7 @@ export default async function handler(
         .setSubject(doc.id)
         .setIssuedAt()
         .setExpirationTime('10 days')
-        .setIssuer('owlapp.in')
+        .setIssuer('instrumus.com')
         .sign(JWT_SECRET);
 
       const cookies = new Cookies(req, res);
@@ -80,7 +72,7 @@ export default async function handler(
         .setSubject(docRef.id)
         .setIssuedAt()
         .setExpirationTime('10 days')
-        .setIssuer('owlapp.in')
+        .setIssuer('instrumus.com')
         .sign(JWT_SECRET);
 
       const cookies = new Cookies(req, res);

@@ -22,7 +22,7 @@ export default async function handler(
     try {
       // verify token signature
       const { payload } = await jwtVerify(token, JWT_SECRET, {
-        issuer: 'owlapp.in', // iss
+        issuer: 'instrumus.com', // iss
       });
       // user is authenticated
       // get user data from firestore

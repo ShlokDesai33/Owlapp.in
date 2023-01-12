@@ -88,7 +88,6 @@ export default function LandingNavbar({ classes = '' }) {
                   width={45}
                   height={45}
                   priority
-                  
                 />
                 <h1 className="text-xl font-medium hidden lg:inline">Instrumus</h1>
               </button>

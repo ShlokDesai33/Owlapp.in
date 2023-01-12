@@ -53,7 +53,7 @@ export default async function handler(
       .setSubject(docRef.id)
       .setIssuedAt()
       .setExpirationTime('10 days')
-      .setIssuer('owlapp.in')
+      .setIssuer('instrumus.com')
       .sign(JWT_SECRET);
 
     const cookies = new Cookies(req, res);
